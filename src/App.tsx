@@ -1,4 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
+import { useState, useRef, useEffect } from 'react'
+import CaseStudy from './pages/CaseStudy'
+import Resume from './pages/Resume'
 
 function HomePage() {
   return (
@@ -11,6 +14,7 @@ function HomePage() {
             <a href="#work" className="text-sm text-zinc-400 hover:text-white transition-colors">Work</a>
             <a href="#about" className="text-sm text-zinc-400 hover:text-white transition-colors">About</a>
             <a href="#experience" className="text-sm text-zinc-400 hover:text-white transition-colors">Experience</a>
+            <a href="/resume" className="text-sm text-zinc-400 hover:text-white transition-colors">Resume</a>
             <a href="#contact" className="text-sm text-white bg-indigo-500 hover:bg-indigo-400 h-9 px-5 rounded-full inline-flex items-center transition-colors">Contact</a>
           </div>
         </div>
@@ -181,6 +185,34 @@ function HomePage() {
         </div>
       </section>
 
+      {/* HOW I THINK */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-sm font-medium text-indigo-400 mb-2">Perspectives</p>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-12">How I <span className="text-gradient">think</span></h2>
+          <div className="max-w-2xl space-y-3">
+            {[
+              { tag: 'Philosophy', title: 'Why I build what I design', text: 'The gap between design and implementation is where products lose their soul. A pixel-perfect Figma file means nothing if the engineer interprets spacing differently. I started writing production code because I got tired of that gap. When I design a voice AI flow, I also build the React interface that handles real-time transcription, error states, and connection fallbacks.' },
+              { tag: 'AI Design', title: 'Designing for when AI fails', text: 'Every AI product fails. The voice agent misunderstands. The email personalization hallucinates. I design every AI feature with three states: confident (show the result), uncertain (flag for review), and wrong (graceful recovery). The fallback IS the feature.' },
+              { tag: 'Strategy', title: 'The $497/month problem', text: 'Small businesses pay $497–$1,200/month for SaaS tools that are 80% features they\'ll never use. I built Audiences247 to prove a self-hosted stack can replace a $500/month subscription at $52/month. The secret isn\'t better technology — it\'s better product design.' },
+              { tag: 'Systems', title: 'Design systems are products', text: 'A design system isn\'t a Figma library. It\'s a product with users (designers and engineers), features (components and tokens), adoption metrics, and maintenance costs. At Pfizer, I treated ours like a product launch with user research, adoption strategy, and success metrics. Result: 40% less duplicate work.' },
+            ].map(a => (
+              <HowIThinkCard key={a.title} {...a} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AI CHAT */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <p className="text-sm font-medium text-indigo-400 mb-2">AI Assistant</p>
+          <h2 className="text-2xl sm:text-3xl font-bold mb-2">Ask me <span className="text-gradient">anything</span></h2>
+          <p className="text-sm text-zinc-400 mb-8">Ask about my experience, skills, or design approach.</p>
+          <AiChat />
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section id="contact" className="py-16 sm:py-24">
         <div className="max-w-5xl mx-auto px-6 text-center">
@@ -210,11 +242,87 @@ function HomePage() {
   )
 }
 
+function HowIThinkCard({ tag, title, text }: { tag: string; title: string; text: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="rounded-xl border border-zinc-800 bg-zinc-950 overflow-hidden">
+      <button onClick={() => setOpen(!open)} className="w-full flex items-start justify-between gap-4 p-5 text-left hover:bg-zinc-900/50 transition-colors">
+        <div>
+          <span className="text-xs px-2 py-0.5 rounded-full border border-zinc-800 text-indigo-400">{tag}</span>
+          <h3 className="text-sm font-semibold mt-2">{title}</h3>
+          {!open && <p className="text-sm text-zinc-500 mt-1 line-clamp-2">{text.slice(0, 100)}...</p>}
+        </div>
+        <svg className={`w-4 h-4 text-zinc-500 flex-shrink-0 mt-1 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
+      </button>
+      {open && <p className="text-sm text-zinc-400 leading-relaxed px-5 pb-5">{text}</p>}
+    </div>
+  )
+}
+
+function AiChat() {
+  const [msgs, setMsgs] = useState<{ role: string; text: string }[]>([])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const endRef = useRef<HTMLDivElement>(null)
+  useEffect(() => { endRef.current?.scrollIntoView({ behavior: 'smooth' }) }, [msgs])
+
+  const send = (text: string) => {
+    if (!text.trim()) return
+    setMsgs(p => [...p, { role: 'user', text }])
+    setInput('')
+    setLoading(true)
+    setTimeout(() => {
+      const l = text.toLowerCase()
+      let reply = "AI Product Designer with 20+ years at Delta, IHG, Pfizer, State Farm. Building AI-native SaaS end-to-end. What would you like to know?"
+      if (l.includes('different') || l.includes('unique')) reply = "Roderick ships production code — React, TypeScript, full AI integrations — not Figma mockups. He's built voice AI agents, automated 10+ service pipelines, and replaced $497/mo SaaS tools with self-hosted solutions."
+      else if (l.includes('ai') || l.includes('experience')) reply = "He builds an AI SaaS platform processing 70K+ leads with voice AI (Retell), Gemini personalization, and automated scoring. 35-50% open rates — 2-3x industry average."
+      else if (l.includes('fortune') || l.includes('500') || l.includes('compan')) reply = "Delta (4.5yr, 15% faster boarding), IHG (5.5yr, $50M revenue), Pfizer (2.5yr, design system), State Farm (2yr, 20% retention ↑), Yahoo ($2M CRO)."
+      else if (l.includes('tech') || l.includes('stack') || l.includes('skill')) reply = "React, TypeScript, Tailwind, Node.js, Supabase, Stripe, Figma, Voice AI (Retell), Gemini, Claude, n8n, Design Systems, A/B Testing, CRO."
+      else if (l.includes('hire') || l.includes('contact')) reply = "Open to AI Product Designer, Design Engineer, and AI Product Engineer roles. Atlanta, GA — remote OK."
+      setMsgs(p => [...p, { role: 'assistant', text: reply }])
+      setLoading(false)
+    }, 600)
+  }
+
+  return (
+    <div className="max-w-xl rounded-2xl border border-zinc-800 bg-zinc-950 overflow-hidden">
+      <div className="h-80 overflow-y-auto p-5 space-y-3">
+        {msgs.length === 0 && (
+          <div className="h-full flex flex-col items-center justify-center text-center">
+            <p className="text-sm text-zinc-500 mb-5">Ask about experience, skills, or philosophy</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {['What makes Roderick different?', 'AI experience', 'Fortune 500 work', 'Tech stack'].map(s => (
+                <button key={s} onClick={() => send(s)} className="text-xs h-8 px-3 rounded-full border border-zinc-800 text-zinc-500 hover:border-indigo-500 hover:text-indigo-400 transition-colors">{s}</button>
+              ))}
+            </div>
+          </div>
+        )}
+        {msgs.map((m, i) => (
+          <div key={i} className={`flex gap-2.5 ${m.role === 'user' ? 'justify-end' : ''}`}>
+            {m.role === 'assistant' && <div className="w-7 h-7 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0 mt-0.5 text-xs text-indigo-400 font-bold">AI</div>}
+            <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${m.role === 'user' ? 'bg-indigo-500 text-white rounded-br-sm' : 'bg-zinc-900 text-zinc-400 rounded-bl-sm border border-zinc-800'}`}>{m.text}</div>
+          </div>
+        ))}
+        {loading && <div className="flex gap-2.5"><div className="w-7 h-7 rounded-lg bg-indigo-500/10 flex items-center justify-center text-xs text-indigo-400 font-bold">AI</div><div className="px-4 py-2.5 rounded-2xl rounded-bl-sm bg-zinc-900 border border-zinc-800 text-zinc-500 text-sm">Thinking...</div></div>}
+        <div ref={endRef} />
+      </div>
+      <div className="border-t border-zinc-800 p-3">
+        <form onSubmit={e => { e.preventDefault(); send(input) }} className="flex gap-2">
+          <input value={input} onChange={e => setInput(e.target.value)} disabled={loading} placeholder="Ask anything..."
+            className="flex-1 h-10 px-4 rounded-xl bg-black border border-zinc-800 text-sm text-white placeholder:text-zinc-600 focus:outline-none focus:border-indigo-500 disabled:opacity-50" />
+          <button type="submit" disabled={loading || !input.trim()} className="h-10 px-4 rounded-xl bg-indigo-500 text-white text-sm hover:bg-indigo-400 transition-colors disabled:opacity-40">Send</button>
+        </form>
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/case-study/:id" element={<div className="max-w-5xl mx-auto px-6 py-32 text-center"><p className="text-zinc-400">Case study page — coming soon</p><a href="/" className="text-indigo-400 text-sm mt-4 block hover:underline">Back to home</a></div>} />
+      <Route path="/case-study/:id" element={<CaseStudy />} />
+      <Route path="/resume" element={<Resume />} />
     </Routes>
   )
 }
