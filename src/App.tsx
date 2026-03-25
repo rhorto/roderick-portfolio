@@ -64,15 +64,21 @@ function HomePage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
             {[
-              { title: 'AI SaaS Platform', co: 'Audiences247', yr: '2024–Present', desc: 'Multi-tenant SaaS replacing $497/mo tools with voice AI, lead scoring, and outreach.', tags: ['AI', 'React', 'Voice AI'], stats: [['70K+', 'Leads'], ['35–50%', 'Opens'], ['75%', 'Cost Cut']], color: '#6366f1', id: 'audiences247' },
-              { title: '$50M Booking Platform', co: 'IHG Hotels', yr: '2015–2020', desc: 'Attribute-based selling enabling guests to customize room features.', tags: ['UX/UI', 'Research', 'Strategy'], stats: [['$50M', 'Revenue'], ['35%', 'Loyalty ↑']], color: '#10b981', id: 'ihg' },
-              { title: 'Enterprise Design System', co: 'Pfizer', yr: '2022–2024', desc: 'Scalable design system with reusable tokens for healthcare products.', tags: ['Design Systems', 'Healthcare'], stats: [['40%', 'Less Redundancy']], color: '#0ea5e9', id: 'pfizer' },
-              { title: 'Gate Agent Redesign', co: 'Delta Air Lines', yr: '2010–2015', desc: 'Redesigned boarding application cutting gate times.', tags: ['Enterprise UX', 'Operations'], stats: [['-15%', 'Board Time'], ['+25%', 'Usage']], color: '#ef4444', id: 'delta' },
-              { title: 'Drive Safe & Save', co: 'State Farm', yr: '2021–2022', desc: 'iOS and Android redesign driving retention and savings enrollment.', tags: ['Mobile UX', 'iOS', 'Android'], stats: [['+20%', 'Retention'], ['+15%', 'Enrollments']], color: '#f59e0b', id: 'statefarm' },
+              { title: 'AI SaaS Platform', co: 'Audiences247', initials: 'A247', yr: '2024–Present', desc: 'Multi-tenant SaaS replacing $497/mo tools with voice AI, lead scoring, and outreach.', tags: ['AI', 'React', 'Voice AI'], stats: [['70K+', 'Leads'], ['35–50%', 'Opens'], ['75%', 'Cost Cut']], color: '#6366f1', id: 'audiences247' },
+              { title: '$50M Booking Platform', co: 'IHG Hotels', initials: 'IHG', yr: '2015–2020', desc: 'Attribute-based selling enabling guests to customize room features.', tags: ['UX/UI', 'Research', 'Strategy'], stats: [['$50M', 'Revenue'], ['35%', 'Loyalty ↑']], color: '#10b981', id: 'ihg' },
+              { title: 'Enterprise Design System', co: 'Pfizer', initials: 'PFE', yr: '2022–2024', desc: 'Scalable design system with reusable tokens for healthcare products.', tags: ['Design Systems', 'Healthcare'], stats: [['40%', 'Less Redundancy']], color: '#0ea5e9', id: 'pfizer' },
+              { title: 'Gate Agent Redesign', co: 'Delta Air Lines', initials: 'DAL', yr: '2010–2015', desc: 'Redesigned boarding application cutting gate times.', tags: ['Enterprise UX', 'Operations'], stats: [['-15%', 'Board Time'], ['+25%', 'Usage']], color: '#ef4444', id: 'delta' },
+              { title: 'Drive Safe & Save', co: 'State Farm', initials: 'SF', yr: '2021–2022', desc: 'iOS and Android redesign driving retention and savings enrollment.', tags: ['Mobile UX', 'iOS', 'Android'], stats: [['+20%', 'Retention'], ['+15%', 'Enrollments']], color: '#f59e0b', id: 'statefarm' },
             ].map(p => (
               <a key={p.id} href={`/case-study/${p.id}`} className="group block rounded-xl border border-zinc-800 bg-zinc-950 hover:border-zinc-700 hover:bg-zinc-900/50 transition-all">
-                <div className="h-40 rounded-t-xl flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${p.color}15, ${p.color}05)` }}>
-                  <span className="text-lg font-semibold" style={{ color: `${p.color}50` }}>{p.co}</span>
+                <div className="h-44 rounded-t-xl flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${p.color}10, ${p.color}05)` }}>
+                  {/* Grid pattern */}
+                  <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(${p.color} 1px, transparent 1px)`, backgroundSize: '20px 20px' }} />
+                  {/* Company initials */}
+                  <div className="relative flex flex-col items-center gap-2">
+                    <span className="text-4xl font-bold tracking-wider" style={{ color: `${p.color}30` }}>{p.initials}</span>
+                    <span className="text-[10px] uppercase tracking-[0.2em] font-medium" style={{ color: `${p.color}40` }}>{p.co}</span>
+                  </div>
                 </div>
                 <div className="p-5">
                   <h3 className="text-base font-semibold group-hover:text-indigo-400 transition-colors">{p.title}</h3>

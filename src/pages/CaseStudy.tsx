@@ -151,8 +151,12 @@ export default function CaseStudy() {
         <div className="max-w-3xl mx-auto px-6">
           {/* Hero */}
           <div className="py-16 sm:py-20">
-            <div className="h-48 sm:h-60 rounded-2xl mb-8 flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${cs.color}15, ${cs.color}05)` }}>
-              <span className="text-2xl sm:text-3xl font-bold" style={{ color: `${cs.color}50` }}>{cs.company}</span>
+            <div className="h-48 sm:h-64 rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${cs.color}10, ${cs.color}05)` }}>
+              <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `radial-gradient(${cs.color} 1px, transparent 1px)`, backgroundSize: '20px 20px' }} />
+              <div className="relative flex flex-col items-center gap-2">
+                <span className="text-5xl sm:text-6xl font-bold tracking-wider" style={{ color: `${cs.color}25` }}>{cs.company.split(' ')[0]}</span>
+                <span className="text-xs uppercase tracking-[0.2em] font-medium" style={{ color: `${cs.color}40` }}>{cs.company}</span>
+              </div>
             </div>
             <p className="text-sm text-indigo-400 font-medium mb-2">{cs.company}</p>
             <h1 className="text-3xl sm:text-4xl font-bold mb-3">{cs.title}</h1>
