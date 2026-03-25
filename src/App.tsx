@@ -21,8 +21,12 @@ function HomePage() {
       </nav>
 
       {/* HERO */}
-      <section id="top" className="min-h-[90vh] flex items-center pt-16">
-        <div className="max-w-5xl mx-auto px-6 py-24 sm:py-32">
+      <section id="top" className="relative min-h-[90vh] flex items-center pt-16 overflow-hidden">
+        {/* Animated gradient orbs */}
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-indigo-500/10 rounded-full blur-[120px] animate-[pulse_8s_ease-in-out_infinite]" />
+        <div className="absolute bottom-1/3 -right-32 w-80 h-80 bg-purple-500/8 rounded-full blur-[100px] animate-[pulse_10s_ease-in-out_infinite_2s]" />
+        <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-indigo-400/5 rounded-full blur-[80px] animate-[pulse_12s_ease-in-out_infinite_4s]" />
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32">
           <div className="max-w-2xl">
             <p className="text-sm font-medium text-indigo-400 mb-4">AI Product Designer</p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
@@ -51,17 +55,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* VIDEO */}
-      <div className="max-w-5xl mx-auto px-6 pb-16">
-        <div className="aspect-video rounded-2xl border border-zinc-800 bg-zinc-950 flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-14 h-14 rounded-full border border-zinc-700 flex items-center justify-center mx-auto mb-3">
-              <svg className="w-6 h-6 text-zinc-500 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <p className="text-sm text-zinc-400">Video walkthrough coming soon</p>
-          </div>
-        </div>
-      </div>
 
       {/* WORK */}
       <section id="work" className="py-16 sm:py-24">
