@@ -15,11 +15,13 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     }
     requestAnimationFrame(raf)
 
-    // Handle anchor links
     const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLAnchorElement
-      if (target.tagName === 'A' && target.hash) {
-        const el = document.querySelector(target.hash)
+      const target = (e.target as HTMLElement).closest('a') as HTMLAnchorElement | null
+      if (!target) return
+      // Only handle hash links on the same page
+      const href = target.getAttribute('href')
+      if (href && href.startsWith('#')) {
+        const el = document.querySelector(href)
         if (el) {
           e.preventDefault()
           lenis.scrollTo(el as HTMLElement)
