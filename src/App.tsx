@@ -1,3 +1,7 @@
+import SmoothScroll from './components/SmoothScroll'
+import CursorSpotlight from './components/CursorSpotlight'
+import ScrollProgress from './components/ScrollProgress'
+import StatusBar from './components/StatusBar'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import WorkSection from './components/WorkSection'
@@ -9,15 +13,20 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
-      <Navbar />
-      <Hero />
-      <WorkSection />
-      <About />
-      <Experience />
-      <AiAssistant />
-      <Contact />
-      <Footer />
-    </div>
+    <SmoothScroll>
+      <div className="min-h-screen bg-[var(--color-bg)]">
+        <CursorSpotlight />
+        <ScrollProgress />
+        <Navbar />
+        <Hero />
+        <WorkSection />
+        <About />
+        <Experience />
+        <AiAssistant />
+        <Contact />
+        <Footer />
+        <StatusBar />
+      </div>
+    </SmoothScroll>
   )
 }

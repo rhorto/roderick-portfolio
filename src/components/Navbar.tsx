@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import MagneticButton from './MagneticButton'
 
 const navItems = [
   { label: 'Home', href: '#home' },
@@ -13,9 +14,22 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+
+      // Track active section
+      const sections = navItems.map(item => item.href.slice(1))
+      for (const section of [...sections].reverse()) {
+        const el = document.getElementById(section)
+        if (el && el.getBoundingClientRect().top <= 200) {
+          setActiveSection(section)
+          break
+        }
+      }
+    }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -31,26 +45,36 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#home" className="text-2xl font-bold tracking-tight">
-            <span className="gradient-text">RH</span>
-          </a>
+          <MagneticButton href="#home">
+            <span className="text-2xl font-bold tracking-tight gradient-text">RH</span>
+          </MagneticButton>
 
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
+                className={`text-sm transition-colors duration-200 relative ${
+                  activeSection === item.href.slice(1)
+                    ? 'text-[var(--color-text-primary)]'
+                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
+                }`}
               >
                 {item.label}
+                {activeSection === item.href.slice(1) && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--color-accent)] rounded-full"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
-            >
-              Let's Talk
-            </a>
+            <MagneticButton href="#contact">
+              <span className="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors duration-200 inline-block">
+                Let's Talk
+              </span>
+            </MagneticButton>
           </div>
 
           <button
