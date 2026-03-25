@@ -2,101 +2,72 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
-const navItems = [
+const links = [
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
-  { label: 'AI Chat', href: '#ai' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const fn = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', fn)
+    return () => window.removeEventListener('scroll', fn)
   }, [])
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: -80 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? 'glass' : 'bg-transparent'
-        }`}
+        transition={{ duration: 0.5 }}
+        className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? 'glass' : ''}`}
       >
-        <div className="max-w-5xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between">
-          <a href="#home" className="text-xl font-bold tracking-tight gradient-text">
-            RH
-          </a>
+        <div className="mx-auto max-w-[960px] flex items-center justify-between px-6 h-14">
+          <a href="#home" className="text-base font-semibold gradient-text">RH</a>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
-              >
-                {item.label}
+          <div className="hidden sm:flex items-center gap-7">
+            {links.map(l => (
+              <a key={l.href} href={l.href} className="text-[13px] text-[var(--color-text-2)] hover:text-[var(--color-text)] transition-colors">
+                {l.label}
               </a>
             ))}
-            <a
-              href="#contact"
-              className="px-5 py-1.5 rounded-full bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
-            >
-              Let's Talk
+            <a href="#contact" className="text-[13px] font-medium text-white bg-[var(--color-accent)] px-4 py-1.5 rounded-full hover:bg-[var(--color-accent-2)] transition-colors">
+              Contact
             </a>
           </div>
 
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="md:hidden text-[var(--color-text-primary)]"
-          >
-            <Menu size={22} />
+          <button onClick={() => setOpen(true)} className="sm:hidden text-[var(--color-text)]">
+            <Menu size={20} />
           </button>
         </div>
       </motion.nav>
 
       <AnimatePresence>
-        {mobileOpen && (
+        {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-[var(--color-bg)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-7"
+            className="fixed inset-0 z-[60] bg-[var(--color-bg)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-6"
           >
-            <button
-              onClick={() => setMobileOpen(false)}
-              className="absolute top-5 right-5 text-[var(--color-text-primary)]"
-            >
-              <X size={24} />
+            <button onClick={() => setOpen(false)} className="absolute top-4 right-5">
+              <X size={22} className="text-[var(--color-text)]" />
             </button>
-            {navItems.map((item, i) => (
-              <motion.a
-                key={item.label}
-                href={item.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                onClick={() => setMobileOpen(false)}
-                className="text-xl font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
-              >
-                {item.label}
+            {links.map((l, i) => (
+              <motion.a key={l.href} href={l.href} onClick={() => setOpen(false)}
+                initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }}
+                className="text-lg text-[var(--color-text)] hover:text-[var(--color-accent)] transition-colors">
+                {l.label}
               </motion.a>
             ))}
-            <motion.a
-              href="#contact"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              onClick={() => setMobileOpen(false)}
-              className="mt-2 px-6 py-2.5 rounded-full bg-[var(--color-accent)] text-white font-medium"
-            >
-              Let's Talk
+            <motion.a href="#contact" onClick={() => setOpen(false)}
+              initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}
+              className="mt-2 text-sm bg-[var(--color-accent)] text-white px-6 py-2 rounded-full">
+              Contact
             </motion.a>
           </motion.div>
         )}

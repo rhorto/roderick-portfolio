@@ -2,58 +2,35 @@
 
 @theme {
   --color-bg: #0a0a0a;
-  --color-bg-card: #111111;
-  --color-bg-hover: #1a1a1a;
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #71717a;
+  --color-surface: #111113;
+  --color-surface-hover: #18181b;
+  --color-text: #fafafa;
+  --color-text-2: #a1a1aa;
+  --color-text-3: #52525b;
   --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
-  --color-accent-glow: #6366f140;
-  --color-border: #27272a;
-  --color-border-hover: #3f3f46;
+  --color-accent-2: #818cf8;
+  --color-glow: #6366f120;
+  --color-line: #1e1e22;
+  --color-line-2: #2a2a2e;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) transparent;
+  scrollbar-color: var(--color-line) transparent;
 }
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
-  color: var(--color-text-primary);
-  line-height: 1.6;
+  background: var(--color-bg);
+  color: var(--color-text);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-::selection {
-  background-color: var(--color-accent);
-  color: white;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: 3px;
-}
+::selection { background: var(--color-accent); color: #fff; }
 
 .gradient-text {
   background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
@@ -63,11 +40,7 @@ body {
 }
 
 .glass {
-  background: rgba(17, 17, 17, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--color-border);
-}
-
-.glow {
-  box-shadow: 0 0 40px var(--color-accent-glow);
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-line);
 }
