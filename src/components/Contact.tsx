@@ -3,12 +3,12 @@ import { Mail, ExternalLink, MapPin } from 'lucide-react'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 sm:py-32">
-      <div className="mx-auto max-w-[540px] px-6 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="text-[11px] font-mono text-[var(--color-accent)] mb-2 tracking-wider uppercase">Connect</p>
+    <section id="contact" className="py-28 sm:py-36">
+      <div className="mx-auto max-w-[720px] px-8 text-center">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <p className="text-[11px] font-mono text-[var(--color-accent)] mb-3 tracking-wider uppercase">Connect</p>
           <h2 className="text-2xl sm:text-3xl font-bold mb-4">Let's build something <span className="gradient-text">meaningful</span></h2>
-          <p className="text-[13px] sm:text-sm text-[var(--color-text-2)] mb-10">
+          <p className="text-[13px] text-[var(--color-text-2)] mb-10 max-w-sm mx-auto">
             Open to AI Product Designer, Design Engineer, and AI Product Engineer roles.
           </p>
 
