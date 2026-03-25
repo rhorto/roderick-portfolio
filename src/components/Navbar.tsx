@@ -1,35 +1,20 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import MagneticButton from './MagneticButton'
 
 const navItems = [
-  { label: 'Home', href: '#home' },
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
-  { label: 'AI Assistant', href: '#ai' },
+  { label: 'AI Chat', href: '#ai' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-
-      // Track active section
-      const sections = navItems.map(item => item.href.slice(1))
-      for (const section of [...sections].reverse()) {
-        const el = document.getElementById(section)
-        if (el && el.getBoundingClientRect().top <= 200) {
-          setActiveSection(section)
-          break
-        }
-      }
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -44,44 +29,34 @@ export default function Navbar() {
           scrolled ? 'glass' : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <MagneticButton href="#home">
-            <span className="text-2xl font-bold tracking-tight gradient-text">RH</span>
-          </MagneticButton>
+        <div className="max-w-5xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between">
+          <a href="#home" className="text-xl font-bold tracking-tight gradient-text">
+            RH
+          </a>
 
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`text-sm transition-colors duration-200 relative ${
-                  activeSection === item.href.slice(1)
-                    ? 'text-[var(--color-text-primary)]'
-                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]'
-                }`}
+                className="text-sm text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
               >
                 {item.label}
-                {activeSection === item.href.slice(1) && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[var(--color-accent)] rounded-full"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
               </a>
             ))}
-            <MagneticButton href="#contact">
-              <span className="px-5 py-2 rounded-full bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors duration-200 inline-block">
-                Let's Talk
-              </span>
-            </MagneticButton>
+            <a
+              href="#contact"
+              className="px-5 py-1.5 rounded-full bg-[var(--color-accent)] text-white text-sm font-medium hover:bg-[var(--color-accent-hover)] transition-colors duration-200"
+            >
+              Let's Talk
+            </a>
           </div>
 
           <button
             onClick={() => setMobileOpen(true)}
             className="md:hidden text-[var(--color-text-primary)]"
           >
-            <Menu size={24} />
+            <Menu size={22} />
           </button>
         </div>
       </motion.nav>
@@ -92,13 +67,13 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-[var(--color-bg)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-[60] bg-[var(--color-bg)]/95 backdrop-blur-xl flex flex-col items-center justify-center gap-7"
           >
             <button
               onClick={() => setMobileOpen(false)}
-              className="absolute top-6 right-6 text-[var(--color-text-primary)]"
+              className="absolute top-5 right-5 text-[var(--color-text-primary)]"
             >
-              <X size={28} />
+              <X size={24} />
             </button>
             {navItems.map((item, i) => (
               <motion.a
@@ -106,9 +81,9 @@ export default function Navbar() {
                 href={item.href}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 onClick={() => setMobileOpen(false)}
-                className="text-2xl font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                className="text-xl font-medium text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
               >
                 {item.label}
               </motion.a>
@@ -117,9 +92,9 @@ export default function Navbar() {
               href="#contact"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={{ delay: 0.4 }}
               onClick={() => setMobileOpen(false)}
-              className="mt-4 px-8 py-3 rounded-full bg-[var(--color-accent)] text-white font-medium"
+              className="mt-2 px-6 py-2.5 rounded-full bg-[var(--color-accent)] text-white font-medium"
             >
               Let's Talk
             </motion.a>

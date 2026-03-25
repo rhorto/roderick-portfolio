@@ -5,22 +5,22 @@ const capabilities = [
   {
     icon: Cpu,
     title: 'AI Product Design',
-    description: 'Voice AI agents, conversational systems, AI-powered personalization, prompt engineering, and intelligent automation design.',
+    description: 'Voice AI agents, conversational systems, and prompt engineering.',
   },
   {
     icon: Code,
     title: 'Full-Stack Development',
-    description: 'React, TypeScript, Tailwind CSS, Supabase, Node.js, Stripe — I ship production code, not just mockups.',
+    description: 'React, TypeScript, Supabase, Stripe — production code, not mockups.',
   },
   {
     icon: Palette,
-    title: 'Enterprise Design Systems',
-    description: 'Scalable component libraries, design tokens, and governance frameworks for multi-product organizations.',
+    title: 'Design Systems',
+    description: 'Scalable component libraries and design tokens for enterprise.',
   },
   {
     icon: Zap,
-    title: 'Automation Architecture',
-    description: 'n8n workflow design, API orchestration, and intelligent pipeline systems replacing expensive SaaS tools.',
+    title: 'Automation',
+    description: 'n8n workflows and API pipelines replacing expensive SaaS tools.',
   },
 ]
 
@@ -29,78 +29,69 @@ const skills = [
   'Supabase', 'Stripe', 'Figma', 'n8n',
   'Voice AI', 'Prompt Engineering', 'Gemini', 'Claude',
   'Design Systems', 'A/B Testing', 'CRO', 'Accessibility',
-  'User Research', 'Prototyping', 'Data Visualization', 'Multi-Tenant SaaS',
+  'User Research', 'Prototyping', 'Data Viz', 'SaaS',
 ]
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-24 sm:py-32 lg:py-40 px-6 sm:px-10 lg:px-16">
+      <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-14 sm:mb-20"
         >
-          <p className="text-sm font-mono text-[var(--color-accent)] mb-3">// About Me</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <p className="text-xs sm:text-sm font-mono text-[var(--color-accent)] mb-3">// About</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
             Designer who{' '}
             <span className="gradient-text">builds</span>
           </h2>
-          <div className="max-w-2xl space-y-4 text-lg text-[var(--color-text-secondary)]">
+          <div className="max-w-lg space-y-4 text-sm sm:text-base text-[var(--color-text-secondary)] leading-relaxed">
             <p>
-              I'm an AI Product Designer with 20+ years of experience shipping products
-              at enterprise scale. I've designed for Delta Air Lines, IHG Hotels, Pfizer,
-              and State Farm — products used by millions.
+              20+ years shipping products at enterprise scale — Delta, IHG, Pfizer,
+              State Farm — products used by millions.
             </p>
             <p>
-              Today, I design and build AI-native SaaS products end-to-end. I write production
-              React and TypeScript. I architect voice AI systems and automation pipelines. I don't
-              hand off Figma files — I ship.
-            </p>
-            <p>
-              I believe the best AI products come from designers who understand the full stack,
-              from the prompt to the pixel.
+              Today I design and build AI-native SaaS products end-to-end.
+              I write production React. I architect voice AI systems.
+              I don't hand off Figma files — I ship.
             </p>
           </div>
         </motion.div>
 
-        {/* Capabilities grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 mb-14 sm:mb-20">
           {capabilities.map((cap, i) => (
             <motion.div
               key={cap.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] hover:border-[var(--color-border-hover)] transition-all duration-300 group"
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="p-4 sm:p-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-bg-card)] hover:border-[var(--color-border-hover)] transition-all duration-300"
             >
-              <div className="w-10 h-10 rounded-lg bg-[var(--color-accent)]/10 flex items-center justify-center mb-4 group-hover:bg-[var(--color-accent)]/20 transition-colors">
-                <cap.icon size={20} className="text-[var(--color-accent)]" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">{cap.title}</h3>
-              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+              <cap.icon size={18} className="text-[var(--color-accent)] mb-3" />
+              <h3 className="text-sm sm:text-base font-semibold mb-1">{cap.title}</h3>
+              <p className="text-xs sm:text-sm text-[var(--color-text-muted)] leading-relaxed">
                 {cap.description}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Skills */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-lg font-semibold mb-4">Skills & Technologies</h3>
+          <h3 className="text-sm sm:text-base font-semibold mb-4">Technologies</h3>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => (
               <span
                 key={skill}
-                className="text-sm px-4 py-2 rounded-full border border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200 cursor-default"
+                className="text-xs px-3 py-1.5 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-colors duration-200 cursor-default"
               >
                 {skill}
               </span>
