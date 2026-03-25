@@ -18,7 +18,7 @@ const projects = [
     title: '$50M Booking Platform',
     company: 'IHG Hotels & Resorts',
     year: '2015–2020',
-    desc: 'Attribute-based selling platform enabling guests to customize room features during booking.',
+    desc: 'Attribute-based selling enabling guests to customize room features during booking.',
     tags: ['UX/UI', 'Research', 'Strategy'],
     stats: [['$50M', 'Revenue'], ['35%', 'Loyalty ↑'], ['25%', 'Bookings ↑']],
     color: '#10b981',
@@ -40,7 +40,7 @@ const projects = [
     year: '2010–2015',
     desc: 'Redesigned boarding application cutting gate times and improving operational efficiency.',
     tags: ['Enterprise UX', 'Operations', 'Mobile'],
-    stats: [['15%', 'Faster'], ['+25%', 'App Usage'], ['Award', 'Won']],
+    stats: [['-15%', 'Board Time'], ['+25%', 'App Usage']],
     color: '#ef4444',
   },
   {
@@ -48,7 +48,7 @@ const projects = [
     title: 'Drive Safe & Save App',
     company: 'State Farm',
     year: '2021–2022',
-    desc: 'iOS and Android app redesign driving user retention and policyholder savings enrollment.',
+    desc: 'iOS and Android app redesign driving user retention and policyholder savings.',
     tags: ['Mobile UX', 'iOS', 'Android'],
     stats: [['+20%', 'Retention'], ['+15%', 'Enrollments']],
     color: '#f59e0b',
@@ -57,69 +57,62 @@ const projects = [
 
 export default function WorkSection() {
   return (
-    <section id="work" className="py-28 sm:py-36">
-      <div className="mx-auto max-w-[720px] px-8">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-14">
-          <p className="text-[11px] font-mono text-[var(--color-accent)] mb-3 tracking-wider uppercase">Selected Work</p>
+    <section id="work" className="py-16 sm:py-24">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="mb-12 sm:mb-16">
+          <p className="text-sm text-[var(--color-accent)] font-medium mb-2">Selected Work</p>
           <h2 className="text-2xl sm:text-3xl font-bold">
             Products that <span className="gradient-text">ship & scale</span>
           </h2>
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {projects.map((p, i) => (
             <motion.div
               key={p.id}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
             >
               <Link
                 to={`/case-study/${p.id}`}
-                className="group block rounded-2xl border border-[var(--color-line)] bg-[var(--color-surface)]/50 p-6 sm:p-7 hover:border-[var(--color-line-2)] hover:bg-[var(--color-surface)] transition-all duration-300"
+                className="group block h-full rounded-xl border border-[var(--color-line)] bg-[var(--color-surface)] hover:border-[var(--color-line-2)] hover:bg-[var(--color-surface-2)] transition-all duration-300"
               >
-                {/* Project image placeholder */}
+                {/* Image placeholder */}
                 <div
-                  className="h-32 sm:h-40 rounded-xl mb-5 flex items-center justify-center overflow-hidden"
-                  style={{ background: `linear-gradient(135deg, ${p.color}15, ${p.color}06)` }}
+                  className="h-40 sm:h-48 rounded-t-xl flex items-center justify-center"
+                  style={{ background: `linear-gradient(135deg, ${p.color}12, ${p.color}05)` }}
                 >
-                  <span className="text-xl sm:text-2xl font-bold tracking-wide" style={{ color: `${p.color}50` }}>
+                  <span className="text-lg font-semibold tracking-wide" style={{ color: `${p.color}40` }}>
                     {p.company}
                   </span>
                 </div>
 
-                {/* Header */}
-                <div className="flex items-start justify-between mb-1">
-                  <div>
-                    <h3 className="text-[15px] sm:text-base font-semibold group-hover:text-[var(--color-accent)] transition-colors">
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-start justify-between mb-1">
+                    <h3 className="text-base font-semibold group-hover:text-[var(--color-accent)] transition-colors">
                       {p.title}
                     </h3>
-                    <p className="text-[11px] text-[var(--color-text-3)] mt-0.5">
-                      {p.company} · {p.year}
-                    </p>
+                    <ArrowUpRight size={16} className="text-[var(--color-text-3)] opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-0.5" />
                   </div>
-                  <ArrowUpRight size={14} className="text-[var(--color-text-3)] opacity-0 group-hover:opacity-100 transition-opacity mt-1 flex-shrink-0" />
-                </div>
+                  <p className="text-xs text-[var(--color-text-3)] mb-3">{p.company} · {p.year}</p>
+                  <p className="text-sm text-[var(--color-text-2)] leading-relaxed mb-4">{p.desc}</p>
 
-                {/* Description */}
-                <p className="text-[13px] text-[var(--color-text-2)] leading-relaxed mt-3 mb-4">{p.desc}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {p.tags.map(t => (
+                      <span key={t} className="text-xs px-2.5 py-1 rounded-full border border-[var(--color-line)] text-[var(--color-text-3)]">{t}</span>
+                    ))}
+                  </div>
 
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5 mb-5">
-                  {p.tags.map(t => (
-                    <span key={t} className="text-[10px] px-2 py-[3px] rounded-full border border-[var(--color-line)] text-[var(--color-text-3)]">{t}</span>
-                  ))}
-                </div>
-
-                {/* Stats */}
-                <div className="flex gap-6 pt-4 border-t border-[var(--color-line)]">
-                  {p.stats.map(([val, label]) => (
-                    <div key={label}>
-                      <div className="text-[13px] font-semibold" style={{ color: p.color }}>{val}</div>
-                      <div className="text-[10px] text-[var(--color-text-3)]">{label}</div>
-                    </div>
-                  ))}
+                  <div className="flex gap-6 pt-4 border-t border-[var(--color-line)]">
+                    {p.stats.map(([val, label]) => (
+                      <div key={label}>
+                        <div className="text-sm font-semibold" style={{ color: p.color }}>{val}</div>
+                        <div className="text-xs text-[var(--color-text-3)]">{label}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </Link>
             </motion.div>
