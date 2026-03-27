@@ -11,7 +11,7 @@ import { projects } from '../data/projects'
 const headlines = [
   { line1: 'I design and build', highlight: 'AI-powered', line2: 'products' },
   { line1: 'I shipped a', highlight: '$50M', line2: 'platform' },
-  { line1: 'I build', highlight: 'voice AI', line2: 'that sells 24/7' },
+  { line1: 'I build', highlight: 'voice AI', line2: 'that sells' },
   { line1: '6 Fortune 500 brands', highlight: '20 years', line2: 'of impact' },
   { line1: 'I replace SaaS tools', highlight: 'with code', line2: 'I write' },
 ]
