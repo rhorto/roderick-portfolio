@@ -30,7 +30,7 @@ export const projects: Project[] = [
     desc: 'Multi-tenant SaaS replacing $497/mo tools with voice AI, automated lead scoring, and intelligent outreach systems.',
     tags: ['AI Product Design', 'React/TypeScript', 'Voice AI', 'Automation'],
     color: '#6366f1',
-    image: '/images/project-ux-designs.jpg',
+    image: '/images/project-audiences247.jpg',
     stats: [['70K+', 'Leads Processed'], ['35–50%', 'Open Rate'], ['8–15%', 'Reply Rate'], ['75%', 'Cost Reduction']],
     constraint: 'Small businesses were paying $497/month for GoHighLevel but only using 20% of features. Building a replacement required matching their workflow without the bloat — on a solo engineering timeline.',
     options: [
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     desc: 'Reimagined hotel booking with attribute-based selling — letting guests customize room features to drive incremental revenue.',
     tags: ['UX/UI', 'User Research', 'Strategy', 'Design Systems'],
     color: '#10b981',
-    image: '/images/project-ux-architecture.jpg',
+    image: '/images/project-ihg.jpg',
     stats: [['$50M', 'Revenue'], ['35%', 'Loyalty ↑'], ['25%', 'Bookings ↑'], ['+20%', 'Agent Productivity']],
     constraint: 'IHG had no way for guests to customize their stay beyond room type. Revenue was left on the table because guests would pay more for specific attributes (floor, view, bed type) but the booking flow didn\'t support it.',
     options: [
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     desc: 'Built a scalable Figma design system with reusable tokens reducing design redundancy by 40% across multiple healthcare products.',
     tags: ['Design Systems', 'Healthcare', 'Enterprise UX', 'Accessibility'],
     color: '#0ea5e9',
-    image: '/images/project-ux-designs.jpg',
+    image: '/images/project-pfizer.jpg',
     stats: [['40%', 'Less Redundancy'], ['Multi', 'Products'], ['Cross-Functional', 'Impact'], ['WCAG', 'Compliant']],
     constraint: 'Multiple product teams were designing in silos — duplicating components, inconsistent patterns, and accessibility gaps across healthcare applications with strict regulatory requirements.',
     options: [
@@ -120,7 +120,7 @@ export const projects: Project[] = [
     desc: 'Redesigned mission-critical airline applications — cutting boarding times by 15% and earning recognition for operational efficiency.',
     tags: ['Enterprise UX', 'Mobile', 'Operations', 'Research'],
     color: '#ef4444',
-    image: '/images/project-ux-architecture.jpg',
+    image: '/images/project-delta.jpg',
     stats: [['-15%', 'Boarding Time'], ['+25%', 'App Usage'], ['+20%', 'Satisfaction'], ['Award', 'Recognition']],
     constraint: 'Gate agents were using a DOS-era terminal interface to board 200+ passengers in 30 minutes. Every second mattered — a slow interface meant delayed flights and cascading operational costs.',
     options: [
@@ -150,7 +150,7 @@ export const projects: Project[] = [
     desc: 'Redesigned the Drive Safe & Save iOS and Android app, driving 20% higher retention and 15% more policyholder savings enrollments.',
     tags: ['Mobile UX', 'iOS', 'Android', 'Insurance'],
     color: '#f59e0b',
-    image: '/images/project-ux-designs.jpg',
+    image: '/images/project-statefarm.jpg',
     stats: [['+20%', 'Retention'], ['+15%', 'Enrollments'], ['+20%', 'Productivity'], ['2', 'Platforms']],
     constraint: 'State Farm\'s telematics app had low retention — users didn\'t understand how their driving translated to savings. The iOS and Android experiences were inconsistent, causing confusion.',
     options: [
