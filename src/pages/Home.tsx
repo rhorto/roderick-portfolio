@@ -1,29 +1,37 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import PageWrap from '../components/PageWrap'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionLabel from '../components/SectionLabel'
 import GlowCard from '../components/GlowCard'
+import HeroBackground from '../components/HeroBackground'
 import { projects } from '../data/projects'
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
-}
-const word = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(6px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const } },
-}
+const headlines = [
+  { line1: 'I design and build', highlight: 'AI-powered', line2: 'products' },
+  { line1: 'I shipped a', highlight: '$50M', line2: 'revenue platform' },
+  { line1: 'I build', highlight: 'voice AI', line2: 'that sells 24/7' },
+  { line1: '5 Fortune 500 brands.', highlight: '20+ years.', line2: 'Real impact' },
+  { line1: 'I replace $500/mo tools', highlight: 'with code', line2: 'I write' },
+]
 
 export default function Home() {
   const featured = projects.slice(0, 4)
+  const [slide, setSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => setSlide(s => (s + 1) % headlines.length), 4000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <PageWrap>
       {/* HERO */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden noise">
-        <div className="mesh-gradient" />
-        <div className="absolute inset-0 grid-bg" />
+        <div className="aurora" />
+        <HeroBackground />
+        <div className="absolute inset-0 grid-bg opacity-40" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-28">
           <div className="max-w-2xl">
@@ -36,13 +44,31 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.h1 variants={stagger} initial="hidden" animate="visible"
-              className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.08] tracking-tight mb-5">
-              {['I', 'design', 'and', 'build'].map(w => <motion.span key={w} variants={word} className="inline-block mr-[0.3em]">{w}</motion.span>)}
-              <br />
-              {['AI-powered'].map(w => <motion.span key={w} variants={word} className="inline-block mr-[0.3em] text-gradient">{w}</motion.span>)}
-              {['products'].map(w => <motion.span key={w} variants={word} className="inline-block">{w}</motion.span>)}
-            </motion.h1>
+            {/* Auto-sliding headlines */}
+            <div className="h-[120px] sm:h-[140px] md:h-[150px] relative mb-5 overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.h1
+                  key={slide}
+                  initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -40, filter: 'blur(8px)' }}
+                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
+                  className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.08] tracking-tight absolute inset-0"
+                >
+                  {headlines[slide].line1}<br />
+                  <span className="text-gradient">{headlines[slide].highlight}</span>{' '}
+                  {headlines[slide].line2}
+                </motion.h1>
+              </AnimatePresence>
+            </div>
+
+            {/* Slide indicators */}
+            <div className="flex gap-1.5 mb-5">
+              {headlines.map((_, i) => (
+                <button key={i} onClick={() => setSlide(i)}
+                  className={`h-1 rounded-full transition-all duration-500 ${i === slide ? 'w-6 bg-indigo-500' : 'w-1.5 bg-zinc-700 hover:bg-zinc-600'}`} />
+              ))}
+            </div>
 
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
               className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-5 max-w-lg">
