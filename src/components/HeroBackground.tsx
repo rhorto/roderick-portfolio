@@ -1,15 +1,9 @@
 import { useEffect, useRef } from 'react'
 
-interface Orb {
-  x: number; y: number; r: number
-  dx: number; dy: number
-  hue: number; alpha: number
-}
-
 export default function HeroBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const orbsRef = useRef<Orb[]>([])
   const frameRef = useRef(0)
+  const angleRef = useRef(0)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -21,54 +15,117 @@ export default function HeroBackground() {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio
       canvas.height = canvas.offsetHeight * window.devicePixelRatio
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
-      createOrbs()
     }
 
-    const createOrbs = () => {
-      const cw = canvas.offsetWidth
-      const ch = canvas.offsetHeight
-      orbsRef.current = Array.from({ length: 6 }, (_, i) => ({
-        x: Math.random() * cw,
-        y: Math.random() * ch,
-        r: Math.random() * 250 + 150,
-        dx: (Math.random() - 0.5) * 0.25,
-        dy: (Math.random() - 0.5) * 0.2,
-        hue: i < 3 ? 235 + Math.random() * 15 : 265 + Math.random() * 15, // indigo to violet
-        alpha: Math.random() * 0.04 + 0.02,
-      }))
-    }
-
-    const draw = () => {
+    const drawGlobe = () => {
       const cw = canvas.offsetWidth
       const ch = canvas.offsetHeight
       ctx.clearRect(0, 0, cw, ch)
 
-      orbsRef.current.forEach(o => {
-        o.x += o.dx
-        o.y += o.dy
+      const cx = cw * 0.65 // offset right
+      const cy = ch * 0.5
+      const radius = Math.min(cw, ch) * 0.35
+      const angle = angleRef.current
 
-        // Wrap around
-        if (o.x < -o.r) o.x = cw + o.r
-        if (o.x > cw + o.r) o.x = -o.r
-        if (o.y < -o.r) o.y = ch + o.r
-        if (o.y > ch + o.r) o.y = -o.r
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.06)'
+      ctx.lineWidth = 0.8
 
-        const g = ctx.createRadialGradient(o.x, o.y, 0, o.x, o.y, o.r)
-        g.addColorStop(0, `hsla(${o.hue}, 70%, 45%, ${o.alpha})`)
-        g.addColorStop(0.5, `hsla(${o.hue}, 60%, 35%, ${o.alpha * 0.5})`)
-        g.addColorStop(1, 'transparent')
-        ctx.fillStyle = g
+      // Outer circle
+      ctx.beginPath()
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2)
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.1)'
+      ctx.stroke()
+
+      // Second ring
+      ctx.beginPath()
+      ctx.arc(cx, cy, radius * 1.15, 0, Math.PI * 2)
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.04)'
+      ctx.stroke()
+
+      // Third ring
+      ctx.beginPath()
+      ctx.arc(cx, cy, radius * 1.3, 0, Math.PI * 2)
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.02)'
+      ctx.stroke()
+
+      // Latitude lines (horizontal ellipses)
+      for (let i = -3; i <= 3; i++) {
+        const lat = (i / 3) * 0.9
+        const y = cy + radius * lat
+        const ellipseWidth = radius * Math.cos(Math.asin(lat))
+
         ctx.beginPath()
-        ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2)
-        ctx.fill()
-      })
+        ctx.ellipse(cx, y, ellipseWidth, ellipseWidth * 0.08, 0, 0, Math.PI * 2)
+        ctx.strokeStyle = `rgba(99, 102, 241, ${0.04 + (1 - Math.abs(lat)) * 0.04})`
+        ctx.stroke()
+      }
 
-      frameRef.current = requestAnimationFrame(draw)
+      // Longitude lines (vertical ellipses that rotate)
+      for (let i = 0; i < 8; i++) {
+        const lng = (i / 8) * Math.PI + angle
+        const tilt = Math.sin(lng)
+
+        ctx.beginPath()
+        ctx.ellipse(cx, cy, radius * Math.abs(Math.cos(lng)), radius, 0, 0, Math.PI * 2)
+        ctx.strokeStyle = `rgba(99, 102, 241, ${0.03 + Math.abs(tilt) * 0.05})`
+        ctx.stroke()
+      }
+
+      // Dots at intersections
+      for (let lat = -2; lat <= 2; lat++) {
+        for (let lng = 0; lng < 12; lng++) {
+          const latAngle = (lat / 3) * Math.PI * 0.45
+          const lngAngle = (lng / 12) * Math.PI * 2 + angle * 2
+
+          const x3d = Math.cos(latAngle) * Math.sin(lngAngle)
+          const y3d = Math.sin(latAngle)
+          const z3d = Math.cos(latAngle) * Math.cos(lngAngle)
+
+          // Only show front-facing dots
+          if (z3d < -0.1) continue
+
+          const px = cx + x3d * radius
+          const py = cy + y3d * radius
+          const alpha = 0.05 + z3d * 0.12
+
+          ctx.beginPath()
+          ctx.arc(px, py, 1.5, 0, Math.PI * 2)
+          ctx.fillStyle = `rgba(129, 140, 248, ${alpha})`
+          ctx.fill()
+        }
+      }
+
+      // Glow at center
+      const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 0.8)
+      glow.addColorStop(0, 'rgba(99, 102, 241, 0.03)')
+      glow.addColorStop(1, 'transparent')
+      ctx.fillStyle = glow
+      ctx.beginPath()
+      ctx.arc(cx, cy, radius * 0.8, 0, Math.PI * 2)
+      ctx.fill()
+
+      // Orbiting dot
+      const orbitAngle = angle * 3
+      const ox = cx + Math.cos(orbitAngle) * radius * 1.05
+      const oy = cy + Math.sin(orbitAngle) * radius * 0.3
+      ctx.beginPath()
+      ctx.arc(ox, oy, 2.5, 0, Math.PI * 2)
+      ctx.fillStyle = 'rgba(129, 140, 248, 0.4)'
+      ctx.fill()
+
+      // Orbit trail
+      ctx.beginPath()
+      ctx.arc(ox - Math.cos(orbitAngle) * 8, oy - Math.sin(orbitAngle) * 2.4, 1.5, 0, Math.PI * 2)
+      ctx.fillStyle = 'rgba(129, 140, 248, 0.15)'
+      ctx.fill()
+
+      angleRef.current += 0.003
+      frameRef.current = requestAnimationFrame(drawGlobe)
     }
 
     resize()
-    draw()
-    window.addEventListener('resize', resize)
+    drawGlobe()
+    window.addEventListener('resize', () => { resize(); })
 
     return () => {
       cancelAnimationFrame(frameRef.current)
@@ -79,8 +136,7 @@ export default function HeroBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full"
-      style={{ mixBlendMode: 'screen' }}
+      className="absolute inset-0 w-full h-full pointer-events-none"
     />
   )
 }
