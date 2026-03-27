@@ -28,15 +28,15 @@ export default function Home() {
   return (
     <PageWrap>
       {/* HERO */}
-      <section className="relative min-h-[85vh] flex items-center overflow-hidden noise">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden noise">
         <div className="aurora" />
         <HeroBackground />
         <div className="absolute inset-0 grid-bg opacity-40" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-28">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 sm:py-24">
           <div className="max-w-2xl">
             <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex items-center gap-4 mb-7">
+              className="flex items-center gap-4 mb-6">
               <img src="/images/profile.png" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/40 object-cover shadow-[0_0_24px_rgba(99,102,241,0.2)]" />
               <div>
                 <p className="text-sm font-semibold text-white">Roderick Horton</p>
@@ -45,7 +45,7 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[160px] sm:h-[170px] md:h-[180px] relative mb-5 overflow-hidden">
+            <div className="h-[150px] sm:h-[160px] md:h-[170px] relative mb-1 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
@@ -63,7 +63,7 @@ export default function Home() {
             </div>
 
             {/* Slide indicators */}
-            <div className="flex gap-1.5 mb-5">
+            <div className="flex gap-1.5 mb-6">
               {headlines.map((_, i) => (
                 <button key={i} onClick={() => setSlide(i)}
                   className={`h-1 rounded-full transition-all duration-500 ${i === slide ? 'w-6 bg-indigo-500' : 'w-1.5 bg-zinc-700 hover:bg-zinc-600'}`} />
@@ -71,23 +71,23 @@ export default function Home() {
             </div>
 
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
-              className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-5 max-w-lg">
+              className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-4 max-w-lg">
               20+ years shipping at Delta, IHG, Pfizer, and State Farm.
               Now building voice AI, SaaS platforms, and automation systems.
             </motion.p>
 
             {/* Trusted by strip */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }}
-              className="flex items-center gap-5 mb-8 text-zinc-600">
+              className="flex items-center gap-5 mb-6 text-zinc-600">
               <span className="text-[10px] uppercase tracking-wider">Trusted by</span>
               <div className="w-px h-3 bg-zinc-800" />
-              {['Delta', 'IHG', 'Pfizer', 'State Farm'].map(c => (
+              {['Delta', 'IHG', 'Pfizer', 'State Farm', 'BofA'].map(c => (
                 <span key={c} className="text-xs font-medium text-zinc-500">{c}</span>
               ))}
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85 }}
-              className="flex flex-wrap gap-3 mb-14">
+              className="flex flex-wrap gap-3 mb-10">
               <Link to="/work" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center hover:bg-indigo-400 transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
                 View Work
               </Link>
@@ -98,7 +98,7 @@ export default function Home() {
 
             {/* Stats inside hero */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}
-              className="grid grid-cols-4 gap-6 sm:gap-10 pt-8 border-t border-white/[0.06]">
+              className="grid grid-cols-4 gap-6 sm:gap-10 pt-6 border-t border-white/[0.06]">
               {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['70K+', 'AI Leads']].map(([v, l]) => (
                 <div key={l}>
                   <div className="text-lg sm:text-2xl font-bold text-gradient">{v}</div>
