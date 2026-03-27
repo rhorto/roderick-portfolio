@@ -21,15 +21,15 @@ export default function Home() {
   return (
     <PageWrap>
       {/* HERO */}
-      <section className="relative min-h-[92vh] flex items-center overflow-hidden noise">
+      <section className="relative min-h-[85vh] flex items-center overflow-hidden noise">
         <div className="mesh-gradient" />
         <div className="absolute inset-0 grid-bg" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-32">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-28">
           <div className="max-w-2xl">
             <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex items-center gap-4 mb-6">
-              <img src="/images/profile.png" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/30 object-cover" />
+              className="flex items-center gap-4 mb-7">
+              <img src="/images/profile.png" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/40 object-cover shadow-[0_0_24px_rgba(99,102,241,0.2)]" />
               <div>
                 <p className="text-sm font-semibold text-white">Roderick Horton</p>
                 <p className="text-xs text-indigo-400 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for work</p>
@@ -37,21 +37,31 @@ export default function Home() {
             </motion.div>
 
             <motion.h1 variants={stagger} initial="hidden" animate="visible"
-              className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.08] tracking-tight mb-7">
+              className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.08] tracking-tight mb-5">
               {['I', 'design', 'and', 'build'].map(w => <motion.span key={w} variants={word} className="inline-block mr-[0.3em]">{w}</motion.span>)}
               <br />
               {['AI-powered'].map(w => <motion.span key={w} variants={word} className="inline-block mr-[0.3em] text-gradient">{w}</motion.span>)}
-              {['products.'].map(w => <motion.span key={w} variants={word} className="inline-block">{w}</motion.span>)}
+              {['products'].map(w => <motion.span key={w} variants={word} className="inline-block">{w}</motion.span>)}
             </motion.h1>
 
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
-              className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-10 max-w-lg">
+              className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-5 max-w-lg">
               20+ years shipping at Delta, IHG, Pfizer, and State Farm.
               Now building voice AI, SaaS platforms, and automation systems.
             </motion.p>
 
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }}
-              className="flex flex-wrap gap-3">
+            {/* Trusted by strip */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }}
+              className="flex items-center gap-5 mb-8 text-zinc-600">
+              <span className="text-[10px] uppercase tracking-wider">Trusted by</span>
+              <div className="w-px h-3 bg-zinc-800" />
+              {['Delta', 'IHG', 'Pfizer', 'State Farm'].map(c => (
+                <span key={c} className="text-xs font-medium text-zinc-500">{c}</span>
+              ))}
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85 }}
+              className="flex flex-wrap gap-3 mb-14">
               <Link to="/work" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center hover:bg-indigo-400 transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
                 View Work
               </Link>
@@ -59,21 +69,20 @@ export default function Home() {
                 Get in Touch
               </Link>
             </motion.div>
+
+            {/* Stats inside hero */}
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}
+              className="grid grid-cols-4 gap-6 sm:gap-10 pt-8 border-t border-white/[0.06]">
+              {[['20+', 'Years'], ['$50M+', 'Revenue'], ['5', 'Fortune 500'], ['70K+', 'AI Leads']].map(([v, l]) => (
+                <div key={l}>
+                  <div className="text-lg sm:text-2xl font-bold text-gradient">{v}</div>
+                  <div className="text-[10px] sm:text-xs text-zinc-500 mt-1">{l}</div>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
-
-      {/* STATS STRIP */}
-      <div className="border-y border-white/[0.04] bg-zinc-950/50">
-        <div className="max-w-5xl mx-auto px-6 py-10 grid grid-cols-2 sm:grid-cols-4 gap-8">
-          {[['20+', 'Years'], ['$50M+', 'Revenue Impact'], ['5', 'Fortune 500 Clients'], ['70K+', 'AI Leads']].map(([v, l], i) => (
-            <ScrollReveal key={l} delay={i * 0.06}>
-              <div className="text-2xl sm:text-3xl font-bold text-gradient">{v}</div>
-              <div className="text-xs text-zinc-500 mt-1.5">{l}</div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </div>
 
       {/* FEATURED WORK */}
       <section className="py-20 sm:py-28">
