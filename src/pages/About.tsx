@@ -8,6 +8,7 @@ const experience = [
   { co: 'State Farm', role: 'Senior UX Designer', yr: '2021–2022', desc: 'Mobile app redesign driving 20% retention increase' },
   { co: 'IHG Hotels', role: 'Senior UX Designer', yr: '2015–2020', desc: '$50M revenue platform — attribute-based selling' },
   { co: 'Delta Air Lines', role: 'UX Designer', yr: '2010–2015', desc: 'Gate agent app — 15% faster boarding' },
+  { co: 'Bank of America', role: 'UX Designer', yr: '2008–2010', desc: 'Financial center apps for agent servicing — online and in-office' },
   { co: 'Yahoo', role: 'Digital Marketing Strategist', yr: '2007–2010', desc: 'CRO driving $2M in additional revenue' },
   { co: 'SAIC', role: 'Usability Analyst', yr: '2004–2007', desc: 'Federal UX for CDC and OMB' },
 ]

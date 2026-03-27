@@ -8,6 +8,7 @@ const jobs = [
   { co: 'State Farm', title: 'Senior UX Designer', yr: '2021–2022', bullets: ['Redesigned Drive Safe & Save app — 20% retention increase', 'Unified iOS and Android design language'] },
   { co: 'IHG Hotels & Resorts', title: 'Senior UX Designer', yr: '2015–2020', bullets: ['Delivered $50M attribute-based selling platform', '35% loyalty program increase, 25% booking increase'] },
   { co: 'Delta Air Lines', title: 'UX Designer', yr: '2010–2015', bullets: ['Redesigned Gate Agent app — 15% faster boarding', 'Delta Seating App — 25% usage increase'] },
+  { co: 'Bank of America', title: 'UX Designer', yr: '2008–2010', bullets: ['Designed financial center apps for agent customer servicing', 'Unified in-office and online servicing channels', 'Streamlined account management and transaction workflows'] },
   { co: 'Yahoo', title: 'Digital Marketing Strategist', yr: '2007–2010', bullets: ['CRO optimization — $2M additional revenue'] },
   { co: 'SAIC', title: 'Usability Analyst', yr: '2004–2007', bullets: ['UX solutions for CDC and Office of Management and Budget'] },
 ]

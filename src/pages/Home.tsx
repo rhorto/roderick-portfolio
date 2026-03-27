@@ -12,7 +12,7 @@ const headlines = [
   { line1: 'I design and build', highlight: 'AI-powered', line2: 'products' },
   { line1: 'I shipped a', highlight: '$50M', line2: 'platform' },
   { line1: 'I build', highlight: 'voice AI', line2: 'that sells 24/7' },
-  { line1: '5 Fortune 500s.', highlight: '20 years.', line2: 'Real impact' },
+  { line1: '6 Fortune 500s.', highlight: '20 years.', line2: 'Real impact' },
   { line1: 'I replace SaaS tools', highlight: 'with code', line2: 'I write' },
 ]
 
@@ -99,7 +99,7 @@ export default function Home() {
             {/* Stats inside hero */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}
               className="grid grid-cols-4 gap-6 sm:gap-10 pt-8 border-t border-white/[0.06]">
-              {[['20+', 'Years'], ['$50M+', 'Revenue'], ['5', 'Fortune 500'], ['70K+', 'AI Leads']].map(([v, l]) => (
+              {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['70K+', 'AI Leads']].map(([v, l]) => (
                 <div key={l}>
                   <div className="text-lg sm:text-2xl font-bold text-gradient">{v}</div>
                   <div className="text-[10px] sm:text-xs text-zinc-500 mt-1">{l}</div>

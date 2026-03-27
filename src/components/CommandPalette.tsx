@@ -9,6 +9,7 @@ const items = [
   { label: 'Resume', path: '/resume', keys: 'r' },
   { label: 'AI SaaS Platform — Audiences247', path: '/work/audiences247', keys: '' },
   { label: '$50M Booking Platform — IHG', path: '/work/ihg', keys: '' },
+  { label: 'Financial Center Apps — Bank of America', path: '/work/bofa', keys: '' },
   { label: 'Design System — Pfizer', path: '/work/pfizer', keys: '' },
   { label: 'Gate Agent — Delta', path: '/work/delta', keys: '' },
   { label: 'Drive Safe & Save — State Farm', path: '/work/statefarm', keys: '' },
