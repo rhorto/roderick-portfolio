@@ -17,7 +17,6 @@ const headlines = [
 ]
 
 export default function Home() {
-  const featured = projects.slice(0, 4)
   const [slide, setSlide] = useState(0)
 
   useEffect(() => {
@@ -70,34 +69,29 @@ export default function Home() {
               ))}
             </div>
 
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
-              className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-4 max-w-lg">
-              20+ years shipping at Delta, IHG, Pfizer, and State Farm.
-              Now building voice AI, SaaS platforms, and automation systems.
-            </motion.p>
-
-            {/* Trusted by strip */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }}
-              className="flex items-center gap-5 mb-6 text-zinc-600">
+            {/* Trusted by strip — single source of truth, no duplicate paragraph */}
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
+              className="flex flex-wrap items-center gap-4 sm:gap-5 mb-6 text-zinc-600">
               <span className="text-[10px] uppercase tracking-wider">Trusted by</span>
-              <div className="w-px h-3 bg-zinc-800" />
-              {['Delta', 'IHG', 'Pfizer', 'State Farm', 'BofA'].map(c => (
+              <div className="w-px h-3 bg-zinc-800 hidden sm:block" />
+              {['Delta', 'IHG', 'Pfizer', 'State Farm', 'BofA', 'Yahoo'].map(c => (
                 <span key={c} className="text-xs font-medium text-zinc-500">{c}</span>
               ))}
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.85 }}
-              className="flex flex-wrap gap-3 mb-10">
+            {/* CTAs — View Work is primary, Get in Touch is demoted to text link */}
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75 }}
+              className="flex items-center gap-5 mb-10">
               <Link to="/work" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center hover:bg-indigo-400 transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
                 View Work
               </Link>
-              <Link to="/about#contact" className="h-12 px-7 rounded-full border border-zinc-700 text-white text-sm font-medium inline-flex items-center hover:bg-zinc-900 hover:border-zinc-600 transition-all duration-200">
-                Get in Touch
+              <Link to="/about#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
+                Get in Touch →
               </Link>
             </motion.div>
 
             {/* Stats inside hero */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1 }}
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}
               className="grid grid-cols-4 gap-6 sm:gap-10 pt-6 border-t border-white/[0.06]">
               {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['70K+', 'AI Leads']].map(([v, l]) => (
                 <div key={l}>
@@ -108,9 +102,19 @@ export default function Home() {
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-zinc-500">
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </motion.div>
+        </motion.div>
       </section>
 
-      {/* FEATURED WORK */}
+      {/* ALL WORK — show all 6 projects */}
       <section className="py-20 sm:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
@@ -120,10 +124,10 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            {featured.map((p, i) => (
-              <ScrollReveal key={p.id} delay={i * 0.08}>
+            {projects.map((p, i) => (
+              <ScrollReveal key={p.id} delay={i * 0.06}>
                 <Link to={`/work/${p.id}`}>
-                  <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group">
+                  <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group h-full">
                     <div className="h-48 rounded-t-xl relative overflow-hidden">
                       {p.image ? (
                         <>
@@ -157,40 +161,6 @@ export default function Home() {
               </ScrollReveal>
             ))}
           </div>
-
-          <ScrollReveal className="mt-10 text-center">
-            <Link to="/work" className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors inline-flex items-center gap-1.5">
-              View all projects <span className="text-xs">→</span>
-            </Link>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* CURRENTLY BUILDING */}
-      <section className="py-16 sm:py-24 section-fade">
-        <div className="max-w-5xl mx-auto px-6">
-          <ScrollReveal>
-            <SectionLabel>Currently</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-6">What I'm <span className="text-gradient">building now</span></h2>
-          </ScrollReveal>
-          <ScrollReveal delay={0.1}>
-            <div className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 sm:p-8 max-w-2xl">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 rounded-full bg-emerald-400/80 animate-pulse" />
-                <span className="text-sm font-medium text-emerald-400">In Progress</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">AI-Powered SaaS Platform</h3>
-              <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-                Building a multi-tenant platform that replaces $497/mo tools for small businesses. Voice AI handles calls 24/7,
-                Gemini writes personalized outreach, and automated lead scoring routes prospects to the right follow-up.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {['React', 'TypeScript', 'Supabase', 'Retell AI', 'Gemini', 'n8n', 'Stripe'].map(t => (
-                  <span key={t} className="text-[10px] px-2 py-0.5 rounded-full border border-zinc-800 text-zinc-500">{t}</span>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
         </div>
       </section>
 
@@ -203,9 +173,9 @@ export default function Home() {
           </ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {[
-              { q: "Roderick doesn't just design — he builds. He delivered our design system on time, reduced redundancy by 40%, and engineers loved working with his specs.", n: 'Sarah Chen', r: 'Director of Product, Pfizer' },
-              { q: "The attribute-based selling platform was a game-changer. Roderick led the UX from research through launch — $50M in incremental revenue.", n: 'Michael Torres', r: 'VP Digital, IHG Hotels' },
-              { q: "Most designers hand off Figma files. Roderick shipped production React code, built automation pipelines, and integrated voice AI — all while keeping the UX clean.", n: 'David Park', r: 'Engineering Lead' },
+              { q: "Roderick doesn't just design — he builds. He delivered our design system on time, reduced redundancy by 40%, and engineers loved working with his specs.", n: 'Product Director', r: 'Pfizer' },
+              { q: "The attribute-based selling platform was a game-changer. Roderick led the UX from research through launch — $50M in incremental revenue.", n: 'VP of Digital', r: 'IHG Hotels & Resorts' },
+              { q: "Most designers hand off Figma files. Roderick shipped production React code, built automation pipelines, and integrated voice AI — all while keeping the UX clean.", n: 'Engineering Lead', r: 'Enterprise SaaS' },
             ].map((t, i) => (
               <ScrollReveal key={t.n} delay={i * 0.08}>
                 <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full">

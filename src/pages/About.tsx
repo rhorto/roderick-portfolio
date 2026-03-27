@@ -1,14 +1,15 @@
+import { Link } from 'react-router-dom'
 import PageWrap from '../components/PageWrap'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionLabel from '../components/SectionLabel'
 
 const experience = [
-  { co: 'Audiences247', role: 'AI Product Designer', yr: '2024–Present', desc: 'Designing and building AI SaaS end-to-end — voice AI, lead scoring, automation' },
-  { co: 'Pfizer', role: 'Senior UX Designer', yr: '2022–2024', desc: 'Enterprise design system reducing redundancy 40% across healthcare products' },
-  { co: 'State Farm', role: 'Senior UX Designer', yr: '2021–2022', desc: 'Mobile app redesign driving 20% retention increase' },
-  { co: 'IHG Hotels', role: 'Senior UX Designer', yr: '2015–2020', desc: '$50M revenue platform — attribute-based selling' },
-  { co: 'Delta Air Lines', role: 'UX Designer', yr: '2010–2015', desc: 'Gate agent app — 15% faster boarding' },
-  { co: 'Bank of America', role: 'UX Designer', yr: '2008–2010', desc: 'Financial center apps for agent servicing — online and in-office' },
+  { co: 'Audiences247', role: 'AI Product Designer', yr: '2024–Present', desc: 'Designing and building AI SaaS end-to-end — voice AI, lead scoring, automation', link: '/work/audiences247' },
+  { co: 'Pfizer', role: 'Senior UX Designer', yr: '2022–2024', desc: 'Enterprise design system reducing redundancy 40% across healthcare products', link: '/work/pfizer' },
+  { co: 'State Farm', role: 'Senior UX Designer', yr: '2021–2022', desc: 'Mobile app redesign driving 20% retention increase', link: '/work/statefarm' },
+  { co: 'IHG Hotels', role: 'Senior UX Designer', yr: '2015–2020', desc: '$50M revenue platform — attribute-based selling', link: '/work/ihg' },
+  { co: 'Delta Air Lines', role: 'UX Designer', yr: '2010–2015', desc: 'Gate agent app — 15% faster boarding', link: '/work/delta' },
+  { co: 'Bank of America', role: 'UX Designer', yr: '2008–2010', desc: 'Financial center apps for agent servicing — online and in-office', link: '/work/bofa' },
   { co: 'Yahoo', role: 'Digital Marketing Strategist', yr: '2007–2010', desc: 'CRO driving $2M in additional revenue' },
   { co: 'SAIC', role: 'Usability Analyst', yr: '2004–2007', desc: 'Federal UX for CDC and OMB' },
 ]
@@ -38,7 +39,6 @@ export default function About() {
             <div className="space-y-4 text-base text-zinc-400 leading-relaxed max-w-2xl">
               <p>I'm an AI Product Designer with 20+ years shipping products at enterprise scale. I've designed for Delta Air Lines, IHG Hotels, Pfizer, and State Farm — products used by millions of people.</p>
               <p>Today I design and build AI-native SaaS products end-to-end. I write production React and TypeScript. I architect voice AI systems. I build automation pipelines that replace expensive tools. I don't hand off Figma files — I ship.</p>
-              <p>I believe the best AI products come from designers who understand the full stack — from the prompt to the pixel.</p>
             </div>
           </ScrollReveal>
         </div>
@@ -98,9 +98,15 @@ export default function About() {
           <div className="divide-y divide-zinc-800/50">
             {experience.map((e, i) => (
               <ScrollReveal key={e.co} delay={i * 0.04}>
-                <div className="py-6 first:pt-0 last:pb-0">
+                <div className="py-6 first:pt-0 last:pb-0 group">
                   <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1.5">
-                    <h3 className="text-[15px] font-semibold">{e.co}</h3>
+                    <h3 className="text-[15px] font-semibold">
+                      {e.link ? (
+                        <Link to={e.link} className="hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5">
+                          {e.co} <span className="text-xs text-zinc-600 group-hover:text-indigo-400">→</span>
+                        </Link>
+                      ) : e.co}
+                    </h3>
                     <span className="text-xs text-zinc-500 font-mono">{e.yr}</span>
                   </div>
                   <p className="text-sm text-indigo-400 font-medium mb-1.5">{e.role}</p>

@@ -27,25 +27,25 @@ export default function HeroBackground() {
       const radius = Math.min(cw, ch) * 0.35
       const angle = angleRef.current
 
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.06)'
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.12)'
       ctx.lineWidth = 0.8
 
       // Outer circle
       ctx.beginPath()
       ctx.arc(cx, cy, radius, 0, Math.PI * 2)
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.1)'
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.18)'
       ctx.stroke()
 
       // Second ring
       ctx.beginPath()
       ctx.arc(cx, cy, radius * 1.15, 0, Math.PI * 2)
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.04)'
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.08)'
       ctx.stroke()
 
       // Third ring
       ctx.beginPath()
       ctx.arc(cx, cy, radius * 1.3, 0, Math.PI * 2)
-      ctx.strokeStyle = 'rgba(99, 102, 241, 0.02)'
+      ctx.strokeStyle = 'rgba(99, 102, 241, 0.05)'
       ctx.stroke()
 
       // Latitude lines (horizontal ellipses)
@@ -56,7 +56,7 @@ export default function HeroBackground() {
 
         ctx.beginPath()
         ctx.ellipse(cx, y, ellipseWidth, ellipseWidth * 0.08, 0, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(99, 102, 241, ${0.04 + (1 - Math.abs(lat)) * 0.04})`
+        ctx.strokeStyle = `rgba(99, 102, 241, ${0.07 + (1 - Math.abs(lat)) * 0.07})`
         ctx.stroke()
       }
 
@@ -67,7 +67,7 @@ export default function HeroBackground() {
 
         ctx.beginPath()
         ctx.ellipse(cx, cy, radius * Math.abs(Math.cos(lng)), radius, 0, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(99, 102, 241, ${0.03 + Math.abs(tilt) * 0.05})`
+        ctx.strokeStyle = `rgba(99, 102, 241, ${0.06 + Math.abs(tilt) * 0.08})`
         ctx.stroke()
       }
 
@@ -86,7 +86,7 @@ export default function HeroBackground() {
 
           const px = cx + x3d * radius
           const py = cy + y3d * radius
-          const alpha = 0.05 + z3d * 0.12
+          const alpha = 0.08 + z3d * 0.18
 
           ctx.beginPath()
           ctx.arc(px, py, 1.5, 0, Math.PI * 2)
@@ -97,7 +97,7 @@ export default function HeroBackground() {
 
       // Glow at center
       const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius * 0.8)
-      glow.addColorStop(0, 'rgba(99, 102, 241, 0.03)')
+      glow.addColorStop(0, 'rgba(99, 102, 241, 0.06)')
       glow.addColorStop(1, 'transparent')
       ctx.fillStyle = glow
       ctx.beginPath()
@@ -110,7 +110,7 @@ export default function HeroBackground() {
       const oy = cy + Math.sin(orbitAngle) * radius * 0.3
       ctx.beginPath()
       ctx.arc(ox, oy, 2.5, 0, Math.PI * 2)
-      ctx.fillStyle = 'rgba(129, 140, 248, 0.4)'
+      ctx.fillStyle = 'rgba(129, 140, 248, 0.6)'
       ctx.fill()
 
       // Orbit trail
