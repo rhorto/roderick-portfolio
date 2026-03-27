@@ -27,10 +27,14 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-32">
           <div className="max-w-2xl">
-            <motion.p initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
-              className="text-sm font-medium text-indigo-400 mb-5 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" /> Available for work
-            </motion.p>
+            <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
+              className="flex items-center gap-4 mb-6">
+              <img src="/images/profile.png" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/30 object-cover" />
+              <div>
+                <p className="text-sm font-semibold text-white">Roderick Horton</p>
+                <p className="text-xs text-indigo-400 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for work</p>
+              </div>
+            </motion.div>
 
             <motion.h1 variants={stagger} initial="hidden" animate="visible"
               className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.08] tracking-tight mb-7">
@@ -85,12 +89,20 @@ export default function Home() {
               <ScrollReveal key={p.id} delay={i * 0.08}>
                 <Link to={`/work/${p.id}`}>
                   <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group">
-                    <div className="h-44 rounded-t-xl flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
-                      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: `radial-gradient(${p.color} 1px, transparent 1px)`, backgroundSize: '24px 24px' }} />
-                      <div className="relative text-center">
-                        <span className="text-3xl font-bold tracking-wider block" style={{ color: `${p.color}25` }}>{p.company.split(' ')[0].toUpperCase()}</span>
-                        <span className="text-[9px] uppercase tracking-[0.25em] mt-1 block" style={{ color: `${p.color}35` }}>{p.company}</span>
-                      </div>
+                    <div className="h-48 rounded-t-xl relative overflow-hidden">
+                      {p.image ? (
+                        <>
+                          <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                          <div className="absolute bottom-3 left-4">
+                            <span className="text-[10px] uppercase tracking-[0.15em] font-medium px-2 py-0.5 rounded-full" style={{ background: `${p.color}20`, color: p.color }}>{p.company}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
+                          <span className="text-3xl font-bold tracking-wider" style={{ color: `${p.color}25` }}>{p.company.split(' ')[0].toUpperCase()}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="p-5">
                       <h3 className="text-[15px] font-semibold group-hover:text-indigo-400 transition-colors">{p.title}</h3>

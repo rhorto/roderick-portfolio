@@ -21,12 +21,20 @@ export default function Work() {
               <ScrollReveal key={p.id} delay={i * 0.06}>
                 <Link to={`/work/${p.id}`}>
                   <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group h-full">
-                    <div className="h-44 rounded-t-xl flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
-                      <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: `radial-gradient(${p.color} 1px, transparent 1px)`, backgroundSize: '24px 24px' }} />
-                      <div className="relative text-center">
-                        <span className="text-3xl font-bold tracking-wider block" style={{ color: `${p.color}25` }}>{p.company.split(' ')[0].toUpperCase()}</span>
-                        <span className="text-[9px] uppercase tracking-[0.25em] mt-1 block" style={{ color: `${p.color}35` }}>{p.company}</span>
-                      </div>
+                    <div className="h-48 rounded-t-xl relative overflow-hidden">
+                      {p.image ? (
+                        <>
+                          <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                          <div className="absolute bottom-3 left-4">
+                            <span className="text-[10px] uppercase tracking-[0.15em] font-medium px-2 py-0.5 rounded-full" style={{ background: `${p.color}20`, color: p.color }}>{p.company}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
+                          <span className="text-3xl font-bold tracking-wider" style={{ color: `${p.color}25` }}>{p.company.split(' ')[0].toUpperCase()}</span>
+                        </div>
+                      )}
                     </div>
                     <div className="p-5">
                       <h3 className="text-[15px] font-semibold group-hover:text-indigo-400 transition-colors">{p.title}</h3>

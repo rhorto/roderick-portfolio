@@ -31,12 +31,17 @@ export default function CaseStudy() {
 
       {/* Hero visual */}
       <div className="max-w-4xl mx-auto px-6 mb-16">
-        <div className="h-56 sm:h-72 rounded-2xl flex items-center justify-center relative overflow-hidden" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
-          <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: `radial-gradient(${p.color} 1px, transparent 1px)`, backgroundSize: '24px 24px' }} />
-          <div className="relative text-center">
-            <span className="text-5xl sm:text-6xl font-bold tracking-wider" style={{ color: `${p.color}20` }}>{p.company.split(' ')[0].toUpperCase()}</span>
-            <span className="text-xs uppercase tracking-[0.2em] mt-2 block" style={{ color: `${p.color}35` }}>{p.company}</span>
-          </div>
+        <div className="h-56 sm:h-72 rounded-2xl relative overflow-hidden">
+          {p.image ? (
+            <>
+              <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/20 to-transparent" />
+            </>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
+              <span className="text-5xl font-bold tracking-wider" style={{ color: `${p.color}20` }}>{p.company.split(' ')[0].toUpperCase()}</span>
+            </div>
+          )}
         </div>
       </div>
 

@@ -27,7 +27,13 @@ export default function About() {
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>About</SectionLabel>
-            <h1 className="text-3xl sm:text-4xl font-bold mb-6">Designer who <span className="text-gradient">builds</span></h1>
+            <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
+              <img src="/images/profile.png" alt="Roderick Horton" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-indigo-500/20 object-cover flex-shrink-0" />
+              <div>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-2">Designer who <span className="text-gradient">builds</span></h1>
+                <p className="text-sm text-zinc-500">AI Product Designer · Atlanta, GA · 20+ years experience</p>
+              </div>
+            </div>
             <div className="space-y-4 text-base text-zinc-400 leading-relaxed max-w-2xl">
               <p>I'm an AI Product Designer with 20+ years shipping products at enterprise scale. I've designed for Delta Air Lines, IHG Hotels, Pfizer, and State Farm — products used by millions of people.</p>
               <p>Today I design and build AI-native SaaS products end-to-end. I write production React and TypeScript. I architect voice AI systems. I build automation pipelines that replace expensive tools. I don't hand off Figma files — I ship.</p>
