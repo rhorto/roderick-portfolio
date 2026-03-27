@@ -25,7 +25,26 @@ export default function Nav() {
     <>
       <nav className={`fixed inset-x-0 top-0 z-50 h-16 transition-all duration-300 ${scrolled ? 'bg-black/70 backdrop-blur-2xl border-b border-white/[0.04]' : ''}`}>
         <div className="max-w-5xl mx-auto h-full px-6 flex items-center justify-between">
-          <Link to="/" className="text-lg font-bold text-gradient hover:opacity-80 transition-opacity">RH</Link>
+          <Link to="/" className="group flex items-center gap-0 hover:opacity-90 transition-opacity" aria-label="Home">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" className="flex-shrink-0">
+              {/* Rounded square background */}
+              <rect x="1" y="1" width="34" height="34" rx="9" fill="transparent" stroke="url(#logo-border)" strokeWidth="1.5" />
+              {/* Accent corner — top-left gradient line */}
+              <path d="M10 1 L1 1 Q1 1 1 10" stroke="url(#logo-accent)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+              {/* RH text */}
+              <text x="18" y="23" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="Inter, system-ui, sans-serif" letterSpacing="0.5">RH</text>
+              <defs>
+                <linearGradient id="logo-border" x1="0" y1="0" x2="36" y2="36">
+                  <stop offset="0%" stopColor="#6366f1" stopOpacity="0.4" />
+                  <stop offset="100%" stopColor="#6366f1" stopOpacity="0.1" />
+                </linearGradient>
+                <linearGradient id="logo-accent" x1="0" y1="0" x2="12" y2="12">
+                  <stop offset="0%" stopColor="#818cf8" />
+                  <stop offset="100%" stopColor="#6366f1" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </Link>
 
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-1">
