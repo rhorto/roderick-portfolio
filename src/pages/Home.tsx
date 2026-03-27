@@ -12,7 +12,7 @@ const headlines = [
   { line1: 'I design and build', highlight: 'AI-powered', line2: 'products' },
   { line1: 'I shipped a', highlight: '$50M', line2: 'platform' },
   { line1: 'I build', highlight: 'voice AI', line2: 'that sells 24/7' },
-  { line1: '6 Fortune 500s.', highlight: '20 years.', line2: 'Real impact' },
+  { line1: '6 Fortune 500 brands', highlight: '20 years', line2: 'of impact' },
   { line1: 'I replace SaaS tools', highlight: 'with code', line2: 'I write' },
 ]
 
@@ -45,7 +45,7 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[150px] sm:h-[160px] md:h-[170px] relative mb-1 overflow-hidden">
+            <div className="h-[130px] sm:h-[130px] md:h-[140px] relative mb-1 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
@@ -53,7 +53,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, y: -40, filter: 'blur(8px)' }}
                   transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
-                  className="text-4xl sm:text-5xl md:text-[3.5rem] font-bold leading-[1.08] tracking-tight absolute inset-0"
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.12] tracking-tight absolute inset-0"
                 >
                   {headlines[slide].line1}<br />
                   <span className="text-gradient">{headlines[slide].highlight}</span>{' '}
