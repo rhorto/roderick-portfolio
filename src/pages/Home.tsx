@@ -10,10 +10,10 @@ import { projects } from '../data/projects'
 
 const headlines = [
   { line1: 'I design and build', highlight: 'AI-powered', line2: 'products' },
-  { line1: 'I shipped a', highlight: '$50M', line2: 'revenue platform' },
+  { line1: 'I shipped a', highlight: '$50M', line2: 'platform' },
   { line1: 'I build', highlight: 'voice AI', line2: 'that sells 24/7' },
-  { line1: '5 Fortune 500 brands.', highlight: '20+ years.', line2: 'Real impact' },
-  { line1: 'I replace $500/mo tools', highlight: 'with code', line2: 'I write' },
+  { line1: '5 Fortune 500s.', highlight: '20 years.', line2: 'Real impact' },
+  { line1: 'I replace SaaS tools', highlight: 'with code', line2: 'I write' },
 ]
 
 export default function Home() {
@@ -45,7 +45,7 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[120px] sm:h-[140px] md:h-[150px] relative mb-5 overflow-hidden">
+            <div className="h-[160px] sm:h-[170px] md:h-[180px] relative mb-5 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
