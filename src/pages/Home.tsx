@@ -9,11 +9,11 @@ import HeroBackground from '../components/HeroBackground'
 import { projects } from '../data/projects'
 
 const headlines = [
-  { line1: 'I design and build', highlight: 'AI-powered', line2: 'products' },
-  { line1: 'I shipped a', highlight: '$50M', line2: 'platform' },
-  { line1: 'I build', highlight: 'voice AI', line2: 'that sells' },
-  { line1: '6 Fortune 500 brands', highlight: '20 years', line2: 'of impact' },
-  { line1: 'I replace SaaS tools', highlight: 'with code', line2: 'I write' },
+  { line1: 'I design and build', line2: 'AI-powered', highlight: true },
+  { line1: 'I shipped a', line2: '$50M platform', highlight: false },
+  { line1: 'I build', line2: 'voice AI', highlight: true },
+  { line1: '6 Fortune 500s.', line2: '20 years', highlight: true },
+  { line1: 'I replace SaaS', line2: 'with code', highlight: true },
 ]
 
 export default function Home() {
@@ -44,19 +44,18 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[130px] sm:h-[130px] md:h-[140px] relative mb-1 overflow-hidden">
+            <div className="h-[100px] sm:h-[110px] md:h-[120px] relative mb-2 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
-                  initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+                  initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -40, filter: 'blur(8px)' }}
-                  transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.12] tracking-tight absolute inset-0"
+                  exit={{ opacity: 0, y: -30, filter: 'blur(6px)' }}
+                  transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] as const }}
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight absolute inset-0"
                 >
                   {headlines[slide].line1}<br />
-                  <span className="text-gradient">{headlines[slide].highlight}</span>{' '}
-                  {headlines[slide].line2}
+                  <span className={headlines[slide].highlight ? 'text-gradient' : ''}>{headlines[slide].line2}</span>
                 </motion.h1>
               </AnimatePresence>
             </div>
