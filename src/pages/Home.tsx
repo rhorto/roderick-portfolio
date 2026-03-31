@@ -92,7 +92,7 @@ export default function Home() {
             {/* Stats inside hero */}
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}
               className="grid grid-cols-4 gap-6 sm:gap-10 pt-6 border-t border-white/[0.06]">
-              {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['Millions', 'Users Reached']].map(([v, l]) => (
+              {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['8', 'Industries']].map(([v, l]) => (
                 <div key={l}>
                   <div className="text-lg sm:text-2xl font-bold text-gradient">{v}</div>
                   <div className="text-[10px] sm:text-xs text-zinc-500 mt-1">{l}</div>
