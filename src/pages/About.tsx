@@ -30,7 +30,7 @@ export default function About() {
           <ScrollReveal>
             <SectionLabel>About</SectionLabel>
             <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
-              <img src="/images/profile.png" alt="Roderick Horton" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-indigo-500/20 object-cover flex-shrink-0" />
+              <img src="/images/profile.jpeg" alt="Roderick Horton" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-indigo-500/20 object-cover flex-shrink-0" />
               <div>
                 <h1 className="text-3xl sm:text-4xl font-bold mb-2">Designer who <span className="text-gradient">builds</span></h1>
                 <p className="text-sm text-zinc-500">AI Product Designer · Atlanta, GA · 20+ years experience</p>

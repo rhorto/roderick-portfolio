@@ -36,7 +36,7 @@ export default function Home() {
           <div className="max-w-2xl">
             <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
               className="flex items-center gap-4 mb-6">
-              <img src="/images/profile.png" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/40 object-cover shadow-[0_0_24px_rgba(99,102,241,0.2)]" />
+              <img src="/images/profile.jpeg" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/40 object-cover shadow-[0_0_24px_rgba(99,102,241,0.2)]" />
               <div>
                 <p className="text-sm font-semibold text-white">Roderick Horton</p>
                 <p className="text-xs text-indigo-400 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for work</p>
