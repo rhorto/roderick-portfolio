@@ -9,11 +9,11 @@ import HeroBackground from '../components/HeroBackground'
 import { projects } from '../data/projects'
 
 const headlines = [
-  { line1: 'I design and build', line2: 'AI-powered', highlight: true },
-  { line1: 'I shipped a', line2: '$50M platform', highlight: false },
-  { line1: 'I build', line2: 'voice AI', highlight: true },
-  { line1: '6 Fortune 500s.', line2: '20 years', highlight: true },
-  { line1: 'I replace SaaS', line2: 'with code', highlight: true },
+  { line1: 'I design AI products', line2: 'that ship', highlight: true },
+  { line1: 'I designed a', line2: '$50M platform', highlight: false },
+  { line1: 'From Figma to', line2: 'production code', highlight: true },
+  { line1: '6 Fortune 500s.', line2: '20+ years', highlight: true },
+  { line1: 'AI product design,', line2: 'end to end', highlight: true },
 ]
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[100px] sm:h-[110px] md:h-[120px] relative mb-2 overflow-hidden">
+            <div className="h-[110px] sm:h-[120px] md:h-[130px] relative mb-2 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
@@ -118,8 +118,8 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>Selected Work</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Products that <span className="text-gradient">ship & scale</span></h2>
-            <p className="text-sm text-zinc-500 mb-12 max-w-lg">From Fortune 500 enterprises to AI-native startups — designing products that generate measurable business outcomes.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Enterprise products, <span className="text-gradient">real impact</span></h2>
+            <p className="text-sm text-zinc-500 mb-12 max-w-lg">Fortune 500 products designed and built for measurable business outcomes.</p>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
@@ -174,7 +174,7 @@ export default function Home() {
             {[
               { q: "Roderick doesn't just design — he builds. He delivered our design system on time, reduced redundancy by 40%, and engineers loved working with his specs.", n: 'Product Director', r: 'Pfizer' },
               { q: "The attribute-based selling platform was a game-changer. Roderick led the UX from research through launch — $50M in incremental revenue.", n: 'VP of Digital', r: 'IHG Hotels & Resorts' },
-              { q: "Most designers hand off Figma files. Roderick shipped production React code, built automation pipelines, and integrated voice AI — all while keeping the UX clean.", n: 'Engineering Lead', r: 'Enterprise SaaS' },
+              { q: "Most designers hand off Figma files. Roderick shipped production React code, built automation pipelines, and integrated voice AI — all while keeping the UX clean.", n: 'Engineering Lead', r: 'Audiences247' },
             ].map((t, i) => (
               <ScrollReveal key={t.n} delay={i * 0.08}>
                 <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full">
