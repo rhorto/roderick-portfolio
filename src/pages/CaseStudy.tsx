@@ -45,6 +45,34 @@ export default function CaseStudy() {
         </div>
       </div>
 
+      {/* Project metadata */}
+      {(p.timeline || p.team || p.scope) && (
+        <div className="max-w-3xl mx-auto px-6 mb-12">
+          <ScrollReveal>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 py-6 border-y border-white/[0.06]">
+              {p.timeline && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Timeline</div>
+                  <div className="text-sm text-zinc-300">{p.timeline}</div>
+                </div>
+              )}
+              {p.team && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Team</div>
+                  <div className="text-sm text-zinc-300">{p.team.join(', ')}</div>
+                </div>
+              )}
+              {p.scope && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Scope</div>
+                  <div className="text-sm text-zinc-300">{p.scope}</div>
+                </div>
+              )}
+            </div>
+          </ScrollReveal>
+        </div>
+      )}
+
       {/* Results strip */}
       <div className="border-y border-white/[0.04] bg-zinc-950/50 mb-16">
         <div className="max-w-3xl mx-auto px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
@@ -85,7 +113,42 @@ export default function CaseStudy() {
           <SectionLabel>What I Shipped</SectionLabel>
           <p className="text-base text-zinc-300 leading-relaxed mb-12">{p.shipped}</p>
         </ScrollReveal>
+      </div>
 
+      {/* Image Gallery — white background */}
+      {p.gallery && p.gallery.length > 0 && (
+        <div className="bg-white py-16 sm:py-20 mb-16">
+          <div className="max-w-5xl mx-auto px-6">
+            {p.gallery.map((section, si) => (
+              <ScrollReveal key={section.label} delay={si * 0.05}>
+                <div className={si > 0 ? 'mt-16' : ''}>
+                  <h3 className="text-xs uppercase tracking-[0.15em] font-medium text-zinc-400 mb-6">{section.label}</h3>
+                  <div className={`grid gap-4 ${section.images.length === 1 ? 'grid-cols-1' : section.images.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
+                    {section.images.map((img, ii) => (
+                      <div key={ii} className="group">
+                        <div className="rounded-lg overflow-hidden border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-full h-auto object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        {img.caption && (
+                          <p className="text-xs text-zinc-500 mt-2 leading-relaxed">{img.caption}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Before & After + Learned */}
+      <div className="max-w-3xl mx-auto px-6">
         <ScrollReveal>
           <SectionLabel>Before & After</SectionLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
@@ -116,7 +179,8 @@ export default function CaseStudy() {
           <SectionLabel>More Work</SectionLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-16">
             {other.map(o => (
-              <Link key={o.id} to={`/work/${o.id}`}                className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-5 hover:border-zinc-700 transition-all group">
+              <Link key={o.id} to={`/work/${o.id}`}
+                className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-5 hover:border-zinc-700 transition-all group">
                 <h3 className="text-sm font-semibold group-hover:text-indigo-400 transition-colors">{o.title}</h3>
                 <p className="text-xs text-zinc-500 mt-1">{o.company} · {o.year}</p>
               </Link>

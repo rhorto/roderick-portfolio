@@ -1,3 +1,14 @@
+export interface GalleryImage {
+  src: string
+  alt: string
+  caption?: string
+}
+
+export interface GallerySection {
+  label: string
+  images: GalleryImage[]
+}
+
 export interface Project {
   id: string
   title: string
@@ -18,6 +29,10 @@ export interface Project {
   tools: string[]
   before: string
   after: string
+  timeline?: string
+  team?: string[]
+  scope?: string
+  gallery?: GallerySection[]
 }
 
 export const projects: Project[] = [
@@ -32,6 +47,9 @@ export const projects: Project[] = [
     color: '#6366f1',
     image: '/images/project-audiences247.jpg',
     stats: [['70K+', 'Leads Processed'], ['35–50%', 'Open Rate'], ['8–15%', 'Reply Rate'], ['75%', 'Cost Reduction']],
+    timeline: 'Ongoing',
+    team: ['Solo Designer & Engineer'],
+    scope: 'Full Product — Design, Development, Deployment',
     constraint: 'Small businesses were paying $497/month for GoHighLevel but only using 20% of its features. They needed lead management, outreach, and after-hours coverage — not a bloated CRM. I needed to build a focused replacement as a solo designer-engineer.',
     options: [
       'No-code platform (Bubble/Retool) — fast to ship but limited AI integration and poor performance at scale',
@@ -62,6 +80,9 @@ export const projects: Project[] = [
     color: '#dc2626',
     image: '/images/project-bofa.jpg',
     stats: [['3→1', 'Systems Unified'], ['Faster', 'Service Time'], ['2', 'Channels'], ['Enterprise', 'Scale']],
+    timeline: '18 months',
+    team: ['UX Designer', 'Project Manager', 'Development Team', 'Compliance'],
+    scope: 'Enterprise Internal Application',
     constraint: 'Financial center agents juggled three separate legacy systems — one for accounts, one for transactions, one for customer profiles. Context switching between systems caused delays, errors, and poor customer experiences during both in-office visits and online servicing.',
     options: [
       'Overlay a unified dashboard on existing systems — fast deployment but still dependent on fragile legacy backends',
@@ -90,8 +111,11 @@ export const projects: Project[] = [
     desc: 'Led UX for two major initiatives: a $50M attribute-based booking platform that let guests customize room features, and an Owners Application giving hotel owners real-time business intelligence.',
     tags: ['UX/UI', 'User Research', 'Data Visualization', 'Design Systems'],
     color: '#10b981',
-    image: '/images/project-ihg.jpg',
+    image: '/images/cases/ihg-hero.jpg',
     stats: [['$50M', 'Revenue'], ['40%', 'Faster Data Access'], ['46%', 'More Daily Users'], ['35%', 'Loyalty ↑']],
+    timeline: '6 months per initiative',
+    team: ['Senior UX Designer', 'Project Manager', 'Lead Developer', 'QA Lead', 'Scrum Master'],
+    scope: 'Enterprise Application — 6,000+ Properties',
     constraint: 'Two parallel challenges: (1) IHG had no way for guests to customize their stay beyond room type — revenue was left on the table. (2) Hotel owners had no self-service access to business insights — overloaded dashboards and decision-making bottlenecks slowed operations across 6,000+ properties.',
     options: [
       'Post-booking upsell emails for attributes — low engineering effort but low conversion at a low-intent moment',
@@ -107,9 +131,43 @@ export const projects: Project[] = [
       { metric: '46%', label: 'Increase in daily active users' },
       { metric: '35%', label: 'Loyalty program participation increase' },
     ],
-    tools: ['Figma', 'Sketch', 'User Research', 'User Interviews', 'A/B Testing', 'Data Visualization', 'Design Systems', 'Prototyping'],
+    tools: ['Figma', 'Sketch', 'Adobe Illustrator', 'User Research', 'User Interviews', 'A/B Testing', 'Data Visualization', 'Design Systems', 'Prototyping'],
     before: 'Room-type-only booking with no customization. Revenue left on the table. Hotel owners relying on overloaded dashboards — 60% of reports never viewed. Decision-making bottlenecks across 6,000+ properties.',
     after: 'Guests customize floor, view, and bed type at booking — $50M incremental revenue. Owners access real-time insights with 40% faster data retrieval and 46% more daily engagement.',
+    gallery: [
+      {
+        label: 'Discovery & Sketching',
+        images: [
+          { src: '/images/cases/ihg-sketches.jpg', alt: 'Whiteboard sketches — early ideation for Owner Home layouts', caption: 'Whiteboard ideation — exploring layout patterns for the Owner Home dashboard' },
+          { src: '/images/cases/ihg-sketch-to-mobile.jpg', alt: 'From sketch to wireframe to high-fidelity mobile', caption: 'Design evolution — sketch to wireframe to production mobile app' },
+        ],
+      },
+      {
+        label: 'Owner Home Dashboard',
+        images: [
+          { src: '/images/cases/ihg-hero.jpg', alt: 'IHG Concerto Owner Home — portfolio view with performance metrics', caption: 'Owner Home — Spotlight view with performance comparison across properties' },
+          { src: '/images/cases/ihg-dashboard-single.jpg', alt: 'Single property dashboard with revenue, guests, and metrics', caption: 'Single property view — Snapshot, Revenue, Guest Arrivals, and Guest HeartBeat' },
+          { src: '/images/cases/ihg-dashboard-detail.jpg', alt: 'Holiday Inn property detail with hotel evaluations', caption: 'Property detail — Performance Comparison, Guest HeartBeat, and Hotel Evaluations' },
+          { src: '/images/cases/ihg-concerto-home.png', alt: 'IHG Concerto Home with My Revenue Opportunities', caption: 'Concerto Home — Revenue Opportunities, Metrics Summary, Guest Arrivals' },
+          { src: '/images/cases/ihg-owner-home.png', alt: 'Owner Home with Performance Comparison and Hotel Evaluations', caption: 'Owner Home redesign — Performance Comparison, Guest HeartBeat, Hotel Standards' },
+          { src: '/images/cases/ihg-portfolio-view.png', alt: 'Portfolio View with Spotlight and Performance Comparison', caption: 'Portfolio View — multi-property Spotlight with Pace and Activity Center' },
+        ],
+      },
+      {
+        label: 'Mobile Experience',
+        images: [
+          { src: '/images/cases/ihg-mobile-wireframes.jpg', alt: 'Mobile wireframe iterations for Portfolio View', caption: 'Mobile wireframe iterations — progressive disclosure for revenue data on small screens' },
+          { src: '/images/cases/ihg-mobile-final.jpg', alt: 'Final mobile screens — Spotlight, Pace, Snapshot', caption: 'Final mobile app — Spotlight Overview, Pace charts, and Snapshot on the go' },
+        ],
+      },
+      {
+        label: 'Attribute-Based Selling',
+        images: [
+          { src: '/images/cases/ihg-attribute-mgmt.jpg', alt: 'Inventory & Attribute Management on phone and tablet', caption: 'Inventory & Attribute Management — responsive design across phone and tablet' },
+          { src: '/images/cases/ihg-booking-tool.png', alt: 'Manage Reservation with guest information form', caption: 'Booking tool — Manage Reservation with attribute selection and guest details' },
+        ],
+      },
+    ],
   },
   {
     id: 'pfizer',
@@ -122,6 +180,9 @@ export const projects: Project[] = [
     color: '#0ea5e9',
     image: '/images/project-pfizer.jpg',
     stats: [['40%', 'Less Redundancy'], ['40%', 'Dev Time Saved'], ['30%', 'Engagement ↑'], ['WCAG', 'Compliant']],
+    timeline: '4 months',
+    team: ['Senior UX Designer', 'Project Manager', 'Lead Developer', 'QA Lead'],
+    scope: 'Enterprise Design System — Multi-Product',
     constraint: 'Multiple product teams were designing in silos — duplicating components, creating inconsistent patterns, and leaving accessibility gaps across healthcare applications with strict FDA and regulatory requirements. Each department had its own system, wasting time and resources.',
     options: [
       'Guidelines document distributed via Confluence — easy to maintain but zero enforcement and low adoption',
@@ -150,8 +211,11 @@ export const projects: Project[] = [
     desc: 'Redesigned mission-critical gate agent and booking applications — cutting boarding times by 15%, saving over $100K in development costs, and earning recognition for operational efficiency.',
     tags: ['Enterprise UX', 'Mobile', 'Operations', 'Research'],
     color: '#ef4444',
-    image: '/images/project-delta.jpg',
+    image: '/images/cases/delta-hero-devices.jpg',
     stats: [['-15%', 'Boarding Time'], ['$100K+', 'Dev Cost Saved'], ['+25%', 'App Usage'], ['+20%', 'Satisfaction']],
+    timeline: '4 months per initiative',
+    team: ['UX Designer', 'Project Manager', 'Lead Developer', 'QA Lead'],
+    scope: 'Enterprise Application — 1,000+ Gates',
     constraint: 'Gate agents were using a DOS-era terminal interface to board 200+ passengers in 30-minute windows. Every second mattered — a slow interface meant delayed flights and cascading operational costs across the network. The existing system also required extensive training for new agents.',
     options: [
       'Skin the existing terminal app with modern UI — fast but limited by legacy architecture and still unintuitive',
@@ -170,6 +234,39 @@ export const projects: Project[] = [
     tools: ['Contextual Inquiry', 'Rapid Prototyping', 'Usability Testing', 'Heuristic Evaluation', 'Wireframing', 'Figma', 'Adobe Illustrator'],
     before: 'DOS-era terminal. 8-second average boarding interaction. High error rates. Agent frustration. Extensive training required for new hires. Over $100K wasted on redundant development.',
     after: '5-second interactions. 15% faster boarding. Zero-training UI. 25% more usage. $100K+ in dev cost savings. Award-winning design.',
+    gallery: [
+      {
+        label: 'Wireframes & Information Architecture',
+        images: [
+          { src: '/images/cases/delta-wireframe-list.jpg', alt: 'Gate agent wireframe — passenger list view', caption: 'Gate agent wireframe — passenger list with status indicators and tab navigation' },
+          { src: '/images/cases/delta-wireframe-detail.jpg', alt: 'Gate agent wireframe — passenger detail with flight and fare data', caption: 'Passenger detail wireframe — ticket info, fare breakdown, and service notes' },
+        ],
+      },
+      {
+        label: 'Kiosk Check-in Experience',
+        images: [
+          { src: '/images/cases/delta-checkin-review.jpg', alt: 'Delta kiosk — flight review with passenger and seat info', caption: 'Self-service kiosk — review flight details, passengers, seats, and bags' },
+          { src: '/images/cases/delta-flight-select.jpg', alt: 'Delta kiosk — flight selection with pricing and status', caption: 'Flight change screen — options with pricing, stops, and availability' },
+          { src: '/images/cases/delta-early-screen.jpg', alt: 'Delta kiosk — early arrival prompt', caption: 'Early arrival flow — prompting passengers to change to an earlier flight' },
+          { src: '/images/cases/delta-boarding-scan.jpg', alt: 'Delta boarding document scanning screen', caption: 'Boarding document — multi-language scanning interface at gate' },
+        ],
+      },
+      {
+        label: 'Multi-Device Design',
+        images: [
+          { src: '/images/cases/delta-hero-devices.jpg', alt: 'Delta booking experience across desktop, tablet, and mobile', caption: 'Responsive booking experience — desktop, tablet, and mobile' },
+          { src: '/images/cases/delta-kiosk-review2.jpg', alt: 'Delta kiosk — detailed passenger check-in with multi-leg flights', caption: 'Kiosk check-in — flight review with passenger info for multi-leg trips' },
+          { src: '/images/cases/delta-kiosk-review3.jpg', alt: 'Delta kiosk — multi-flight itinerary review', caption: 'Multi-flight itinerary — all legs shown with real-time status' },
+        ],
+      },
+      {
+        label: 'Agent Booking System',
+        images: [
+          { src: '/images/cases/delta-agent-booking.jpg', alt: 'Delta agent booking tool — legacy Polaris system', caption: 'Agent booking tool (Polaris) — the legacy system that informed the redesign' },
+          { src: '/images/cases/delta-kiosk-cover.jpg', alt: 'Delta AKQA Kiosk Updates presentation', caption: 'Kiosk Updates & Summary Review — stakeholder presentation with AKQA' },
+        ],
+      },
+    ],
   },
   {
     id: 'statefarm',
@@ -182,6 +279,9 @@ export const projects: Project[] = [
     color: '#f59e0b',
     image: '/images/project-statefarm.jpg',
     stats: [['+20%', 'Retention'], ['+15%', 'Enrollments'], ['2', 'Platforms'], ['+20%', 'Productivity']],
+    timeline: '12 months',
+    team: ['Senior UX Designer', 'Product Manager', 'iOS Developer', 'Android Developer', 'QA'],
+    scope: 'Mobile App — iOS & Android',
     constraint: 'State Farm\'s telematics app had low retention — users didn\'t understand how their driving behavior translated to savings. The iOS and Android experiences were inconsistent, and users were skeptical their data was being used fairly.',
     options: [
       'Add a savings dashboard — addresses understanding but doesn\'t fix the core retention problem',
