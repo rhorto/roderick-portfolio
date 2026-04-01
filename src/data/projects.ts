@@ -9,6 +9,11 @@ export interface GallerySection {
   images: GalleryImage[]
 }
 
+export interface DetailSection {
+  heading: string
+  columns: { title: string; items: string[] }[]
+}
+
 export interface Project {
   id: string
   title: string
@@ -33,6 +38,7 @@ export interface Project {
   team?: string[]
   scope?: string
   gallery?: GallerySection[]
+  detailSections?: DetailSection[]
 }
 
 export const projects: Project[] = [
@@ -134,13 +140,38 @@ export const projects: Project[] = [
     tools: ['Figma', 'Sketch', 'Adobe Illustrator', 'User Research', 'User Interviews', 'A/B Testing', 'Data Visualization', 'Design Systems', 'Prototyping'],
     before: 'Room-type-only booking with no customization. Revenue left on the table. Hotel owners relying on overloaded dashboards — 60% of reports never viewed. Decision-making bottlenecks across 6,000+ properties.',
     after: 'Guests customize floor, view, and bed type at booking — $50M incremental revenue. Owners access real-time insights with 40% faster data retrieval and 46% more daily engagement.',
-    gallery: [
+    detailSections: [
       {
-        label: 'Problem & Research',
-        images: [
-          { src: '/images/cases/ihg-problem-research.png', alt: 'IHG problem statement, target users, research methodology, and key findings', caption: 'Problem Statement & Research — key challenge, target users, research strategy, and pain points discovered' },
+        heading: 'Problem Statement',
+        columns: [
+          { title: 'Key Challenge', items: [
+            'Hotel owners needed a seamless way to access and manage critical hotel data across multiple devices.',
+            'The existing system was outdated and difficult to navigate, requiring owners to be physically present in their office to access performance insights.',
+            'The challenge was to migrate this vast amount of hotel data to a modern web-based platform — without overwhelming users with complexity.',
+          ]},
+          { title: 'Target Users', items: [
+            'IHG Hotel Owners managing multiple properties, who required instant access to data for informed decision-making.',
+          ]},
         ],
       },
+      {
+        heading: 'Research & Insights',
+        columns: [
+          { title: 'Research Strategy', items: [
+            'User Interviews — Engaged hotel staff and managers to understand workflow challenges',
+            'Surveys — Gathered feedback from hotel owners on key data needs',
+            'Usability Testing — Evaluated existing interfaces through remote user testing',
+            'Competitor Analysis — Benchmarked against industry leaders to identify best practices',
+          ]},
+          { title: 'Key Findings & Pain Points', items: [
+            'Overloaded Data Dashboards — Users wanted access to multiple data points, but cluttered interfaces led to frustration',
+            'Limited Accessibility — Hotel owners struggled with outdated systems that tethered them to office-based desktop access',
+            'Decision-Making Bottlenecks — Owners needed actionable insights, not just raw data — requiring better data visualization',
+          ]},
+        ],
+      },
+    ],
+    gallery: [
       {
         label: 'Ideation & Concept Development',
         images: [

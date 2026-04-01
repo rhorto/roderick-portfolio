@@ -115,6 +115,34 @@ export default function CaseStudy() {
         </ScrollReveal>
       </div>
 
+      {/* Detail Sections — structured text content */}
+      {p.detailSections && p.detailSections.length > 0 && (
+        <div className="max-w-3xl mx-auto px-6 mb-16">
+          {p.detailSections.map((section, si) => (
+            <ScrollReveal key={section.heading} delay={si * 0.05}>
+              <div className={si > 0 ? 'mt-10 pt-10 border-t border-white/[0.06]' : ''}>
+                <h3 className="text-lg font-semibold text-zinc-200 mb-6">{section.heading}</h3>
+                <div className={`grid gap-8 ${section.columns.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+                  {section.columns.map((col) => (
+                    <div key={col.title}>
+                      <h4 className="text-sm font-medium text-zinc-300 mb-3">{col.title}</h4>
+                      <ul className="space-y-2">
+                        {col.items.map((item, ii) => (
+                          <li key={ii} className="text-sm text-zinc-400 leading-relaxed flex gap-2">
+                            <span className="text-zinc-600 mt-1 flex-shrink-0">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+      )}
+
       {/* Image Gallery — white background */}
       {p.gallery && p.gallery.length > 0 && (
         <div className="bg-white py-16 sm:py-20 mb-16">
