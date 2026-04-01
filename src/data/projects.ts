@@ -136,18 +136,45 @@ export const projects: Project[] = [
     after: 'Guests customize floor, view, and bed type at booking — $50M incremental revenue. Owners access real-time insights with 40% faster data retrieval and 46% more daily engagement.',
     gallery: [
       {
-        label: 'Discovery & Sketching',
+        label: 'Problem & Research',
         images: [
-          { src: '/images/cases/ihg-sketches.jpg', alt: 'Whiteboard sketches — early ideation for Owner Home layouts', caption: 'Whiteboard ideation — exploring layout patterns for the Owner Home dashboard' },
-          { src: '/images/cases/ihg-sketch-to-mobile.jpg', alt: 'From sketch to wireframe to high-fidelity mobile', caption: 'Design evolution — sketch to wireframe to production mobile app' },
+          { src: '/images/cases/ihg-problem-research.png', alt: 'IHG problem statement, target users, research methodology, and key findings', caption: 'Problem Statement & Research — key challenge, target users, research strategy, and pain points discovered' },
         ],
       },
       {
-        label: 'Owner Home Dashboard',
+        label: 'Ideation & Concept Development',
         images: [
-          { src: '/images/cases/ihg-hero.jpg', alt: 'IHG Concerto Owner Home — portfolio view with performance metrics', caption: 'Owner Home — Spotlight view with performance comparison across properties' },
-          { src: '/images/cases/ihg-dashboard-single.jpg', alt: 'Single property dashboard with revenue, guests, and metrics', caption: 'Single property view — Snapshot, Revenue, Guest Arrivals, and Guest HeartBeat' },
-          { src: '/images/cases/ihg-dashboard-detail.jpg', alt: 'Holiday Inn property detail with hotel evaluations', caption: 'Property detail — Performance Comparison, Guest HeartBeat, and Hotel Evaluations' },
+          { src: '/images/cases/ihg-ideation-sketches.png', alt: 'Early ideation sketches — paper and whiteboard concepts for IHG dashboard', caption: 'Ideation — rapid paper and whiteboard sketching to explore dashboard layouts and data hierarchy' },
+          { src: '/images/cases/ihg-whiteboard-sketch.png', alt: 'Whiteboard sketch — Single Hotel and Portfolio View early concepts', caption: 'Whiteboard exploration — Single Hotel dashboard layout and Portfolio View data hierarchy' },
+          { src: '/images/cases/ihg-paper-sketch.png', alt: 'Paper sketch — single hotel wireframe concept', caption: 'Paper sketching — quick iteration on single hotel dashboard information architecture' },
+        ],
+      },
+      {
+        label: 'My Process',
+        images: [
+          { src: '/images/cases/ihg-process.png', alt: 'Design process — Discovery, Design, Delivery phases', caption: 'Process — from Research through Branding, UX, Design System, and UI to Delivery' },
+        ],
+      },
+      {
+        label: 'User Flows',
+        images: [
+          { src: '/images/cases/ihg-userflows-composite.png', alt: 'IHG user flows — Create Inventory Types and Attribute Request flows', caption: 'User flows — inventory type creation, attribute request/approval, and process flow segmentation' },
+          { src: '/images/cases/ihg-user-flow.png', alt: 'User flow diagram — Create Inventory Types for Hotel', caption: 'User flow — Create Inventory Types showing validation, error handling, and success states' },
+          { src: '/images/cases/ihg-segmentation-flow.png', alt: 'Process flow — Corporate Product and Attribute Catalog segmentation', caption: 'Segmentation model — how corporate catalogs flow to brand, region, and location levels' },
+        ],
+      },
+      {
+        label: 'Wireframes',
+        images: [
+          { src: '/images/cases/ihg-wireframes-mobile.png', alt: 'Mobile wireframe iterations — Portfolio View on three devices', caption: 'Mobile wireframes — Portfolio View iterations exploring progressive disclosure for revenue data' },
+          { src: '/images/cases/ihg-sketch-to-final.png', alt: 'Design evolution — sketch to wireframe to final mobile app', caption: 'Design evolution — from paper sketch to wireframe to production mobile app' },
+          { src: '/images/cases/ihg-mobile-wireframes.jpg', alt: 'Mobile wireframe iterations for Portfolio View', caption: 'Wireframe detail — three iterations of Portfolio View with Gross Room Revenue charts' },
+        ],
+      },
+      {
+        label: 'Prototypes — Owner Home Dashboard',
+        images: [
+          { src: '/images/cases/ihg-prototypes-dashboards.png', alt: 'IHG Owner Home prototypes — portfolio and single property views in browser', caption: 'Hi-fi prototypes — Owner Home portfolio view and single property detail with live data' },
           { src: '/images/cases/ihg-concerto-home.png', alt: 'IHG Concerto Home with My Revenue Opportunities', caption: 'Concerto Home — Revenue Opportunities, Metrics Summary, Guest Arrivals' },
           { src: '/images/cases/ihg-owner-home.png', alt: 'Owner Home with Performance Comparison and Hotel Evaluations', caption: 'Owner Home redesign — Performance Comparison, Guest HeartBeat, Hotel Standards' },
           { src: '/images/cases/ihg-portfolio-view.png', alt: 'Portfolio View with Spotlight and Performance Comparison', caption: 'Portfolio View — multi-property Spotlight with Pace and Activity Center' },
@@ -156,8 +183,8 @@ export const projects: Project[] = [
       {
         label: 'Mobile Experience',
         images: [
-          { src: '/images/cases/ihg-mobile-wireframes.jpg', alt: 'Mobile wireframe iterations for Portfolio View', caption: 'Mobile wireframe iterations — progressive disclosure for revenue data on small screens' },
-          { src: '/images/cases/ihg-mobile-final.jpg', alt: 'Final mobile screens — Spotlight, Pace, Snapshot', caption: 'Final mobile app — Spotlight Overview, Pace charts, and Snapshot on the go' },
+          { src: '/images/cases/ihg-mobile-final-composite.png', alt: 'Final IHG mobile app — three phones showing Spotlight, Pace, and Snapshot', caption: 'Shipped mobile app — Spotlight Overview, Pace/Guest HeartBeat, and Snapshot views' },
+          { src: '/images/cases/ihg-mobile-final.jpg', alt: 'Final mobile screens — Spotlight, Pace, Snapshot', caption: 'Mobile detail — Spotlight Overview, Pace charts, and Snapshot on the go' },
         ],
       },
       {
@@ -201,6 +228,45 @@ export const projects: Project[] = [
     tools: ['Figma', 'Design Tokens', 'WCAG', 'Storybook', 'Documentation', 'User Research', 'Adobe Illustrator'],
     before: 'Siloed design teams. Duplicated components across departments. Inconsistent UX patterns. Accessibility gaps. Slow product rollouts due to redundant work.',
     after: '40% less redundancy. 40% faster development cycles. Consistent design language across all products. WCAG AA compliant. 30% higher product engagement.',
+    gallery: [
+      {
+        label: 'Problem & Approach',
+        images: [
+          { src: '/images/cases/pfizer-problem-overview.png', alt: 'Pfizer case study — Problem, Solution, Results overview with 40% dev time reduction', caption: 'Problem Overview — siloed teams, inconsistent UX. Solution: unified design system. Result: 40% faster development, 30% more engagement' },
+          { src: '/images/cases/pfizer-process.png', alt: 'Design process — Discovery, Design, Delivery phases', caption: 'Process — from Research through Branding, UX, Design System, and UI to Delivery' },
+        ],
+      },
+      {
+        label: 'User Flows',
+        images: [
+          { src: '/images/cases/pfizer-userflows-section.png', alt: 'User flow — new and returning users routed to developer or general dashboards', caption: 'User flow architecture — new users onboard into role-based dashboards, returning users go direct' },
+          { src: '/images/cases/pfizer-user-flow.png', alt: 'Detailed user flow diagram with onboarding paths', caption: 'Detailed flow — Developer vs. General User paths to Code Library or Drag-Drop System' },
+        ],
+      },
+      {
+        label: 'Wireframes',
+        images: [
+          { src: '/images/cases/pfizer-wireframes-composite.png', alt: 'Wireframe evolution — hand-drawn sketch to lo-fi digital wireframes', caption: 'Wireframe progression — hand-drawn layout exploration to structured digital wireframes' },
+          { src: '/images/cases/pfizer-wireframe-sketch.png', alt: 'Hand-drawn wireframe sketch of Spaces dashboard layout', caption: 'Early sketch — mapping dashboard widgets, navigation hierarchy, and data placement' },
+          { src: '/images/cases/pfizer-wireframe-dashboard.png', alt: 'Lo-fi wireframe — Spaces dashboard with search and card layout', caption: 'Lo-fi wireframe — dashboard with search, status cards, and side navigation' },
+        ],
+      },
+      {
+        label: 'Prototypes & Onboarding',
+        images: [
+          { src: '/images/cases/pfizer-prototypes-onboarding.png', alt: 'Pfizer Spaces prototypes — login page and onboarding role selection', caption: 'Prototypes — login experience with Pfizer credentials and personalized onboarding flow' },
+          { src: '/images/cases/pfizer-login.png', alt: 'Pfizer Spaces login page with illustration', caption: 'Spaces welcome — login with Pfizer credentials and platform value proposition' },
+          { src: '/images/cases/pfizer-onboarding.png', alt: 'Pfizer Spaces onboarding — role selection step', caption: 'Personalized onboarding — role selection to customize the workspace experience' },
+        ],
+      },
+      {
+        label: 'Dashboard Screens',
+        images: [
+          { src: '/images/cases/pfizer-dashboard-section.png', alt: 'Pfizer Spaces dashboard with full UI — devices, users, applications', caption: 'Dashboard Screens — the shipped Spaces platform with real-time analytics' },
+          { src: '/images/cases/pfizer-dashboard.png', alt: 'Pfizer Spaces dashboard detail — devices, active users, and applications widgets', caption: 'Dashboard detail — Users, Sessions, Devices breakdown, Active Users, and Application management' },
+        ],
+      },
+    ],
   },
   {
     id: 'delta',
@@ -236,6 +302,13 @@ export const projects: Project[] = [
     after: '5-second interactions. 15% faster boarding. Zero-training UI. 25% more usage. $100K+ in dev cost savings. Award-winning design.',
     gallery: [
       {
+        label: 'Problem & Approach',
+        images: [
+          { src: '/images/cases/delta-problem-overview.png', alt: 'Delta case study — Problem, Solution, Results overview', caption: 'Problem Overview — legacy systems slowing agents. Solution: research-driven design system. Result: 40% dev time saved, $100K+ cost reduction' },
+          { src: '/images/cases/delta-process.png', alt: 'Design process — Discovery, Design, Delivery phases', caption: 'Process — from Research through Branding, UX, Design System, and UI to Delivery' },
+        ],
+      },
+      {
         label: 'Wireframes & Information Architecture',
         images: [
           { src: '/images/cases/delta-wireframe-list.jpg', alt: 'Gate agent wireframe — passenger list view', caption: 'Gate agent wireframe — passenger list with status indicators and tab navigation' },
@@ -243,9 +316,17 @@ export const projects: Project[] = [
         ],
       },
       {
+        label: 'Prototypes',
+        images: [
+          { src: '/images/cases/delta-prototypes-composite.png', alt: 'Delta prototypes — booking homepage and check-in review on desktop', caption: 'High-fidelity prototypes — Delta.com booking redesign and kiosk check-in review' },
+          { src: '/images/cases/delta-booking-desktop.png', alt: 'Delta.com homepage and seat selection on desktop', caption: 'Delta.com redesign — booking homepage with city imagery and seat selection interface' },
+        ],
+      },
+      {
         label: 'Kiosk Check-in Experience',
         images: [
           { src: '/images/cases/delta-checkin-review.jpg', alt: 'Delta kiosk — flight review with passenger and seat info', caption: 'Self-service kiosk — review flight details, passengers, seats, and bags' },
+          { src: '/images/cases/delta-kiosk-payment.png', alt: 'Delta kiosk — cart payment screen with pay all or pay separately options', caption: 'Kiosk payment — cart with per-passenger breakdown and pay-all-at-once option' },
           { src: '/images/cases/delta-flight-select.jpg', alt: 'Delta kiosk — flight selection with pricing and status', caption: 'Flight change screen — options with pricing, stops, and availability' },
           { src: '/images/cases/delta-early-screen.jpg', alt: 'Delta kiosk — early arrival prompt', caption: 'Early arrival flow — prompting passengers to change to an earlier flight' },
           { src: '/images/cases/delta-boarding-scan.jpg', alt: 'Delta boarding document scanning screen', caption: 'Boarding document — multi-language scanning interface at gate' },
