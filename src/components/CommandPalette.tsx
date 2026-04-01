@@ -35,7 +35,7 @@ export default function CommandPalette() {
   const go = (path: string) => {
     setOpen(false)
     if (path.startsWith('mailto:')) { window.location.href = path }
-    else { nav(path); window.scrollTo(0, 0) }
+    else { nav(path) }
   }
 
   return (

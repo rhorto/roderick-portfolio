@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Layout from './components/Layout'
@@ -9,11 +10,18 @@ import Resume from './pages/Resume'
 import NotFound from './pages/NotFound'
 import CommandPalette from './components/CommandPalette'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
+
 export default function App() {
   const location = useLocation()
 
   return (
     <>
+      <ScrollToTop />
       <CommandPalette />
       <Layout>
         <AnimatePresence mode="wait">

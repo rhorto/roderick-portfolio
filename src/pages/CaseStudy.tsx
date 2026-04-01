@@ -116,8 +116,7 @@ export default function CaseStudy() {
           <SectionLabel>More Work</SectionLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-16">
             {other.map(o => (
-              <Link key={o.id} to={`/work/${o.id}`} onClick={() => window.scrollTo(0, 0)}
-                className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-5 hover:border-zinc-700 transition-all group">
+              <Link key={o.id} to={`/work/${o.id}`}                className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-5 hover:border-zinc-700 transition-all group">
                 <h3 className="text-sm font-semibold group-hover:text-indigo-400 transition-colors">{o.title}</h3>
                 <p className="text-xs text-zinc-500 mt-1">{o.company} · {o.year}</p>
               </Link>

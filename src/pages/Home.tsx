@@ -84,7 +84,7 @@ export default function Home() {
               <Link to="/work" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center hover:bg-indigo-400 transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
                 View Work
               </Link>
-              <Link to="/about#contact" className="text-sm text-zinc-400 hover:text-white transition-colors">
+              <Link to="/about" className="text-sm text-zinc-400 hover:text-white transition-colors">
                 Get in Touch →
               </Link>
             </motion.div>

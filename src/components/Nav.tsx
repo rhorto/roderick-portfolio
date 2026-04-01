@@ -54,7 +54,7 @@ export default function Nav() {
                 {l.label}
               </Link>
             ))}
-            <Link to="/about#contact"
+            <Link to="/about"
               className="text-[13px] font-medium text-white bg-indigo-500 hover:bg-indigo-400 ml-3 h-9 px-5 rounded-full inline-flex items-center transition-all duration-200 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]">
               Contact
             </Link>
@@ -84,7 +84,7 @@ export default function Nav() {
               </motion.div>
             ))}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-              <Link to="/about#contact" className="text-base bg-indigo-500 text-white px-8 py-3 rounded-full">Contact</Link>
+              <Link to="/about" className="text-base bg-indigo-500 text-white px-8 py-3 rounded-full">Contact</Link>
             </motion.div>
           </motion.div>
         )}
