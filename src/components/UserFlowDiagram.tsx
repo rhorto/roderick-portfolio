@@ -18,7 +18,6 @@ export interface UserFlowData {
 
 interface UserFlowDiagramProps {
   flows: UserFlowData[]
-  color: string
 }
 
 function NodeShape({ node, color }: { node: FlowNode; color: string }) {
@@ -93,7 +92,7 @@ function Arrow({ color }: { color: string }) {
   )
 }
 
-export default function UserFlowDiagram({ flows, color }: UserFlowDiagramProps) {
+export default function UserFlowDiagram({ flows }: UserFlowDiagramProps) {
   return (
     <div>
       {/* Header */}

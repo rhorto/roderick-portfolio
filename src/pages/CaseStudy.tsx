@@ -122,7 +122,7 @@ export default function CaseStudy() {
       {p.problemOverview && (
         <div className="max-w-4xl mx-auto px-6 mb-16">
           <ScrollReveal>
-            <ProblemOverview {...p.problemOverview} color={p.color} />
+            <ProblemOverview {...p.problemOverview} />
           </ScrollReveal>
         </div>
       )}
@@ -140,7 +140,7 @@ export default function CaseStudy() {
       {p.userFlows && p.userFlows.length > 0 && (
         <div className="max-w-4xl mx-auto px-6 mb-16">
           <ScrollReveal>
-            <UserFlowDiagram flows={p.userFlows} color={p.color} />
+            <UserFlowDiagram flows={p.userFlows} />
           </ScrollReveal>
         </div>
       )}

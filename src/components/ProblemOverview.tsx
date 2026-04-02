@@ -3,7 +3,6 @@ interface ProblemOverviewProps {
   solution: string
   results: string
   subtitle: string
-  color: string
 }
 
 const cards = [
@@ -12,7 +11,7 @@ const cards = [
   { key: 'Results', icon: '📈', gradient: ['#10b981', '#22d3ee'] },
 ] as const
 
-export default function ProblemOverview({ problem, solution, results, subtitle, color }: ProblemOverviewProps) {
+export default function ProblemOverview({ problem, solution, results, subtitle }: ProblemOverviewProps) {
   const texts: Record<string, string> = { Problem: problem, Solution: solution, Results: results }
 
   return (
