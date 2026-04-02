@@ -47,14 +47,13 @@ export default function Resume() {
             {/* View & Download */}
             <a
               href="https://hirejet.ai/resumes/roderick-horton-general.html"
-              target="_blank"
-              rel="noopener noreferrer"
+              download
               className="inline-flex items-center gap-2 text-sm font-medium px-5 py-2.5 rounded-xl border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:border-indigo-500/50 transition-all mb-10"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              View & Download Resume
+              Download Resume
             </a>
           </ScrollReveal>
 
