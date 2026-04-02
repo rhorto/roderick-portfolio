@@ -2,6 +2,9 @@ import { useParams, Link, Navigate } from 'react-router-dom'
 import PageWrap from '../components/PageWrap'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionLabel from '../components/SectionLabel'
+import ProblemOverview from '../components/ProblemOverview'
+import ProcessDiagram from '../components/ProcessDiagram'
+import UserFlowDiagram from '../components/UserFlowDiagram'
 import { projects } from '../data/projects'
 
 export default function CaseStudy() {
@@ -114,6 +117,33 @@ export default function CaseStudy() {
           <p className="text-base text-zinc-300 leading-relaxed mb-12">{p.shipped}</p>
         </ScrollReveal>
       </div>
+
+      {/* Problem Overview — native component */}
+      {p.problemOverview && (
+        <div className="max-w-4xl mx-auto px-6 mb-16">
+          <ScrollReveal>
+            <ProblemOverview {...p.problemOverview} color={p.color} />
+          </ScrollReveal>
+        </div>
+      )}
+
+      {/* Process Diagram — native component */}
+      {p.showProcess && (
+        <div className="max-w-3xl mx-auto px-6 mb-16">
+          <ScrollReveal>
+            <ProcessDiagram />
+          </ScrollReveal>
+        </div>
+      )}
+
+      {/* User Flows — native component */}
+      {p.userFlows && p.userFlows.length > 0 && (
+        <div className="max-w-4xl mx-auto px-6 mb-16">
+          <ScrollReveal>
+            <UserFlowDiagram flows={p.userFlows} color={p.color} />
+          </ScrollReveal>
+        </div>
+      )}
 
       {/* Detail Sections — structured text content */}
       {p.detailSections && p.detailSections.length > 0 && (

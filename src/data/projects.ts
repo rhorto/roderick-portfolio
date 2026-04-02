@@ -1,3 +1,5 @@
+import type { UserFlowData } from '../components/UserFlowDiagram'
+
 export interface GalleryImage {
   src: string
   alt: string
@@ -39,6 +41,14 @@ export interface Project {
   scope?: string
   gallery?: GallerySection[]
   detailSections?: DetailSection[]
+  showProcess?: boolean
+  problemOverview?: {
+    problem: string
+    solution: string
+    results: string
+    subtitle: string
+  }
+  userFlows?: UserFlowData[]
 }
 
 export const projects: Project[] = [
@@ -140,6 +150,13 @@ export const projects: Project[] = [
     tools: ['Figma', 'Sketch', 'Adobe Illustrator', 'User Research', 'User Interviews', 'A/B Testing', 'Data Visualization', 'Design Systems', 'Prototyping'],
     before: 'Room-type-only booking with no customization. Revenue left on the table. Hotel owners relying on overloaded dashboards — 60% of reports never viewed. Decision-making bottlenecks across 6,000+ properties.',
     after: 'Guests customize floor, view, and bed type at booking — $50M incremental revenue. Owners access real-time insights with 40% faster data retrieval and 46% more daily engagement.',
+    showProcess: true,
+    problemOverview: {
+      problem: 'Hotel owners needed real-time access to business insights across 6,000+ properties, but the existing system was outdated and required physical office access.',
+      solution: 'Built a modern web-based Owner Home dashboard with progressive disclosure, interactive data visualization, and mobile-first design.',
+      results: 'Created a new dashboard UX with real-time insights that achieved 40% faster data retrieval, 46% more daily active users, and $50M incremental revenue.',
+      subtitle: 'Modernizing the IHG Owners Application and Booking Platform',
+    },
     detailSections: [
       {
         heading: 'Problem Statement',
@@ -171,6 +188,78 @@ export const projects: Project[] = [
         ],
       },
     ],
+    userFlows: [
+      {
+        title: 'Attribute-Based Booking Flow',
+        subtitle: 'How guests customize their room during the booking process',
+        lanes: [
+          {
+            title: 'Guest Journey',
+            color: '#10b981',
+            nodes: [
+              { id: 'g1', label: 'Search Hotels', type: 'start' },
+              { id: 'g2', label: 'Select Property', type: 'action' },
+              { id: 'g3', label: 'Choose Room Type', type: 'page' },
+              { id: 'g4', label: 'Customize Attributes', type: 'decision' },
+              { id: 'g5', label: 'Review & Price', type: 'page' },
+              { id: 'g6', label: 'Booking Confirmed', type: 'end' },
+            ],
+          },
+          {
+            title: 'Attribute Selection',
+            color: '#eab308',
+            nodes: [
+              { id: 'a1', label: 'Floor Level', type: 'action' },
+              { id: 'a2', label: 'View Type', type: 'action' },
+              { id: 'a3', label: 'Room Position', type: 'action' },
+              { id: 'a4', label: 'Bed Configuration', type: 'action' },
+              { id: 'a5', label: 'Dynamic Pricing', type: 'decision' },
+              { id: 'a6', label: 'Add to Booking', type: 'end' },
+            ],
+          },
+          {
+            title: 'Owner Dashboard',
+            color: '#6366f1',
+            nodes: [
+              { id: 'o1', label: 'Login', type: 'start' },
+              { id: 'o2', label: 'Portfolio Overview', type: 'page' },
+              { id: 'o3', label: 'Single vs Multi?', type: 'decision' },
+              { id: 'o4', label: 'Property Detail', type: 'page' },
+              { id: 'o5', label: 'Revenue & Insights', type: 'page' },
+              { id: 'o6', label: 'Take Action', type: 'end' },
+            ],
+          },
+        ],
+      },
+      {
+        title: 'Inventory Management Flow',
+        subtitle: 'How hotel staff create and manage room inventory types',
+        lanes: [
+          {
+            title: 'Create Inventory',
+            color: '#10b981',
+            nodes: [
+              { id: 'i1', label: 'Select Property', type: 'start' },
+              { id: 'i2', label: 'Define Room Type', type: 'action' },
+              { id: 'i3', label: 'Set Attributes', type: 'action' },
+              { id: 'i4', label: 'Validation Check', type: 'decision' },
+              { id: 'i5', label: 'Submit for Review', type: 'end' },
+            ],
+          },
+          {
+            title: 'Approval Process',
+            color: '#f59e0b',
+            nodes: [
+              { id: 'r1', label: 'Request Received', type: 'start' },
+              { id: 'r2', label: 'Corporate Review', type: 'action' },
+              { id: 'r3', label: 'Approved?', type: 'decision' },
+              { id: 'r4', label: 'Push to Brand', type: 'action' },
+              { id: 'r5', label: 'Live in System', type: 'end' },
+            ],
+          },
+        ],
+      },
+    ],
     gallery: [
       {
         label: 'Ideation & Concept Development',
@@ -178,20 +267,6 @@ export const projects: Project[] = [
           { src: '/images/cases/ihg-ideation-sketches.png', alt: 'Early ideation sketches — paper and whiteboard concepts for IHG dashboard', caption: 'Ideation — rapid paper and whiteboard sketching to explore dashboard layouts and data hierarchy' },
           { src: '/images/cases/ihg-whiteboard-sketch.png', alt: 'Whiteboard sketch — Single Hotel and Portfolio View early concepts', caption: 'Whiteboard exploration — Single Hotel dashboard layout and Portfolio View data hierarchy' },
           { src: '/images/cases/ihg-paper-sketch.png', alt: 'Paper sketch — single hotel wireframe concept', caption: 'Paper sketching — quick iteration on single hotel dashboard information architecture' },
-        ],
-      },
-      {
-        label: 'My Process',
-        images: [
-          { src: '/images/cases/ihg-process.png', alt: 'Design process — Discovery, Design, Delivery phases', caption: 'Process — from Research through Branding, UX, Design System, and UI to Delivery' },
-        ],
-      },
-      {
-        label: 'User Flows',
-        images: [
-          { src: '/images/cases/ihg-userflows-composite.png', alt: 'IHG user flows — Create Inventory Types and Attribute Request flows', caption: 'User flows — inventory type creation, attribute request/approval, and process flow segmentation' },
-          { src: '/images/cases/ihg-user-flow.png', alt: 'User flow diagram — Create Inventory Types for Hotel', caption: 'User flow — Create Inventory Types showing validation, error handling, and success states' },
-          { src: '/images/cases/ihg-segmentation-flow.png', alt: 'Process flow — Corporate Product and Attribute Catalog segmentation', caption: 'Segmentation model — how corporate catalogs flow to brand, region, and location levels' },
         ],
       },
       {
@@ -259,21 +334,55 @@ export const projects: Project[] = [
     tools: ['Figma', 'Design Tokens', 'WCAG', 'Storybook', 'Documentation', 'User Research', 'Adobe Illustrator'],
     before: 'Siloed design teams. Duplicated components across departments. Inconsistent UX patterns. Accessibility gaps. Slow product rollouts due to redundant work.',
     after: '40% less redundancy. 40% faster development cycles. Consistent design language across all products. WCAG AA compliant. 30% higher product engagement.',
+    showProcess: true,
+    problemOverview: {
+      problem: 'Multiple product teams designing in silos — duplicating components, creating inconsistent patterns, and leaving accessibility gaps across healthcare applications with strict FDA requirements.',
+      solution: 'Built a comprehensive Figma design system with scalable tokens, reusable components, governance documentation, and onboarding guides that mapped directly to CSS variables.',
+      results: '40% reduction in design redundancy, 40% faster development cycles, WCAG AA compliance, and 30% higher product engagement across all departments.',
+      subtitle: 'Unifying Pfizer\'s enterprise design language',
+    },
+    userFlows: [
+      {
+        title: 'Onboarding & Role-Based Routing',
+        subtitle: 'How new and returning users reach their personalized workspace',
+        lanes: [
+          {
+            title: 'New User',
+            color: '#0ea5e9',
+            nodes: [
+              { id: 'n1', label: 'Welcome Screen', type: 'start' },
+              { id: 'n2', label: 'Pfizer SSO Login', type: 'action' },
+              { id: 'n3', label: 'Select Role', type: 'decision' },
+              { id: 'n4', label: 'Personalize Workspace', type: 'action' },
+              { id: 'n5', label: 'Dashboard', type: 'end' },
+            ],
+          },
+          {
+            title: 'Developer Path',
+            color: '#8b5cf6',
+            nodes: [
+              { id: 'd1', label: 'Developer Role', type: 'start' },
+              { id: 'd2', label: 'Code Library', type: 'page' },
+              { id: 'd3', label: 'Component Docs', type: 'page' },
+              { id: 'd4', label: 'Token Reference', type: 'page' },
+              { id: 'd5', label: 'Build & Ship', type: 'end' },
+            ],
+          },
+          {
+            title: 'General User Path',
+            color: '#10b981',
+            nodes: [
+              { id: 'u1', label: 'General User Role', type: 'start' },
+              { id: 'u2', label: 'Drag & Drop Builder', type: 'page' },
+              { id: 'u3', label: 'Template Gallery', type: 'page' },
+              { id: 'u4', label: 'Preview & Publish', type: 'action' },
+              { id: 'u5', label: 'Live Application', type: 'end' },
+            ],
+          },
+        ],
+      },
+    ],
     gallery: [
-      {
-        label: 'Problem & Approach',
-        images: [
-          { src: '/images/cases/pfizer-problem-overview.png', alt: 'Pfizer case study — Problem, Solution, Results overview with 40% dev time reduction', caption: 'Problem Overview — siloed teams, inconsistent UX. Solution: unified design system. Result: 40% faster development, 30% more engagement' },
-          { src: '/images/cases/pfizer-process.png', alt: 'Design process — Discovery, Design, Delivery phases', caption: 'Process — from Research through Branding, UX, Design System, and UI to Delivery' },
-        ],
-      },
-      {
-        label: 'User Flows',
-        images: [
-          { src: '/images/cases/pfizer-userflows-section.png', alt: 'User flow — new and returning users routed to developer or general dashboards', caption: 'User flow architecture — new users onboard into role-based dashboards, returning users go direct' },
-          { src: '/images/cases/pfizer-user-flow.png', alt: 'Detailed user flow diagram with onboarding paths', caption: 'Detailed flow — Developer vs. General User paths to Code Library or Drag-Drop System' },
-        ],
-      },
       {
         label: 'Wireframes',
         images: [
@@ -331,14 +440,55 @@ export const projects: Project[] = [
     tools: ['Contextual Inquiry', 'Rapid Prototyping', 'Usability Testing', 'Heuristic Evaluation', 'Wireframing', 'Figma', 'Adobe Illustrator'],
     before: 'DOS-era terminal. 8-second average boarding interaction. High error rates. Agent frustration. Extensive training required for new hires. Over $100K wasted on redundant development.',
     after: '5-second interactions. 15% faster boarding. Zero-training UI. 25% more usage. $100K+ in dev cost savings. Award-winning design.',
-    gallery: [
+    showProcess: true,
+    problemOverview: {
+      problem: 'Gate agents used a DOS-era terminal to board 200+ passengers in 30-minute windows. The interface was slow, error-prone, and required extensive training — costing time and money across 1,000+ gates.',
+      solution: 'Redesigned the gate agent application with a research-driven approach — contextual inquiry with real agents, zero-training UI principles, and a unified design system that surfaced critical info instantly.',
+      results: '15% faster boarding times, $100K+ in development cost savings, 25% increase in app usage, and 20% higher agent satisfaction scores.',
+      subtitle: 'Modernizing Delta\'s mission-critical gate operations',
+    },
+    userFlows: [
       {
-        label: 'Problem & Approach',
-        images: [
-          { src: '/images/cases/delta-problem-overview.png', alt: 'Delta case study — Problem, Solution, Results overview', caption: 'Problem Overview — legacy systems slowing agents. Solution: research-driven design system. Result: 40% dev time saved, $100K+ cost reduction' },
-          { src: '/images/cases/delta-process.png', alt: 'Design process — Discovery, Design, Delivery phases', caption: 'Process — from Research through Branding, UX, Design System, and UI to Delivery' },
+        title: 'Gate Agent Boarding Flow',
+        subtitle: 'How agents process passengers during boarding',
+        lanes: [
+          {
+            title: 'Agent Actions',
+            color: '#ef4444',
+            nodes: [
+              { id: 'a1', label: 'Open Flight', type: 'start' },
+              { id: 'a2', label: 'View Passenger List', type: 'page' },
+              { id: 'a3', label: 'Scan Boarding Pass', type: 'action' },
+              { id: 'a4', label: 'Valid Ticket?', type: 'decision' },
+              { id: 'a5', label: 'Board Passenger', type: 'end' },
+            ],
+          },
+          {
+            title: 'Exception Handling',
+            color: '#f59e0b',
+            nodes: [
+              { id: 'e1', label: 'Issue Detected', type: 'start' },
+              { id: 'e2', label: 'Seat Change?', type: 'decision' },
+              { id: 'e3', label: 'Reassign Seat', type: 'action' },
+              { id: 'e4', label: 'Upgrade Available?', type: 'decision' },
+              { id: 'e5', label: 'Process & Board', type: 'end' },
+            ],
+          },
+          {
+            title: 'Kiosk Check-in',
+            color: '#6366f1',
+            nodes: [
+              { id: 'k1', label: 'Identify Passenger', type: 'start' },
+              { id: 'k2', label: 'Review Itinerary', type: 'page' },
+              { id: 'k3', label: 'Select Seat', type: 'action' },
+              { id: 'k4', label: 'Add Bags?', type: 'decision' },
+              { id: 'k5', label: 'Print Boarding Pass', type: 'end' },
+            ],
+          },
         ],
       },
+    ],
+    gallery: [
       {
         label: 'Wireframes & Information Architecture',
         images: [
