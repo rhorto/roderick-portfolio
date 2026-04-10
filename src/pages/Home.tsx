@@ -54,7 +54,7 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[130px] sm:h-[150px] md:h-[170px] relative mb-4 overflow-hidden">
+            <div className="h-[160px] sm:h-[190px] md:h-[220px] relative mb-4 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
