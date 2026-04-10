@@ -32,12 +32,20 @@ export default function Home() {
         <div className="aurora" />
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
 
-        {/* Spline robot — enlarged, flipped to face the text */}
-        <div className="absolute inset-0 z-0 opacity-30 md:opacity-50 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#050505]/60 to-[#050505]/95 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/60 z-10" />
-          <div className="absolute -top-[10%] -right-[15%] -bottom-[10%] left-[20%] md:left-[25%]"
-            style={{ transform: 'scaleX(-1)' }}>
+        {/* Spline robot — 3/4 view, facing the text from the right */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Gradient overlays for natural fade */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/50" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#050505]/40 via-transparent to-[#050505]" />
+          {/* Robot container — positioned right 40%, enlarged, with 3/4 perspective */}
+          <div
+            className="absolute -top-[5%] -bottom-[5%] left-[30%] md:left-[35%] -right-[10%] opacity-40 md:opacity-55"
+            style={{
+              transform: 'scaleX(-1) perspective(1200px) rotateY(8deg)',
+              transformOrigin: 'center center',
+            }}
+          >
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
