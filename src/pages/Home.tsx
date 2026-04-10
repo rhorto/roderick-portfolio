@@ -10,7 +10,7 @@ import { Spotlight } from '../components/ui/spotlight'
 import { projects } from '../data/projects'
 
 const headlines = [
-  { line1: 'I design AI products', line2: 'that ship', highlight: true },
+  { line1: 'I design AI products', line2: 'that get results', highlight: true },
   { line1: 'I designed a', line2: '$50M platform', highlight: false },
   { line1: 'From Figma to', line2: 'production code', highlight: true },
   { line1: '6 Fortune 500s.', line2: '15+ years', highlight: true },
