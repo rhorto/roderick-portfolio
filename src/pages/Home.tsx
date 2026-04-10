@@ -34,7 +34,7 @@ export default function Home() {
 
         {/* Spline robot — faded background */}
         <div className="absolute inset-0 z-0 opacity-30 md:opacity-50 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#050505]/50 to-[#050505]/85 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#050505]/60 to-[#050505]/95 z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/60 z-10" />
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
@@ -44,8 +44,8 @@ export default function Home() {
 
         <div className="absolute inset-0 grid-bg opacity-40" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32">
-          <div className="max-w-2xl">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 py-24 sm:py-32">
+          <div className="max-w-xl">
             {/* Availability badge */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.4 }}
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 mb-8">
@@ -54,7 +54,7 @@ export default function Home() {
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[120px] sm:h-[140px] md:h-[160px] relative mb-4 overflow-hidden">
+            <div className="h-[130px] sm:h-[150px] md:h-[170px] relative mb-4 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
@@ -223,7 +223,7 @@ export default function Home() {
             {[
               { q: "Roderick doesn't just design — he builds. He delivered our design system on time, reduced redundancy by 40%, and engineers loved working with his specs.", n: 'Product Director', r: 'Pfizer' },
               { q: "The attribute-based selling platform was a game-changer. Roderick led the UX from research through launch — $50M in incremental revenue.", n: 'VP of Digital', r: 'IHG Hotels & Resorts' },
-              { q: "Most designers hand off Figma files. Roderick shipped production React code, built automation pipelines, and integrated voice AI — all while keeping the UX clean.", n: 'Engineering Lead', r: 'Audiences247' },
+              { q: "Roderick redesigned our gate agent application and cut boarding times by 15%. He brought design thinking to a complex ops environment and made it stick.", n: 'Program Manager', r: 'Delta Air Lines' },
             ].map((t, i) => (
               <ScrollReveal key={t.n} delay={i * 0.08}>
                 <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full">
