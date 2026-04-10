@@ -110,7 +110,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* SOCIAL PROOF STRIP — stats + trusted by, below the fold */}
+      {/* SOCIAL PROOF STRIP — stats + trusted by */}
       <section className="border-y border-white/[0.04] bg-zinc-950/50">
         <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center gap-8 sm:gap-0 sm:justify-between">
           <div className="flex items-center gap-8 sm:gap-10">
@@ -131,7 +131,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ALL WORK — show all 6 projects */}
+      {/* WHAT I DO — value prop cards */}
+      <section className="py-20 sm:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>What I Do</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 font-heading">Three things, <span className="text-gradient">done right</span></h2>
+            <p className="text-sm text-zinc-500 mb-12 max-w-lg">Most designers do one. I do all three — and ship them to production.</p>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {[
+              { icon: '🧠', title: 'AI Product Design', desc: 'Voice agents, conversational AI, prompt engineering, and AI UX patterns that feel invisible to users.', accent: '#6366f1' },
+              { icon: '⚡', title: 'Production Code', desc: 'React, TypeScript, Supabase, Stripe — I ship working software, not Figma files.', accent: '#10b981' },
+              { icon: '🏗️', title: 'Design Systems', desc: 'Tokens, components, and governance frameworks at enterprise scale. Built for teams, not just designers.', accent: '#f59e0b' },
+            ].map((card, i) => (
+              <ScrollReveal key={card.title} delay={i * 0.08}>
+                <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full hover:border-zinc-700/80 transition-all duration-300">
+                  <div className="text-2xl mb-4">{card.icon}</div>
+                  <h3 className="text-base font-semibold mb-2 font-heading">{card.title}</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed">{card.desc}</p>
+                  <div className="h-0.5 w-8 rounded-full mt-5" style={{ background: card.accent }} />
+                </GlowCard>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SELECTED WORK */}
       <section className="py-20 sm:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
@@ -220,7 +247,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ENDORSEMENTS */}
+      {/* RESULTS TICKER — scrolling metrics strip */}
+      <section className="py-10 border-y border-white/[0.04] overflow-hidden">
+        <div className="results-ticker flex gap-12 whitespace-nowrap">
+          {[...Array(2)].map((_, setIdx) => (
+            <motion.div
+              key={setIdx}
+              className="flex gap-12 shrink-0"
+              animate={{ x: ['0%', '-100%'] }}
+              transition={{ duration: 30, ease: 'linear', repeat: Infinity }}
+            >
+              {[
+                '$50M incremental revenue',
+                '40% redundancy reduction',
+                '15% faster boarding',
+                '25% more bookings',
+                '20% retention increase',
+                '35% loyalty growth',
+                '$2M CRO revenue',
+                '6 Fortune 500 companies',
+              ].map((item) => (
+                <span key={`${setIdx}-${item}`} className="text-sm sm:text-base font-medium text-zinc-600 flex items-center gap-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/50" />
+                  {item}
+                </span>
+              ))}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ENDORSEMENTS — improved styling */}
       <section className="py-16 sm:py-24">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
@@ -229,20 +286,45 @@ export default function Home() {
           </ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {[
-              { q: "Roderick doesn't just design — he builds. He delivered our design system on time, reduced redundancy by 40%, and engineers loved working with his specs.", n: 'Product Director', r: 'Pfizer' },
-              { q: "The attribute-based selling platform was a game-changer. Roderick led the UX from research through launch — $50M in incremental revenue.", n: 'VP of Digital', r: 'IHG Hotels & Resorts' },
-              { q: "Roderick redesigned our gate agent application and cut boarding times by 15%. He brought design thinking to a complex ops environment and made it stick.", n: 'Program Manager', r: 'Delta Air Lines' },
+              { q: "Roderick doesn't just design — he builds. He delivered our design system on time, reduced redundancy by 40%, and engineers loved working with his specs.", n: 'Product Director', r: 'Pfizer', color: '#0ea5e9' },
+              { q: "The attribute-based selling platform was a game-changer. Roderick led the UX from research through launch — $50M in incremental revenue.", n: 'VP of Digital', r: 'IHG Hotels & Resorts', color: '#10b981' },
+              { q: "Roderick redesigned our gate agent application and cut boarding times by 15%. He brought design thinking to a complex ops environment and made it stick.", n: 'Program Manager', r: 'Delta Air Lines', color: '#dc2626' },
             ].map((t, i) => (
               <ScrollReveal key={t.n} delay={i * 0.08}>
-                <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full">
-                  <span className="text-2xl text-gradient font-serif leading-none">"</span>
-                  <p className="text-sm text-zinc-400 leading-relaxed italic mt-2 mb-5">{t.q}</p>
-                  <p className="text-sm font-semibold">{t.n}</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{t.r}</p>
+                <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full hover:border-zinc-700/80 transition-all duration-300">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="h-0.5 w-5 rounded-full" style={{ background: t.color }} />
+                    <span className="text-[10px] uppercase tracking-[0.15em] font-medium" style={{ color: t.color }}>{t.r}</span>
+                  </div>
+                  <span className="text-3xl font-heading font-bold leading-none" style={{ color: `${t.color}40` }}>"</span>
+                  <p className="text-sm text-zinc-400 leading-relaxed mt-1 mb-6">{t.q}</p>
+                  <div className="pt-4 border-t border-zinc-800/60">
+                    <p className="text-sm font-semibold">{t.n}</p>
+                    <p className="text-xs text-zinc-500 mt-0.5">{t.r}</p>
+                  </div>
                 </GlowCard>
               </ScrollReveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA — closing section */}
+      <section className="py-20 sm:py-28">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <ScrollReveal>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading mb-4">Let's build something <span className="text-gradient">meaningful</span></h2>
+            <p className="text-base text-zinc-400 max-w-md mx-auto mb-10">Open to AI Product Designer, Design Engineer, and AI Product Engineer roles.</p>
+            <div className="flex items-center justify-center gap-3">
+              <a href="mailto:roderickhorton@gmail.com" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center gap-2 hover:bg-indigo-400 transition-all hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
+                Email Me
+              </a>
+              <a href="https://linkedin.com/in/roderickhorton" target="_blank" rel="noopener noreferrer" className="h-12 px-7 rounded-full border border-zinc-700 text-white text-sm font-medium inline-flex items-center gap-2 hover:bg-zinc-900 transition-all">
+                LinkedIn
+              </a>
+            </div>
+            <p className="text-xs text-zinc-600 mt-8">Atlanta, GA · Remote OK</p>
+          </ScrollReveal>
         </div>
       </section>
     </PageWrap>
