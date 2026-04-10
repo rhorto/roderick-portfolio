@@ -12,9 +12,9 @@ body {
 
 ::selection { background: #6366f1; color: #fff; }
 
-/* Heading font — Sora for personality, Inter for body */
+/* Heading font — Plus Jakarta Sans for personality, Inter for body */
 .font-heading {
-  font-family: 'Sora', 'Inter', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 }
 
 .text-gradient {
