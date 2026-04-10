@@ -32,7 +32,7 @@ export default function About() {
             <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
               <img src="/images/profile.jpeg" alt="Roderick Horton" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-indigo-500/20 object-cover flex-shrink-0" />
               <div>
-                <h1 className="text-3xl sm:text-4xl font-bold mb-2">Designer who <span className="text-gradient">builds</span></h1>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-2 font-heading">Designer who <span className="text-gradient">builds</span></h1>
                 <p className="text-sm text-zinc-500">AI Product Designer · Atlanta, GA · 20+ years experience</p>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function About() {
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>How I Think</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-10">Design <span className="text-gradient">principles</span></h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-10 font-heading">Design <span className="text-gradient">principles</span></h2>
           </ScrollReveal>
           <div className="space-y-6">
             {principles.map((p, i) => (
@@ -93,7 +93,7 @@ export default function About() {
         <div className="max-w-3xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>Experience</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-12">Where I've <span className="text-gradient">shipped</span></h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-12 font-heading">Where I've <span className="text-gradient">shipped</span></h2>
           </ScrollReveal>
           <div className="divide-y divide-zinc-800/50">
             {experience.map((e, i) => (
@@ -137,7 +137,7 @@ export default function About() {
         <div className="max-w-3xl mx-auto px-6 text-center">
           <ScrollReveal>
             <SectionLabel>Connect</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4 mt-4">Let's build something <span className="text-gradient">meaningful</span></h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 mt-4 font-heading">Let's build something <span className="text-gradient">meaningful</span></h2>
             <p className="text-base text-zinc-400 max-w-md mx-auto mb-10">Open to AI Product Designer, Design Engineer, and AI Product Engineer roles.</p>
             <div className="flex items-center justify-center gap-3 mb-10">
               <a href="mailto:roderickhorton@gmail.com" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center gap-2 hover:bg-indigo-400 transition-all hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">Email Me</a>

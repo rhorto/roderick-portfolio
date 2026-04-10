@@ -12,6 +12,11 @@ body {
 
 ::selection { background: #6366f1; color: #fff; }
 
+/* Heading font — Sora for personality, Inter for body */
+.font-heading {
+  font-family: 'Sora', 'Inter', system-ui, sans-serif;
+}
+
 .text-gradient {
   background: linear-gradient(135deg, #818cf8 0%, #6366f1 40%, #a78bfa 100%);
   -webkit-background-clip: text;

@@ -26,7 +26,7 @@ export default function CaseStudy() {
             <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: `${p.color}15`, color: p.color }}>{p.company}</span>
             <span className="text-xs text-zinc-500">{p.year}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">{p.title}</h1>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3 font-heading">{p.title}</h1>
           <p className="text-sm text-indigo-400 font-medium mb-4">{p.role}</p>
           <p className="text-base text-zinc-400 leading-relaxed max-w-2xl">{p.desc}</p>
         </div>
@@ -81,7 +81,7 @@ export default function CaseStudy() {
         <div className="max-w-3xl mx-auto px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
           {p.results.map((r, i) => (
             <ScrollReveal key={r.label} delay={i * 0.05}>
-              <div className="text-xl font-bold" style={{ color: p.color }}>{r.metric}</div>
+              <div className="text-xl font-bold font-heading" style={{ color: p.color }}>{r.metric}</div>
               <div className="text-xs text-zinc-500 mt-1">{r.label}</div>
             </ScrollReveal>
           ))}

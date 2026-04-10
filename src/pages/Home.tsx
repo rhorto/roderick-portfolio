@@ -27,15 +27,15 @@ export default function Home() {
 
   return (
     <PageWrap>
-      {/* HERO */}
+      {/* HERO — simplified: headline + CTA + robot */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden noise">
         <div className="aurora" />
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
 
         {/* Spline robot — faded background */}
-        <div className="absolute inset-0 z-0 opacity-30 md:opacity-40 pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#050505]/60 to-[#050505]/90 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/70 z-10" />
+        <div className="absolute inset-0 z-0 opacity-30 md:opacity-50 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#050505]/50 to-[#050505]/85 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/60 z-10" />
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
@@ -44,19 +44,17 @@ export default function Home() {
 
         <div className="absolute inset-0 grid-bg opacity-40" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 sm:py-24">
+        <div className="relative z-10 max-w-5xl mx-auto px-6 py-24 sm:py-32">
           <div className="max-w-2xl">
-            <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1, duration: 0.5 }}
-              className="flex items-center gap-4 mb-6">
-              <img src="/images/profile.jpeg" alt="Roderick Horton" className="w-14 h-14 rounded-full border-2 border-indigo-500/40 object-cover shadow-[0_0_24px_rgba(99,102,241,0.2)]" />
-              <div>
-                <p className="text-sm font-semibold text-white">Roderick Horton</p>
-                <p className="text-xs text-indigo-400 flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> Available for work</p>
-              </div>
+            {/* Availability badge */}
+            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.4 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs text-zinc-400">Available for work</span>
             </motion.div>
 
             {/* Auto-sliding headlines */}
-            <div className="h-[110px] sm:h-[120px] md:h-[130px] relative mb-2 overflow-hidden">
+            <div className="h-[120px] sm:h-[140px] md:h-[160px] relative mb-4 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.h1
                   key={slide}
@@ -64,7 +62,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                   exit={{ opacity: 0, y: -30, filter: 'blur(6px)' }}
                   transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] as const }}
-                  className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.15] tracking-tight absolute inset-0"
+                  className="text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight absolute inset-0 font-heading"
                 >
                   {headlines[slide].line1}<br />
                   <span className={headlines[slide].highlight ? 'text-gradient' : ''}>{headlines[slide].line2}</span>
@@ -73,43 +71,22 @@ export default function Home() {
             </div>
 
             {/* Slide indicators */}
-            <div className="flex gap-1.5 mb-6">
+            <div className="flex gap-1.5 mb-8">
               {headlines.map((_, i) => (
                 <button key={i} onClick={() => setSlide(i)}
                   className={`h-1 rounded-full transition-all duration-500 ${i === slide ? 'w-6 bg-indigo-500' : 'w-1.5 bg-zinc-700 hover:bg-zinc-600'}`} />
               ))}
             </div>
 
-            {/* Trusted by strip — single source of truth, no duplicate paragraph */}
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.5 }}
-              className="flex flex-wrap items-center gap-4 sm:gap-5 mb-6 text-zinc-600">
-              <span className="text-[10px] uppercase tracking-wider">Trusted by</span>
-              <div className="w-px h-3 bg-zinc-800 hidden sm:block" />
-              {['Delta', 'IHG', 'Pfizer', 'State Farm', 'BofA', 'Yahoo'].map(c => (
-                <span key={c} className="text-xs font-medium text-zinc-500">{c}</span>
-              ))}
-            </motion.div>
-
-            {/* CTAs — View Work is primary, Get in Touch is demoted to text link */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75 }}
-              className="flex items-center gap-5 mb-10">
+            {/* Single CTA */}
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
+              className="flex items-center gap-5">
               <Link to="/work" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center hover:bg-indigo-400 transition-all duration-200 hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">
                 View Work
               </Link>
               <Link to="/about" className="text-sm text-zinc-400 hover:text-white transition-colors">
                 Get in Touch →
               </Link>
-            </motion.div>
-
-            {/* Stats inside hero */}
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9 }}
-              className="grid grid-cols-4 gap-6 sm:gap-10 pt-6 border-t border-white/[0.06]">
-              {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['8', 'Industries']].map(([v, l]) => (
-                <div key={l}>
-                  <div className="text-lg sm:text-2xl font-bold text-gradient">{v}</div>
-                  <div className="text-[10px] sm:text-xs text-zinc-500 mt-1">{l}</div>
-                </div>
-              ))}
             </motion.div>
           </div>
         </div>
@@ -125,17 +102,77 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* SOCIAL PROOF STRIP — stats + trusted by, below the fold */}
+      <section className="border-y border-white/[0.04] bg-zinc-950/50">
+        <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center gap-8 sm:gap-0 sm:justify-between">
+          <div className="flex items-center gap-8 sm:gap-10">
+            {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['8', 'Industries']].map(([v, l]) => (
+              <div key={l} className="text-center sm:text-left">
+                <div className="text-lg sm:text-xl font-bold text-gradient font-heading">{v}</div>
+                <div className="text-[10px] sm:text-xs text-zinc-500 mt-0.5">{l}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center gap-4 text-zinc-600">
+            <span className="text-[10px] uppercase tracking-wider">Trusted by</span>
+            <div className="w-px h-3 bg-zinc-800 hidden sm:block" />
+            {['Delta', 'IHG', 'Pfizer', 'State Farm', 'BofA', 'Yahoo'].map(c => (
+              <span key={c} className="text-xs font-medium text-zinc-500">{c}</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ALL WORK — show all 6 projects */}
       <section className="py-20 sm:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>Selected Work</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">Enterprise products, <span className="text-gradient">real impact</span></h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 font-heading">Enterprise products, <span className="text-gradient">real impact</span></h2>
             <p className="text-sm text-zinc-500 mb-12 max-w-lg">Fortune 500 products designed and built for measurable business outcomes.</p>
           </ScrollReveal>
 
+          {/* Featured project — full width */}
+          {projects.slice(0, 1).map(p => (
+            <ScrollReveal key={p.id}>
+              <Link to={`/work/${p.id}`} className="block mb-5">
+                <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group">
+                  <div className="flex flex-col lg:flex-row">
+                    <div className="h-56 lg:h-auto lg:w-1/2 rounded-t-xl lg:rounded-l-xl lg:rounded-tr-none relative overflow-hidden">
+                      {p.image ? (
+                        <>
+                          <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-zinc-950 via-zinc-950/40 to-transparent" />
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
+                          <span className="text-4xl font-bold tracking-wider" style={{ color: `${p.color}25` }}>{p.company.split(' ')[0].toUpperCase()}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6 lg:p-8 lg:w-1/2 flex flex-col justify-center">
+                      <span className="text-[10px] uppercase tracking-[0.15em] font-medium px-2.5 py-1 rounded-full w-fit mb-4" style={{ background: `${p.color}15`, color: p.color }}>{p.company}</span>
+                      <h3 className="text-xl font-semibold group-hover:text-indigo-400 transition-colors font-heading mb-2">{p.title}</h3>
+                      <p className="text-xs text-zinc-500 mb-3">{p.role} · {p.year}</p>
+                      <p className="text-sm text-zinc-400 leading-relaxed mb-5">{p.desc}</p>
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {p.tags.slice(0, 4).map(t => <span key={t} className="text-[10px] px-2 py-0.5 rounded-full border border-zinc-800 text-zinc-500">{t}</span>)}
+                      </div>
+                      <div className="flex gap-8 pt-4 border-t border-zinc-800/60">
+                        {p.stats.slice(0, 3).map(([v, l]) => (
+                          <div key={l}><span className="text-sm font-semibold" style={{ color: p.color }}>{v}</span><span className="block text-[10px] text-zinc-500">{l}</span></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </GlowCard>
+              </Link>
+            </ScrollReveal>
+          ))}
+
+          {/* Remaining projects — 2-column grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-            {projects.map((p, i) => (
+            {projects.slice(1).map((p, i) => (
               <ScrollReveal key={p.id} delay={i * 0.06}>
                 <Link to={`/work/${p.id}`}>
                   <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group h-full">
@@ -180,7 +217,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>Endorsements</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-bold mb-12">What others <span className="text-gradient">say</span></h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-12 font-heading">What others <span className="text-gradient">say</span></h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
             {[

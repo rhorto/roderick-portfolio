@@ -6,8 +6,8 @@ export default function NotFound() {
     <PageWrap>
       <section className="min-h-[80vh] flex items-center justify-center">
         <div className="text-center px-6">
-          <p className="text-8xl font-bold text-gradient mb-4">404</p>
-          <h1 className="text-2xl font-bold mb-3">Page not found</h1>
+          <p className="text-8xl font-bold text-gradient mb-4 font-heading">404</p>
+          <h1 className="text-2xl font-bold mb-3 font-heading">Page not found</h1>
           <p className="text-sm text-zinc-500 mb-8 max-w-sm mx-auto">
             Looks like this page doesn't exist. Maybe it was redesigned — I do that a lot.
           </p>

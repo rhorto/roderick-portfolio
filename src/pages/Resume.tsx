@@ -35,7 +35,7 @@ export default function Resume() {
           <ScrollReveal>
             <SectionLabel>Resume</SectionLabel>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-2">
-              <h1 className="text-3xl sm:text-4xl font-bold">Roderick <span className="text-gradient">Horton</span></h1>
+              <h1 className="text-3xl sm:text-4xl font-bold font-heading">Roderick <span className="text-gradient">Horton</span></h1>
               <a href="mailto:roderickhorton@gmail.com" className="text-sm text-indigo-400 hover:text-indigo-300 transition-colors">roderickhorton@gmail.com</a>
             </div>
             <p className="text-base text-zinc-400 mb-1">AI Product Designer | Enterprise UX & SaaS</p>

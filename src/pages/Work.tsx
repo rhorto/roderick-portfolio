@@ -12,7 +12,7 @@ export default function Work() {
         <div className="max-w-5xl mx-auto px-6">
           <ScrollReveal>
             <SectionLabel>Work</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3">Selected <span className="text-gradient">projects</span></h2>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3 font-heading">Selected <span className="text-gradient">projects</span></h2>
             <p className="text-base text-zinc-400 max-w-lg mb-14">Products I've designed and shipped across Fortune 500 enterprises and AI-native startups.</p>
           </ScrollReveal>
 

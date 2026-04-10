@@ -46,7 +46,7 @@ export default function ProcessDiagram({ phases = defaultPhases }: ProcessDiagra
     <div>
       {/* Header */}
       <div className="text-center mb-10">
-        <h3 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-2">My Process</h3>
+        <h3 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-2 font-heading">My Process</h3>
         <p className="text-sm text-zinc-500">How I approach every project</p>
       </div>
 

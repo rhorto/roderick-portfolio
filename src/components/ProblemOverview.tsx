@@ -18,7 +18,7 @@ export default function ProblemOverview({ problem, solution, results, subtitle }
     <div>
       {/* Header */}
       <div className="text-center mb-10">
-        <h3 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-2">Problem & Approach</h3>
+        <h3 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-2 font-heading">Problem & Approach</h3>
         <p className="text-sm text-zinc-500 max-w-md mx-auto">{subtitle}</p>
       </div>
 
