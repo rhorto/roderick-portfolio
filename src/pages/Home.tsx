@@ -13,7 +13,7 @@ const headlines = [
   { line1: 'I design AI products', line2: 'that ship', highlight: true },
   { line1: 'I designed a', line2: '$50M platform', highlight: false },
   { line1: 'From Figma to', line2: 'production code', highlight: true },
-  { line1: '6 Fortune 500s.', line2: '20+ years', highlight: true },
+  { line1: '6 Fortune 500s.', line2: '15+ years', highlight: true },
   { line1: 'AI product design,', line2: 'end to end', highlight: true },
 ]
 
