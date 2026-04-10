@@ -32,16 +32,19 @@ export default function Home() {
         <div className="aurora" />
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
 
-        {/* Spline robot — mirrored + angled to face the hero text */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Spline robot — angled to face the hero text */}
+        <div className="absolute inset-0 z-0 pointer-events-none" style={{ perspective: '1200px' }}>
           {/* Gradient overlays for natural fade */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40" />
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505]" />
-          {/* Robot — mirrored so it faces left, shifted right, enlarged */}
+          {/* Robot — rotated in 3D space to face left toward text */}
           <div
             className="absolute -top-[8%] -bottom-[8%] left-[25%] md:left-[30%] -right-[15%] opacity-45 md:opacity-60"
-            style={{ transform: 'scaleX(-1)' }}
+            style={{
+              transform: 'scaleX(-1) rotateY(25deg)',
+              transformOrigin: '70% center',
+            }}
           >
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
