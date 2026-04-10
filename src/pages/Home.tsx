@@ -5,7 +5,8 @@ import PageWrap from '../components/PageWrap'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionLabel from '../components/SectionLabel'
 import GlowCard from '../components/GlowCard'
-import HeroBackground from '../components/HeroBackground'
+import { SplineScene } from '../components/ui/splite'
+import { Spotlight } from '../components/ui/spotlight'
 import { projects } from '../data/projects'
 
 const headlines = [
@@ -29,7 +30,18 @@ export default function Home() {
       {/* HERO */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden noise">
         <div className="aurora" />
-        <HeroBackground />
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
+
+        {/* Spline robot — faded background */}
+        <div className="absolute inset-0 z-0 opacity-30 md:opacity-40 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#050505]/60 to-[#050505]/90 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/70 z-10" />
+          <SplineScene
+            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            className="w-full h-full"
+          />
+        </div>
+
         <div className="absolute inset-0 grid-bg opacity-40" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 sm:py-24">
