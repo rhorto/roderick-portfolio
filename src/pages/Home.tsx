@@ -34,10 +34,7 @@ export default function Home() {
 
         {/* Spline robot — mirrored to face hero text */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-          {/* Cinematic lighting on the robot */}
-          <div className="absolute z-[5] w-[500px] h-[500px] top-[10%] right-[15%] rounded-full opacity-20 blur-[120px]" style={{ background: 'radial-gradient(circle, #6366f1 0%, transparent 70%)' }} />
-          <div className="absolute z-[5] w-[350px] h-[350px] bottom-[15%] right-[25%] rounded-full opacity-15 blur-[100px]" style={{ background: 'radial-gradient(circle, #a78bfa 0%, transparent 70%)' }} />
-          <div className="absolute z-[5] w-[300px] h-[300px] top-[30%] right-[5%] rounded-full opacity-10 blur-[80px]" style={{ background: 'radial-gradient(circle, #22d3ee 0%, transparent 70%)' }} />
+
           {/* Gradient overlays for natural fade */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40" />
