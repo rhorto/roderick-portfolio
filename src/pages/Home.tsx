@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import type { Application } from '@splinetool/runtime'
 import PageWrap from '../components/PageWrap'
 import ScrollReveal from '../components/ScrollReveal'
 import SectionLabel from '../components/SectionLabel'
@@ -26,31 +25,6 @@ export default function Home() {
     return () => clearInterval(timer)
   }, [])
 
-  // Rotate the robot to look left toward the hero text
-  const handleSplineLoad = useCallback((app: Application) => {
-    // Try common object names used in Spline robot scenes
-    const names = ['Robot', 'robot', 'Character', 'character', 'Body', 'body', 'Scene', 'Group']
-    for (const name of names) {
-      const obj = app.findObjectByName(name)
-      if (obj) {
-        // Rotate Y axis so robot faces left toward text
-        obj.rotation.y = Math.PI * 0.3 // ~54 degrees left turn
-        break
-      }
-    }
-    // Also try getting all objects and rotating the root
-    try {
-      const allObjects = app.getAllObjects()
-      if (allObjects.length > 0) {
-        // Find the root/top-level object and rotate it
-        const root = allObjects[0]
-        root.rotation.y = Math.PI * 0.3
-      }
-    } catch {
-      // Fallback — some versions don't have getAllObjects
-    }
-  }, [])
-
   return (
     <PageWrap>
       {/* HERO — simplified: headline + CTA + robot */}
@@ -58,18 +32,20 @@ export default function Home() {
         <div className="aurora" />
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="white" />
 
-        {/* Spline robot — rotated via API to face the text */}
+        {/* Spline robot — mirrored + angled to face the hero text */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Gradient overlays for natural fade */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505] via-[#050505]/80 to-transparent" />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/50" />
-          <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#050505]/40 via-transparent to-[#050505]" />
-          {/* Robot container — right side, enlarged */}
-          <div className="absolute -top-[5%] -bottom-[5%] left-[30%] md:left-[35%] -right-[10%] opacity-40 md:opacity-55">
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#050505] via-transparent to-[#050505]/40" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#050505]/30 via-transparent to-[#050505]" />
+          {/* Robot — mirrored so it faces left, shifted right, enlarged */}
+          <div
+            className="absolute -top-[8%] -bottom-[8%] left-[25%] md:left-[30%] -right-[15%] opacity-45 md:opacity-60"
+            style={{ transform: 'scaleX(-1)' }}
+          >
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
-              onLoad={handleSplineLoad}
             />
           </div>
         </div>
