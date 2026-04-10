@@ -141,8 +141,8 @@ export default function Home() {
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {[
-              { num: '01', title: 'AI Product Design', desc: 'Voice agents, conversational AI, prompt engineering, and AI UX patterns that feel invisible to users.', accent: '#6366f1' },
-              { num: '02', title: 'Production Code', desc: 'React, TypeScript, Supabase, Stripe — I ship working software, not Figma files.', accent: '#10b981' },
+              { num: '01', title: 'Design Strategy & Research', desc: 'User research, usability testing, A/B testing, and data-driven design decisions that tie every UX change to a business metric.', accent: '#6366f1' },
+              { num: '02', title: 'AI Product Design', desc: 'Voice agents, conversational AI, prompt engineering, and AI UX patterns that feel invisible to users.', accent: '#10b981' },
               { num: '03', title: 'Design Systems', desc: 'Tokens, components, and governance frameworks at enterprise scale. Built for teams, not just designers.', accent: '#f59e0b' },
             ].map((card, i) => (
               <ScrollReveal key={card.title} delay={i * 0.08}>
