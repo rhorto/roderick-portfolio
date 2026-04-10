@@ -141,16 +141,20 @@ export default function Home() {
           </ScrollReveal>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {[
-              { icon: '🧠', title: 'AI Product Design', desc: 'Voice agents, conversational AI, prompt engineering, and AI UX patterns that feel invisible to users.', accent: '#6366f1' },
-              { icon: '⚡', title: 'Production Code', desc: 'React, TypeScript, Supabase, Stripe — I ship working software, not Figma files.', accent: '#10b981' },
-              { icon: '🏗️', title: 'Design Systems', desc: 'Tokens, components, and governance frameworks at enterprise scale. Built for teams, not just designers.', accent: '#f59e0b' },
+              { num: '01', title: 'AI Product Design', desc: 'Voice agents, conversational AI, prompt engineering, and AI UX patterns that feel invisible to users.', accent: '#6366f1' },
+              { num: '02', title: 'Production Code', desc: 'React, TypeScript, Supabase, Stripe — I ship working software, not Figma files.', accent: '#10b981' },
+              { num: '03', title: 'Design Systems', desc: 'Tokens, components, and governance frameworks at enterprise scale. Built for teams, not just designers.', accent: '#f59e0b' },
             ].map((card, i) => (
               <ScrollReveal key={card.title} delay={i * 0.08}>
-                <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-6 h-full hover:border-zinc-700/80 transition-all duration-300">
-                  <div className="text-2xl mb-4">{card.icon}</div>
-                  <h3 className="text-base font-semibold mb-2 font-heading">{card.title}</h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed">{card.desc}</p>
-                  <div className="h-0.5 w-8 rounded-full mt-5" style={{ background: card.accent }} />
+                <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 h-full hover:border-zinc-700/80 transition-all duration-300 overflow-hidden">
+                  <div className="flex h-full">
+                    <div className="w-1 shrink-0 rounded-l-xl" style={{ background: card.accent }} />
+                    <div className="p-6">
+                      <span className="text-xs font-mono font-medium mb-4 block" style={{ color: card.accent }}>{card.num}</span>
+                      <h3 className="text-base font-semibold mb-2 font-heading">{card.title}</h3>
+                      <p className="text-sm text-zinc-400 leading-relaxed">{card.desc}</p>
+                    </div>
+                  </div>
                 </GlowCard>
               </ScrollReveal>
             ))}
