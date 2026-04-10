@@ -106,7 +106,7 @@ export default function Home() {
       <section className="border-y border-white/[0.04] bg-zinc-950/50">
         <div className="max-w-5xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center gap-8 sm:gap-0 sm:justify-between">
           <div className="flex items-center gap-8 sm:gap-10">
-            {[['20+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['8', 'Industries']].map(([v, l]) => (
+            {[['15+', 'Years'], ['$50M+', 'Revenue'], ['6', 'Fortune 500'], ['8', 'Industries']].map(([v, l]) => (
               <div key={l} className="text-center sm:text-left">
                 <div className="text-lg sm:text-xl font-bold text-gradient font-heading">{v}</div>
                 <div className="text-[10px] sm:text-xs text-zinc-500 mt-0.5">{l}</div>
