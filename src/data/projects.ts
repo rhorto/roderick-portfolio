@@ -29,14 +29,10 @@ export interface Project {
   stats: [string, string][]
   constraint: string
   options: string[]
-  /** 1-based index into `options` for the path that was chosen. */
-  chosen: number
   bet: string
   shipped: string
   learned: string
   results: { metric: string; label: string }[]
-  /** Qualitative outcomes — kept out of the numeric metric band on purpose. */
-  outcomes?: string[]
   tools: string[]
   before: string
   after: string
@@ -58,7 +54,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'audiences247',
-    title: 'Replacing a $497/mo CRM with an AI-native one',
+    title: 'AI SaaS Platform',
     company: 'Audiences247',
     year: '2024–Present',
     role: 'AI Product Designer & Engineer',
@@ -73,10 +69,9 @@ export const projects: Project[] = [
     constraint: 'Small businesses were paying $497/month for GoHighLevel but only using 20% of its features. They needed lead management, outreach, and after-hours coverage — not a bloated CRM. I needed to build a focused replacement as a solo designer-engineer.',
     options: [
       'No-code platform (Bubble/Retool) — fast to ship but limited AI integration and poor performance at scale',
-      'Custom React + Supabase build — full control and AI-native architecture from day one, but slower initial delivery',
       'Fork an open-source CRM — saves time but inherits technical debt and a UX designed for different users',
+      'Custom React + Supabase build — full control, AI-native architecture from day one, but slower initial delivery',
     ],
-    chosen: 2,
     bet: 'I chose the custom build because voice AI, lead scoring, and personalized email needed deep integration — not bolted-on features. Supabase gave me row-level security for multi-tenancy without building auth infrastructure from scratch.',
     shipped: 'A production multi-tenant platform with Retell-powered voice AI agents, Gemini-driven email personalization, automated lead scoring, and n8n workflow orchestration — all behind a clean React/TypeScript interface. Clients onboard in minutes, not weeks.',
     learned: 'I underestimated the complexity of multi-tenant data isolation. Row-level security policies saved the architecture, but I should have designed the permission model before writing the first component. I also learned that AI-generated emails need human-tuned pain signals to convert — pure AI output reads as generic.',
@@ -91,45 +86,8 @@ export const projects: Project[] = [
     after: '75% cost reduction. AI voice agent handles calls 24/7. Leads auto-scored and routed in real time. Personalized outreach at scale with 8–15% reply rates.',
   },
   {
-    id: 'bofa-ai',
-    title: 'A servicing chatbot that knows when to hand off',
-    company: 'Bank of America',
-    year: 'Jan 2025–Mar 2026',
-    role: 'Senior UX Designer (Contract)',
-    desc: 'Designed the updated servicing chatbot and AI-assisted tools for online and in-office agents — one assistant behaviour across self-service and human channels.',
-    tags: ['AI Product Design', 'Conversational UI', 'Enterprise UX', 'Financial Services'],
-    color: '#dc2626',
-    stats: [['3', 'Surfaces, one model'], ['1', 'Context-preserving handoff']],
-    timeline: 'Jan 2025–Mar 2026',
-    team: ['Senior UX Designer', 'Product Manager', 'Conversational AI Engineers', 'Compliance'],
-    scope: 'Agent-facing and customer-facing AI — chatbot, online, and in-office apps',
-    constraint: 'The servicing chatbot could answer simple questions but dead-ended the moment a request got complicated, with no graceful way to reach a human. Online and in-office agents worked in separate tools with separate context, so a customer who moved from the chatbot to a person often had to start over.',
-    options: [
-      'Improve the chatbot\'s answers in place — quickest win, but keeps self-service and agent channels disconnected',
-      'Design one shared assistant behaviour the chatbot and both agent channels draw from — more to govern, but a single thing to design, test, and make trustworthy',
-      'Replace the chatbot with human-first triage — safer, but gives up the automation customers now expect',
-    ],
-    chosen: 2,
-    bet: 'I designed one assistant behaviour — confidence, disclosure, and handoff — and reused it across the chatbot, the online agent console, and the in-office app, so a customer never restarts their story when they reach a person. Handoff carried context with it, and the assistant stated what it was unsure about instead of guessing.',
-    shipped: 'An updated servicing chatbot with a legible confidence surface and a human handoff that carries context, plus AI-assisted tools for online and in-office agents that surface the same assistant reasoning — so an agent can see what the customer was already told. Designed to pass compliance review for AI disclosure.',
-    learned: 'The hard part wasn\'t the model — it was disclosure and handoff. A chatbot that is confidently wrong is worse than one that says "I\'m not sure, let me get someone," and agents need to see the assistant\'s reasoning to trust it. Treating the handoff as a first-class state instead of an error path is what made the whole thing usable.',
-    results: [
-      { metric: '3', label: 'Surfaces on one assistant model' },
-      { metric: '1', label: 'Handoff that keeps context' },
-    ],
-    outcomes: [
-      'Customers no longer restart when the chatbot hands off to a person',
-      'Agents can see what the assistant already told the customer',
-      'The assistant states its uncertainty instead of guessing',
-      'AI disclosure built in to pass compliance review',
-    ],
-    tools: ['Figma', 'Conversational Design', 'AI Trust & Transparency Patterns', 'Human-in-the-Loop', 'Prototyping', 'Usability Testing', 'Compliance Design'],
-    before: 'A chatbot that handled simple questions but dead-ended on anything complex, with no way to reach a human. Online and in-office agents in separate tools with separate context.',
-    after: 'One assistant behaviour across chatbot, online, and in-office channels. Handoff carries context. Uncertainty is stated, not hidden.',
-  },
-  {
     id: 'bofa',
-    title: 'Three legacy systems, one agent workflow',
+    title: 'Financial Center Apps',
     company: 'Bank of America',
     year: '2008–2010',
     role: 'UX Designer',
@@ -137,28 +95,24 @@ export const projects: Project[] = [
     tags: ['Enterprise UX', 'Financial Services', 'Internal Tools', 'Agent Experience'],
     color: '#dc2626',
     image: '/images/project-bofa.jpg',
-    stats: [['3→1', 'Systems unified'], ['2', 'Channels']],
+    stats: [['3→1', 'Systems Unified'], ['Faster', 'Service Time'], ['2', 'Channels'], ['Enterprise', 'Scale']],
     timeline: '18 months',
     team: ['UX Designer', 'Project Manager', 'Development Team', 'Compliance'],
     scope: 'Enterprise Internal Application',
     constraint: 'Financial center agents juggled three separate legacy systems — one for accounts, one for transactions, one for customer profiles. Context switching between systems caused delays, errors, and poor customer experiences during both in-office visits and online servicing.',
     options: [
       'Overlay a unified dashboard on existing systems — fast deployment but still dependent on fragile legacy backends',
-      'Task-based workflow UI orchestrating existing systems behind one interface — balanced approach with phased rollout',
       'Full replacement of all agent tools — highest impact but massive engineering and compliance effort',
+      'Task-based workflow UI orchestrating existing systems behind one interface — balanced approach with phased rollout',
     ],
-    chosen: 2,
     bet: 'Designed a task-based workflow interface that unified the agent experience without requiring a full backend rewrite. Agents could handle account inquiries, transactions, and customer updates from a single screen — whether the customer was sitting across from them or calling in.',
     shipped: 'A suite of internal applications giving financial center agents a unified customer view, streamlined transaction workflows, and consistent experience across in-office and online channels. Passed all compliance and legal reviews.',
     learned: 'Designing for financial services taught me the weight of compliance constraints. Every screen, every workflow had to clear legal and compliance review. I learned to build regulatory requirements into the design process from day one — not treat them as final-stage checkboxes.',
     results: [
       { metric: '3→1', label: 'Legacy systems consolidated' },
-      { metric: '2', label: 'Channels unified — in-office and online' },
-    ],
-    outcomes: [
-      'Faster customer-service resolution',
-      'Fewer agent errors from context switching',
-      'Simpler onboarding for new agents',
+      { metric: 'Faster', label: 'Customer service resolution' },
+      { metric: 'Reduced', label: 'Agent errors from context switching' },
+      { metric: '2 Channels', label: 'In-office + online servicing' },
     ],
     tools: ['User Research', 'Wireframing', 'Prototyping', 'Usability Testing', 'Stakeholder Management', 'Compliance Design'],
     before: 'Agents switching between 3 legacy systems per customer interaction. Slow service. Inconsistent in-office vs. online experience. High error rates. Training-intensive onboarding.',
@@ -166,7 +120,7 @@ export const projects: Project[] = [
   },
   {
     id: 'ihg',
-    title: 'Selling the view, not just the room',
+    title: 'Owners App & Booking Platform',
     company: 'IHG Hotels & Resorts',
     year: '2015–2020',
     role: 'Senior UX Designer',
@@ -184,7 +138,6 @@ export const projects: Project[] = [
       'Integrate attribute selection into the booking flow at room selection — complex but catches guests at peak intent',
       'Build a standalone "customize your stay" app — full control but fragments the booking experience',
     ],
-    chosen: 2,
     bet: 'For the booking platform: integrated directly into the booking flow at room selection — the hardest path technically (touching the core booking engine) but caught guests at the moment of highest willingness to spend. For the Owners App: used progressive disclosure and interactive data visualization to surface the right insights without overwhelming hotel owners.',
     shipped: 'IHG\'s first attribute-based selling platform — guests could select floor level, view type, room position, and bed configuration during booking, each with dynamic pricing. Plus a redesigned Owners Application with intuitive dashboards, demand forecasts, pricing strategies, and guest complaint tracking — all accessible in real time.',
     learned: 'The biggest challenge wasn\'t the UX — it was getting stakeholders across revenue management, IT, and hotel operations aligned on a shared vision. I learned to prototype in high fidelity early to build consensus before engineering sprints began. On the Owners App, user interviews with actual hotel owners revealed that they didn\'t need more data — they needed faster answers to 3-4 key questions.',
@@ -351,7 +304,7 @@ export const projects: Project[] = [
   },
   {
     id: 'pfizer',
-    title: 'A design system teams actually adopted',
+    title: 'Enterprise Design System',
     company: 'Pfizer',
     year: '2022–2024',
     role: 'Senior UX Designer',
@@ -365,11 +318,10 @@ export const projects: Project[] = [
     scope: 'Enterprise Design System — Multi-Product',
     constraint: 'Multiple product teams were designing in silos — duplicating components, creating inconsistent patterns, and leaving accessibility gaps across healthcare applications with strict FDA and regulatory requirements. Each department had its own system, wasting time and resources.',
     options: [
-      'Comprehensive Figma design system with tokens — designers adopt immediately, bridges to code translation later',
       'Guidelines document distributed via Confluence — easy to maintain but zero enforcement and low adoption',
       'Coded component library (React) — maximum consistency but requires deep engineering partnership upfront',
+      'Comprehensive Figma design system with tokens — designers adopt immediately, bridges to code translation later',
     ],
-    chosen: 1,
     bet: 'Started with Figma because designers could adopt immediately without waiting for engineering cycles. Used design tokens that mapped directly to CSS variables, making the eventual code translation straightforward. Invested heavily in documentation and onboarding — a system nobody uses is worse than no system.',
     shipped: 'A comprehensive Figma design system with scalable tokens, reusable components, governance documentation, and onboarding guides. Standardized data visualization, dashboard layouts, and onboarding screens across all product teams. Adopted across multiple departments within 8 weeks.',
     learned: 'A design system is only as good as its adoption rate. I spent as much time on documentation, onboarding sessions, and change management as I did on the components. The governance model — how to request changes, who approves, how to contribute — was more important than any individual component.',
@@ -458,7 +410,7 @@ export const projects: Project[] = [
   },
   {
     id: 'delta',
-    title: 'Three seconds off every boarding scan',
+    title: 'Gate Agent & Seating Apps',
     company: 'Delta Air Lines',
     year: '2010–2015',
     role: 'UX Designer',
@@ -472,11 +424,10 @@ export const projects: Project[] = [
     scope: 'Enterprise Application — 1,000+ Gates',
     constraint: 'Gate agents were using a DOS-era terminal interface to board 200+ passengers in 30-minute windows. Every second mattered — a slow interface meant delayed flights and cascading operational costs across the network. The existing system also required extensive training for new agents.',
     options: [
-      'Rebuild for desktop with progressive mobile support — balanced risk, matches existing gate hardware',
       'Skin the existing terminal app with modern UI — fast but limited by legacy architecture and still unintuitive',
       'Build a tablet-native app from scratch — best UX but risky rollout across 1,000+ gates simultaneously',
+      'Rebuild for desktop with progressive mobile support — balanced risk, matches existing gate hardware',
     ],
-    chosen: 1,
     bet: 'Rebuilt for desktop first because it matched existing hardware at every gate — no hardware procurement needed. Designed for zero-training adoption because agents couldn\'t afford a learning curve during live boarding. Every interaction had to be self-evident.',
     shipped: 'A redesigned gate agent application that reduced visual noise, surfaced critical passenger info immediately, and cut the average boarding interaction from 8 seconds to 5 seconds. Plus a new design system built from user research and data that included new features discovered during contextual inquiry with agents.',
     learned: 'Designing for operational environments is fundamentally different from consumer products. There\'s no onboarding flow — users need to be productive in seconds under pressure. I learned to design for the worst case: stressed agent, full flight, weather delay, 200 passengers waiting.',
@@ -488,7 +439,7 @@ export const projects: Project[] = [
     ],
     tools: ['Contextual Inquiry', 'Rapid Prototyping', 'Usability Testing', 'Heuristic Evaluation', 'Wireframing', 'Figma', 'Adobe Illustrator'],
     before: 'DOS-era terminal. 8-second average boarding interaction. High error rates. Agent frustration. Extensive training required for new hires. Over $100K wasted on redundant development.',
-    after: '5-second interactions. 15% faster boarding. Zero-training UI. 25% more usage. $100K+ in dev cost savings.',
+    after: '5-second interactions. 15% faster boarding. Zero-training UI. 25% more usage. $100K+ in dev cost savings. Award-winning design.',
     showProcess: true,
     problemOverview: {
       problem: 'Gate agents used a DOS-era terminal to board 200+ passengers in 30-minute windows. The interface was slow, error-prone, and required extensive training — costing time and money across 1,000+ gates.',
@@ -581,7 +532,7 @@ export const projects: Project[] = [
   },
   {
     id: 'statefarm',
-    title: 'Making telematics savings legible',
+    title: 'Drive Safe & Save',
     company: 'State Farm',
     year: '2021–2022',
     role: 'Senior UX Designer',
@@ -596,10 +547,9 @@ export const projects: Project[] = [
     constraint: 'State Farm\'s telematics app had low retention — users didn\'t understand how their driving behavior translated to savings. The iOS and Android experiences were inconsistent, and users were skeptical their data was being used fairly.',
     options: [
       'Add a savings dashboard — addresses understanding but doesn\'t fix the core retention problem',
-      'Redesign the core feedback loop connecting driving behavior → data → savings with transparent visuals',
       'Gamify driving with streaks and rewards — drives engagement but risks trivializing insurance decisions',
+      'Redesign the core feedback loop connecting driving behavior → data → savings with transparent visuals',
     ],
-    chosen: 2,
     bet: 'Focused on the feedback loop. Users needed to see the direct connection between their driving behavior and their policy savings — in real time, not after a billing cycle. Made this the centerpiece of the redesigned app, with full transparency on what was being measured and how.',
     shipped: 'A unified iOS and Android experience with real-time driving feedback, clear savings projections, transparent data usage, and streamlined enrollment. Consistent design language across both platforms.',
     learned: 'In insurance UX, trust is everything. Users were skeptical that their driving data was being used fairly. Designing for transparency — showing exactly what was measured, how it affected their rate, and giving them control — was more important than any visual polish.',
@@ -614,25 +564,3 @@ export const projects: Project[] = [
     after: '20% higher retention. Clear real-time savings feedback. Unified cross-platform design. 15% more enrollments. Transparent data usage.',
   },
 ]
-
-/** Curated display order — the most relevant, strongest work leads. */
-export const projectOrder = [
-  'audiences247',
-  'bofa-ai',
-  'ihg',
-  'delta',
-  'pfizer',
-  'statefarm',
-  'bofa',
-] as const
-
-export const orderedProjects: Project[] = projectOrder
-  .map((id) => projects.find((p) => p.id === id))
-  .filter((p): p is Project => Boolean(p))
-
-/** The next project after `id` in display order (wraps around). */
-export function nextProject(id: string): Project | undefined {
-  const i = orderedProjects.findIndex((p) => p.id === id)
-  if (i === -1) return undefined
-  return orderedProjects[(i + 1) % orderedProjects.length]
-}

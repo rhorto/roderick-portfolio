@@ -1,136 +1,152 @@
 import { Link } from 'react-router-dom'
 import PageWrap from '../components/PageWrap'
-import Rail from '../components/Rail'
-import CopyEmail from '../components/CopyEmail'
-import { YEARS_EXPERIENCE } from '../data/experience'
+import ScrollReveal from '../components/ScrollReveal'
+import SectionLabel from '../components/SectionLabel'
 
-const principles = [
-  {
-    title: "Ship, don't spec",
-    text: 'The best design artifact is working software. I write production code because the gap between Figma and production is where products lose their soul.',
-  },
-  {
-    title: 'Design for the constraint',
-    text: 'Every great product is shaped by its constraints — budget, timeline, regulation, legacy systems. I design within reality, not in a vacuum.',
-  },
-  {
-    title: 'AI should be legible',
-    text: 'People should know when a system is guessing, how sure it is, and how to overrule it. Trust is a design surface, not a legal footnote.',
-  },
-  {
-    title: 'Measure everything',
-    text: "If you can't quantify the impact of a design decision, you can't defend it. I tie every major UX change to a business metric — and I say plainly which results are measured and which are qualitative.",
-  },
+const experience = [
+  { co: 'Audiences247', role: 'AI Product Designer', yr: '2024–Present', desc: 'Designing and building AI SaaS end-to-end — voice AI, lead scoring, automation', link: '/work/audiences247' },
+  { co: 'Pfizer', role: 'Senior UX Designer', yr: '2022–2024', desc: 'Enterprise design system reducing redundancy 40% across healthcare products', link: '/work/pfizer' },
+  { co: 'State Farm', role: 'Senior UX Designer', yr: '2021–2022', desc: 'Mobile app redesign driving 20% retention increase', link: '/work/statefarm' },
+  { co: 'IHG Hotels', role: 'Senior UX Designer', yr: '2015–2020', desc: '$50M revenue platform — attribute-based selling', link: '/work/ihg' },
+  { co: 'Delta Air Lines', role: 'UX Designer', yr: '2010–2015', desc: 'Gate agent app — 15% faster boarding', link: '/work/delta' },
+  { co: 'Bank of America', role: 'UX Designer', yr: '2008–2010', desc: 'Financial center apps for agent servicing — online and in-office', link: '/work/bofa' },
+  { co: 'Yahoo', role: 'Digital Marketing Strategist', yr: '2007–2010', desc: 'CRO driving $2M in additional revenue' },
+  { co: 'SAIC', role: 'Usability Analyst', yr: '2004–2007', desc: 'Federal UX for CDC and OMB' },
 ]
 
-const ways = [
-  { title: 'Full-time', text: 'Senior or Staff AI Product Designer on a product team that ships.' },
-  { title: 'Contract', text: '0→1 AI product design and build — I design it and write the production code.' },
-  { title: 'Not sure it fits?', text: "Tell me the problem and I'll tell you honestly whether I'm the right person." },
+const principles = [
+  { title: 'Ship, don\'t spec', text: 'The best design artifact is working software. I write production code because the gap between Figma and production is where products lose their soul.' },
+  { title: 'Design for the constraint', text: 'Every great product is shaped by its constraints — budget, timeline, regulation, legacy systems. I design within reality, not in a vacuum.' },
+  { title: 'AI should be invisible', text: 'The best AI features don\'t announce themselves. Users shouldn\'t know they\'re interacting with AI — they should just notice things work better.' },
+  { title: 'Measure everything', text: 'If you can\'t quantify the impact of a design decision, you can\'t defend it. I tie every major UX change to a business metric.' },
 ]
 
 export default function About() {
   return (
     <PageWrap>
       {/* Intro */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-32 pb-16">
-        <p className="text-label uppercase text-zinc-400 mb-6">About</p>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-8">
-          <div className="lg:col-span-8">
-            <h1 className="text-h1 font-heading text-zinc-50 max-w-[24ch]">
-              I design software for people{' '}
-              <span className="text-zinc-500">who can't afford confusion.</span>
-            </h1>
-          </div>
-          <div className="lg:col-span-3 lg:col-start-10">
-            <img
-              src="/images/profile.jpeg"
-              alt="Roderick Horton"
-              width={100}
-              height={100}
-              className="w-28 h-28 rounded-2xl object-cover border border-white/[0.06]"
-            />
-            <p className="text-sm text-zinc-400 mt-4 leading-relaxed">
-              AI Product Designer &amp; Engineer
-              <br />
-              Atlanta, GA · Remote
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-12 max-w-[65ch] space-y-5 text-lead text-zinc-300">
-          <p>
-            For {YEARS_EXPERIENCE} years I've designed software for people who make decisions under
-            pressure — Delta gate agents boarding 200 passengers, Bank of America agents mid-call, IHG
-            hotel owners running thousands of properties. That's the through-line of my career.
-          </p>
-          <p className="text-zinc-400">
-            It's also where enterprise AI is going. Agent-assist, copilots, human-in-the-loop decision
-            tools — all of it lives or dies on whether the person on the front line can trust it under
-            pressure.
-          </p>
-          <p className="text-zinc-400">
-            So I design and build it. I write production React and TypeScript, architect voice AI, and
-            ship the automation that replaces expensive tools. I don't hand off Figma files.
-          </p>
+      <section className="pt-32 pb-16">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>About</SectionLabel>
+            <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
+              <img src="/images/profile.jpeg" alt="Roderick Horton" className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl border-2 border-indigo-500/20 object-cover flex-shrink-0" />
+              <div>
+                <h1 className="text-3xl sm:text-4xl font-bold mb-2 font-heading">Designer who <span className="text-gradient">builds</span></h1>
+                <p className="text-sm text-zinc-500">AI Product Designer · Atlanta, GA · 20+ years experience</p>
+              </div>
+            </div>
+            <div className="space-y-4 text-base text-zinc-400 leading-relaxed max-w-2xl">
+              <p>I'm an AI Product Designer with 20+ years shipping products at enterprise scale. I've designed for Delta Air Lines, IHG Hotels, Pfizer, and State Farm — products used by millions of people.</p>
+              <p>Today I design and build AI-native SaaS products end-to-end. I write production React and TypeScript. I architect voice AI systems. I build automation pipelines that replace expensive tools. I don't hand off Figma files — I ship.</p>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Principles */}
-      <Rail index="01" label="How I think">
-        <h2 className="text-h2 font-heading text-zinc-50 mb-8">Principles</h2>
-        <div className="divide-y divide-white/[0.06] border-t border-white/[0.06]">
-          {principles.map((p) => (
-            <div key={p.title} className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 py-6">
-              <h3 className="sm:col-span-4 text-h3 font-heading text-zinc-100">{p.title}</h3>
-              <p className="sm:col-span-8 text-zinc-400 leading-relaxed max-w-[62ch]">{p.text}</p>
-            </div>
-          ))}
+      {/* Capabilities */}
+      <section className="py-16">
+        <div className="max-w-5xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>What I Do</SectionLabel>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+            {[
+              ['AI Product Design', 'Voice AI agents, conversational systems, prompt engineering, AI UX patterns'],
+              ['Full-Stack Development', 'React, TypeScript, Node.js, Supabase, Stripe — production code, not prototypes'],
+              ['Design Systems', 'Component libraries, design tokens, governance frameworks at enterprise scale'],
+              ['Automation Architecture', 'n8n workflows, API orchestration, pipeline design replacing $500+/mo SaaS'],
+            ].map(([t, d], i) => (
+              <ScrollReveal key={t} delay={i * 0.06}>
+                <div className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-5 h-full">
+                  <h3 className="text-sm font-semibold mb-2">{t}</h3>
+                  <p className="text-sm text-zinc-500 leading-relaxed">{d}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
-      </Rail>
+      </section>
 
-      {/* Ways to work together */}
-      <Rail index="02" label="Work together">
-        <h2 className="text-h2 font-heading text-zinc-50 mb-8">Ways to work together</h2>
-        <div className="divide-y divide-white/[0.06] border-t border-white/[0.06]">
-          {ways.map((w) => (
-            <div key={w.title} className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-6 py-6">
-              <h3 className="sm:col-span-4 text-h3 font-heading text-zinc-100">{w.title}</h3>
-              <p className="sm:col-span-8 text-zinc-400 leading-relaxed max-w-[62ch]">{w.text}</p>
+      {/* Design Principles */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>How I Think</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-10 font-heading">Design <span className="text-gradient">principles</span></h2>
+          </ScrollReveal>
+          <div className="space-y-6">
+            {principles.map((p, i) => (
+              <ScrollReveal key={p.title} delay={i * 0.06}>
+                <div className="border-l-2 border-indigo-500/30 pl-5 py-1">
+                  <h3 className="text-base font-semibold mb-1.5">{p.title}</h3>
+                  <p className="text-sm text-zinc-400 leading-relaxed">{p.text}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Timeline */}
+      <section className="py-16 sm:py-24 border-y border-white/[0.04]">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>Experience</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-12 font-heading">Where I've <span className="text-gradient">shipped</span></h2>
+          </ScrollReveal>
+          <div className="divide-y divide-zinc-800/50">
+            {experience.map((e, i) => (
+              <ScrollReveal key={e.co} delay={i * 0.04}>
+                <div className="py-6 first:pt-0 last:pb-0 group">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1.5">
+                    <h3 className="text-[15px] font-semibold">
+                      {e.link ? (
+                        <Link to={e.link} className="hover:text-indigo-400 transition-colors inline-flex items-center gap-1.5">
+                          {e.co} <span className="text-xs text-zinc-600 group-hover:text-indigo-400">→</span>
+                        </Link>
+                      ) : e.co}
+                    </h3>
+                    <span className="text-xs text-zinc-500 font-mono">{e.yr}</span>
+                  </div>
+                  <p className="text-sm text-indigo-400 font-medium mb-1.5">{e.role}</p>
+                  <p className="text-sm text-zinc-500">{e.desc}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technologies */}
+      <section className="py-16 sm:py-24">
+        <div className="max-w-3xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>Technologies</SectionLabel>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Supabase', 'Stripe', 'Figma', 'n8n', 'Voice AI (Retell)', 'Prompt Engineering', 'Gemini', 'Claude', 'Design Systems', 'A/B Testing', 'CRO', 'WCAG', 'Prototyping', 'User Research'].map(s => (
+                <span key={s} className="text-xs px-3 py-1.5 rounded-full border border-zinc-800 text-zinc-500 hover:border-indigo-500/50 hover:text-indigo-400 transition-colors cursor-default">{s}</span>
+              ))}
             </div>
-          ))}
+          </ScrollReveal>
         </div>
-        <div className="mt-8">
-          <Link to="/resume" className="text-sm text-zinc-300 hover:text-indigo-300 transition-colors">
-            See the full timeline →
-          </Link>
-        </div>
-      </Rail>
+      </section>
 
       {/* Contact */}
-      <Rail index="03" label="Contact" id="contact">
-        <h2 className="text-h1 font-heading text-zinc-50 max-w-[20ch]">Have a hard AI product problem?</h2>
-        <p className="text-zinc-500 mt-4 mb-8 max-w-[48ch]">
-          I design and build AI products for people who can't afford confusion.
-        </p>
-        <div className="mb-8">
-          <CopyEmail className="text-lg" />
+      <section id="contact" className="py-16 sm:py-24">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <ScrollReveal>
+            <SectionLabel>Connect</SectionLabel>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 mt-4 font-heading">Let's build something <span className="text-gradient">meaningful</span></h2>
+            <p className="text-base text-zinc-400 max-w-md mx-auto mb-10">Open to AI Product Designer, Design Engineer, and AI Product Engineer roles.</p>
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <a href="mailto:roderickhorton@gmail.com" className="h-12 px-7 rounded-full bg-indigo-500 text-white text-sm font-medium inline-flex items-center gap-2 hover:bg-indigo-400 transition-all hover:shadow-[0_0_24px_rgba(99,102,241,0.3)]">Email Me</a>
+              <a href="https://linkedin.com/in/roderickhorton" target="_blank" rel="noopener noreferrer" className="h-12 px-7 rounded-full border border-zinc-700 text-white text-sm font-medium inline-flex items-center gap-2 hover:bg-zinc-900 transition-all">LinkedIn</a>
+            </div>
+            <p className="text-xs text-zinc-500">Atlanta, GA · Remote OK</p>
+          </ScrollReveal>
         </div>
-        <div className="flex flex-wrap items-center gap-6">
-          <a
-            href="https://linkedin.com/in/roderickhorton"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-zinc-300 hover:text-indigo-300 transition-colors"
-          >
-            LinkedIn
-          </a>
-          <Link to="/resume" className="text-sm text-zinc-300 hover:text-indigo-300 transition-colors">
-            Résumé
-          </Link>
-          <span className="text-sm text-zinc-400">Atlanta, GA · Remote OK</span>
-        </div>
-      </Rail>
+      </section>
     </PageWrap>
   )
 }

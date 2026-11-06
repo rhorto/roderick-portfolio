@@ -1,51 +1,57 @@
+import { Link } from 'react-router-dom'
 import PageWrap from '../components/PageWrap'
-import WorkRow from '../components/WorkRow'
-import { orderedProjects } from '../data/projects'
-
-const earlier = [
-  {
-    company: 'Yahoo',
-    role: 'Digital Marketing Strategist',
-    year: '2007–2010',
-    note: 'Conversion-rate optimization — $2M in additional revenue',
-  },
-  {
-    company: 'SAIC',
-    role: 'Usability Analyst',
-    year: '2004–2007',
-    note: 'Federal UX for the CDC and the Office of Management and Budget',
-  },
-]
+import ScrollReveal from '../components/ScrollReveal'
+import SectionLabel from '../components/SectionLabel'
+import GlowCard from '../components/GlowCard'
+import { projects } from '../data/projects'
 
 export default function Work() {
   return (
     <PageWrap>
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-32 pb-10">
-        <p className="text-label uppercase text-zinc-400 mb-5">Work</p>
-        <h1 className="text-h1 font-heading text-zinc-50 mb-4">Selected work</h1>
-        <p className="text-lead text-zinc-300 max-w-[54ch]">
-          Case studies from airline ops, hospitality, pharma, insurance, banking, and my own AI
-          products.
-        </p>
-      </section>
+      <section className="pt-32 pb-20 sm:pb-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <ScrollReveal>
+            <SectionLabel>Work</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl font-bold mb-3 font-heading">Selected <span className="text-gradient">projects</span></h2>
+            <p className="text-base text-zinc-400 max-w-lg mb-14">Products I've designed and shipped across Fortune 500 enterprises and AI-native startups.</p>
+          </ScrollReveal>
 
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 pb-16">
-        {orderedProjects.map((p, i) => (
-          <WorkRow key={p.id} project={p} index={i} />
-        ))}
-      </section>
-
-      <section className="border-t border-white/[0.06]">
-        <div className="mx-auto max-w-6xl px-6 lg:px-10 py-14">
-          <h2 className="text-label uppercase text-zinc-400 mb-6">Earlier</h2>
-          <div className="divide-y divide-white/[0.06] border-t border-white/[0.06]">
-            {earlier.map((e) => (
-              <div key={e.company} className="grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 py-4">
-                <span className="sm:col-span-3 text-zinc-200">{e.company}</span>
-                <span className="sm:col-span-3 text-zinc-400">{e.role}</span>
-                <span className="sm:col-span-2 text-zinc-400 tabular-nums">{e.year}</span>
-                <span className="sm:col-span-4 text-zinc-400">{e.note}</span>
-              </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            {projects.map((p, i) => (
+              <ScrollReveal key={p.id} delay={i * 0.06}>
+                <Link to={`/work/${p.id}`}>
+                  <GlowCard className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700/80 transition-all duration-300 group h-full">
+                    <div className="h-48 rounded-t-xl relative overflow-hidden">
+                      {p.image ? (
+                        <>
+                          <img src={p.image} alt={p.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+                          <div className="absolute bottom-3 left-4">
+                            <span className="text-[10px] uppercase tracking-[0.15em] font-medium px-2 py-0.5 rounded-full" style={{ background: `${p.color}20`, color: p.color }}>{p.company}</span>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
+                          <span className="text-3xl font-bold tracking-wider" style={{ color: `${p.color}25` }}>{p.company.split(' ')[0].toUpperCase()}</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-[15px] font-semibold group-hover:text-indigo-400 transition-colors">{p.title}</h3>
+                      <p className="text-xs text-zinc-500 mt-1 mb-3">{p.role} · {p.year}</p>
+                      <p className="text-sm text-zinc-400 leading-relaxed mb-4">{p.desc}</p>
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {p.tags.map(t => <span key={t} className="text-[10px] px-2 py-0.5 rounded-full border border-zinc-800 text-zinc-500">{t}</span>)}
+                      </div>
+                      <div className="flex gap-6 pt-4 border-t border-zinc-800/60">
+                        {p.stats.slice(0, 3).map(([v, l]) => (
+                          <div key={l}><span className="text-sm font-semibold" style={{ color: p.color }}>{v}</span><span className="block text-[10px] text-zinc-500">{l}</span></div>
+                        ))}
+                      </div>
+                    </div>
+                  </GlowCard>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>

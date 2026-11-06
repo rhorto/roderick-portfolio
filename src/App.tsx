@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence, MotionConfig } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Work from './pages/Work'
@@ -20,7 +20,7 @@ export default function App() {
   const location = useLocation()
 
   return (
-    <MotionConfig reducedMotion="user">
+    <>
       <ScrollToTop />
       <CommandPalette />
       <Layout>
@@ -35,6 +35,6 @@ export default function App() {
           </Routes>
         </AnimatePresence>
       </Layout>
-    </MotionConfig>
+    </>
   )
 }

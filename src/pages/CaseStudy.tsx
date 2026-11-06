@@ -1,214 +1,165 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import PageWrap from '../components/PageWrap'
 import ScrollReveal from '../components/ScrollReveal'
+import SectionLabel from '../components/SectionLabel'
+import ProblemOverview from '../components/ProblemOverview'
+import ProcessDiagram from '../components/ProcessDiagram'
 import UserFlowDiagram from '../components/UserFlowDiagram'
-import { projects, nextProject } from '../data/projects'
-
-const ease = [0.25, 0.1, 0.25, 1] as const
-
-function Label({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-label uppercase text-zinc-400 mb-4">{children}</h3>
-}
+import { projects } from '../data/projects'
 
 export default function CaseStudy() {
   const { id } = useParams()
-  const p = projects.find((x) => x.id === id)
+  const p = projects.find(p => p.id === id)
   if (!p) return <Navigate to="/work" replace />
 
-  const next = nextProject(p.id)
-
-  const meta: [string, string | undefined][] = [
-    ['Role', p.role],
-    ['Team', p.team?.join(', ')],
-    ['Timeline', p.timeline],
-    ['Scope', p.scope],
-  ]
+  const other = projects.filter(x => x.id !== id).slice(0, 2)
 
   return (
     <PageWrap>
-      <div className="mx-auto max-w-6xl px-6 lg:px-10 pt-28">
-        <Link
-          to="/work"
-          className="text-sm text-zinc-400 hover:text-zinc-200 transition-colors inline-flex items-center gap-1.5 rounded focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
-        >
-          <span aria-hidden>←</span> All work
-        </Link>
+      {/* Hero */}
+      <section className="pt-28 pb-16">
+        <div className="max-w-3xl mx-auto px-6">
+          <Link to="/work" className="text-sm text-zinc-500 hover:text-zinc-300 transition-colors inline-flex items-center gap-1.5 mb-8">
+            <span>←</span> All Work
+          </Link>
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-xs px-2.5 py-1 rounded-full font-medium" style={{ background: `${p.color}15`, color: p.color }}>{p.company}</span>
+            <span className="text-xs text-zinc-500">{p.year}</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-3 font-heading">{p.title}</h1>
+          <p className="text-sm text-indigo-400 font-medium mb-4">{p.role}</p>
+          <p className="text-base text-zinc-400 leading-relaxed max-w-2xl">{p.desc}</p>
+        </div>
+      </section>
+
+      {/* Hero visual */}
+      <div className="max-w-4xl mx-auto px-6 mb-16">
+        <div className="h-56 sm:h-72 rounded-2xl relative overflow-hidden">
+          {p.image ? (
+            <>
+              <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-zinc-950/20 to-transparent" />
+            </>
+          ) : (
+            <div className="w-full h-full flex items-center justify-center" style={{ background: `linear-gradient(145deg, ${p.color}08, ${p.color}03)` }}>
+              <span className="text-5xl font-bold tracking-wider" style={{ color: `${p.color}20` }}>{p.company.split(' ')[0].toUpperCase()}</span>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Header: rail + body */}
-      <header className="mx-auto max-w-6xl px-6 lg:px-10 pt-10 pb-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6 gap-y-10">
-          <div className="lg:col-span-3">
-            <dl className="space-y-5">
-              {meta
-                .filter(([, v]) => Boolean(v))
-                .map(([k, v]) => (
-                  <div key={k}>
-                    <dt className="text-label uppercase text-zinc-400 mb-1">{k}</dt>
-                    <dd className="text-sm text-zinc-200 leading-relaxed">{v}</dd>
-                  </div>
-                ))}
-            </dl>
-          </div>
-
-          <div className="lg:col-span-9">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.color }} aria-hidden />
-              <span className="text-label uppercase text-zinc-400">
-                {p.company} · {p.year}
-              </span>
+      {/* Project metadata */}
+      {(p.timeline || p.team || p.scope) && (
+        <div className="max-w-3xl mx-auto px-6 mb-12">
+          <ScrollReveal>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 py-6 border-y border-white/[0.06]">
+              {p.timeline && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Timeline</div>
+                  <div className="text-sm text-zinc-300">{p.timeline}</div>
+                </div>
+              )}
+              {p.team && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Team</div>
+                  <div className="text-sm text-zinc-300">{p.team.join(', ')}</div>
+                </div>
+              )}
+              {p.scope && (
+                <div>
+                  <div className="text-[10px] uppercase tracking-wider text-zinc-500 mb-1">Scope</div>
+                  <div className="text-sm text-zinc-300">{p.scope}</div>
+                </div>
+              )}
             </div>
-            <h1 className="text-h1 font-heading text-zinc-50 mb-5 max-w-[22ch]">{p.title}</h1>
-            <p className="text-lead text-zinc-300 max-w-[58ch]">{p.desc}</p>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero artifact */}
-      {p.image && (
-        <div className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
-          <div className="rounded-xl overflow-hidden border border-white/[0.06] bg-zinc-900">
-            <img
-              src={p.image}
-              alt={`${p.company} — ${p.title}`}
-              width={800}
-              height={500}
-              className="w-full h-auto"
-            />
-          </div>
+          </ScrollReveal>
         </div>
       )}
 
-      {/* Metric band — numbers only */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 border-y border-white/[0.06] py-8">
-          {p.results.map((r) => (
-            <div key={r.label}>
-              <div className="text-metric font-heading text-zinc-100 tabular-nums">{r.metric}</div>
-              <div className="text-[13px] text-zinc-400 mt-2 max-w-[20ch]">{r.label}</div>
-            </div>
+      {/* Results strip */}
+      <div className="border-y border-white/[0.04] bg-zinc-950/50 mb-16">
+        <div className="max-w-3xl mx-auto px-6 py-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+          {p.results.map((r, i) => (
+            <ScrollReveal key={r.label} delay={i * 0.05}>
+              <div className="text-xl font-bold font-heading" style={{ color: p.color }}>{r.metric}</div>
+              <div className="text-xs text-zinc-500 mt-1">{r.label}</div>
+            </ScrollReveal>
           ))}
         </div>
+      </div>
 
-        {p.outcomes && p.outcomes.length > 0 && (
-          <div className="mt-8 max-w-[65ch]">
-            <Label>Outcomes</Label>
-            <ul className="space-y-2">
-              {p.outcomes.map((o) => (
-                <li key={o} className="text-zinc-400 leading-relaxed flex gap-2">
-                  <span aria-hidden className="text-zinc-600">
-                    ·
-                  </span>
-                  {o}
-                </li>
-              ))}
-            </ul>
+      {/* Decision Stack */}
+      <div className="max-w-3xl mx-auto px-6">
+        <ScrollReveal>
+          <SectionLabel>The Constraint</SectionLabel>
+          <p className="text-base text-zinc-300 leading-relaxed mb-12">{p.constraint}</p>
+        </ScrollReveal>
+
+        <ScrollReveal>
+          <SectionLabel>Options Considered</SectionLabel>
+          <div className="space-y-3 mb-12">
+            {p.options.map((o, i) => (
+              <div key={i} className="flex gap-3 text-sm text-zinc-400 leading-relaxed">
+                <span className="text-zinc-600 font-mono text-xs mt-0.5 flex-shrink-0">{i + 1}.</span>
+                <span>{o}</span>
+              </div>
+            ))}
           </div>
-        )}
-      </section>
+        </ScrollReveal>
 
-      {/* The decision */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-x-6">
-          <div className="lg:col-span-3">
-            <div className="lg:sticky lg:top-28">
-              <p className="text-label uppercase text-zinc-400">The decision</p>
-            </div>
-          </div>
+        <ScrollReveal>
+          <SectionLabel>The Bet I Made</SectionLabel>
+          <p className="text-base text-zinc-300 leading-relaxed mb-12">{p.bet}</p>
+        </ScrollReveal>
 
-          <div className="lg:col-span-9 space-y-12">
-            <ScrollReveal>
-              <Label>The constraint</Label>
-              <p className="text-lead text-zinc-200 max-w-[62ch]">{p.constraint}</p>
-            </ScrollReveal>
+        <ScrollReveal>
+          <SectionLabel>What I Shipped</SectionLabel>
+          <p className="text-base text-zinc-300 leading-relaxed mb-12">{p.shipped}</p>
+        </ScrollReveal>
+      </div>
 
-            <ScrollReveal>
-              <Label>Options considered</Label>
-              <ol className="border-t border-white/[0.06]">
-                {p.options.map((option, i) => {
-                  const isChosen = i + 1 === p.chosen
-                  const [main, reason] = option.split(' — ')
-                  return (
-                    <li
-                      key={i}
-                      className={`relative grid grid-cols-1 sm:grid-cols-12 gap-1 sm:gap-6 py-5 border-b border-white/[0.06] ${
-                        isChosen ? 'bg-indigo-400/[0.05] pl-4' : 'opacity-60'
-                      }`}
-                    >
-                      {isChosen && (
-                        <motion.span
-                          aria-hidden
-                          initial={{ scaleY: 0 }}
-                          whileInView={{ scaleY: 1 }}
-                          viewport={{ once: true, margin: '-40px' }}
-                          transition={{ duration: 0.45, ease }}
-                          className="absolute left-0 top-0 h-full w-0.5 bg-indigo-400 origin-top"
-                        />
-                      )}
-                      <span className="sm:col-span-1 text-label uppercase tabular-nums text-zinc-400">
-                        0{i + 1}
-                      </span>
-                      <div className="sm:col-span-8">
-                        <p className={isChosen ? 'text-zinc-100' : 'text-zinc-400'}>{main}</p>
-                        {reason && <p className="text-[13px] text-zinc-400 mt-1 leading-relaxed">{reason}</p>}
-                      </div>
-                      <span
-                        className={`sm:col-span-3 sm:text-right text-label uppercase ${
-                          isChosen ? 'text-indigo-300' : 'text-zinc-500'
-                        }`}
-                      >
-                        {isChosen ? 'Chosen' : 'Not chosen'}
-                      </span>
-                    </li>
-                  )
-                })}
-              </ol>
-            </ScrollReveal>
-
-            <ScrollReveal>
-              <Label>The bet I made</Label>
-              <p className="text-quote font-heading text-zinc-100 max-w-[34ch]">{p.bet}</p>
-            </ScrollReveal>
-
-            <ScrollReveal>
-              <Label>What I shipped</Label>
-              <p className="text-zinc-300 leading-relaxed max-w-[65ch]">{p.shipped}</p>
-            </ScrollReveal>
-          </div>
+      {/* Problem Overview — native component */}
+      {p.problemOverview && (
+        <div className="max-w-4xl mx-auto px-6 mb-16">
+          <ScrollReveal>
+            <ProblemOverview {...p.problemOverview} />
+          </ScrollReveal>
         </div>
-      </section>
+      )}
 
-      {/* User flows */}
+      {/* Process Diagram — native component */}
+      {p.showProcess && (
+        <div className="max-w-3xl mx-auto px-6 mb-16">
+          <ScrollReveal>
+            <ProcessDiagram />
+          </ScrollReveal>
+        </div>
+      )}
+
+      {/* User Flows — native component */}
       {p.userFlows && p.userFlows.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
+        <div className="max-w-4xl mx-auto px-6 mb-16">
           <ScrollReveal>
             <UserFlowDiagram flows={p.userFlows} />
           </ScrollReveal>
-        </section>
+        </div>
       )}
 
-      {/* Detail sections */}
+      {/* Detail Sections — structured text content */}
       {p.detailSections && p.detailSections.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
-          {p.detailSections.map((section) => (
-            <ScrollReveal key={section.heading}>
-              <div className="border-t border-white/[0.06] pt-8 mb-8">
-                <h3 className="text-h3 font-heading text-zinc-100 mb-6">{section.heading}</h3>
-                <div
-                  className={`grid gap-8 ${
-                    section.columns.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'
-                  }`}
-                >
+        <div className="max-w-3xl mx-auto px-6 mb-16">
+          {p.detailSections.map((section, si) => (
+            <ScrollReveal key={section.heading} delay={si * 0.05}>
+              <div className={si > 0 ? 'mt-10 pt-10 border-t border-white/[0.06]' : ''}>
+                <h3 className="text-lg font-semibold text-zinc-200 mb-6">{section.heading}</h3>
+                <div className={`grid gap-8 ${section.columns.length === 1 ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
                   {section.columns.map((col) => (
                     <div key={col.title}>
-                      <h4 className="text-label uppercase text-zinc-400 mb-3">{col.title}</h4>
+                      <h4 className="text-sm font-medium text-zinc-300 mb-3">{col.title}</h4>
                       <ul className="space-y-2">
                         {col.items.map((item, ii) => (
-                          <li key={ii} className="text-zinc-400 leading-relaxed flex gap-2">
-                            <span aria-hidden className="text-zinc-600">
-                              ·
-                            </span>
+                          <li key={ii} className="text-sm text-zinc-400 leading-relaxed flex gap-2">
+                            <span className="text-zinc-600 mt-1 flex-shrink-0">•</span>
                             <span>{item}</span>
                           </li>
                         ))}
@@ -219,95 +170,82 @@ export default function CaseStudy() {
               </div>
             </ScrollReveal>
           ))}
-        </section>
+        </div>
       )}
 
-      {/* Process evidence — per-figure plates on the dark page */}
+      {/* Image Gallery — white background */}
       {p.gallery && p.gallery.length > 0 && (
-        <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
-          <h2 className="text-label uppercase text-zinc-400 mb-8">Process &amp; evidence</h2>
-          {p.gallery.map((section) => (
-            <ScrollReveal key={section.label}>
-              <div className="mb-14">
-                <h3 className="text-h3 font-heading text-zinc-100 mb-6">{section.label}</h3>
-                <div
-                  className={`grid gap-5 ${
-                    section.images.length === 1
-                      ? 'grid-cols-1'
-                      : section.images.length === 2
-                        ? 'grid-cols-1 sm:grid-cols-2'
-                        : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
-                  }`}
-                >
-                  {section.images.map((img, ii) => (
-                    <figure key={ii}>
-                      <div className="rounded-xl bg-zinc-100 p-3 sm:p-5 border border-white/[0.06]">
-                        <img src={img.src} alt={img.alt} loading="lazy" decoding="async" className="w-full h-auto rounded-md" />
+        <div className="bg-white py-16 sm:py-20 mb-16">
+          <div className="max-w-5xl mx-auto px-6">
+            {p.gallery.map((section, si) => (
+              <ScrollReveal key={section.label} delay={si * 0.05}>
+                <div className={si > 0 ? 'mt-16' : ''}>
+                  <h3 className="text-xs uppercase tracking-[0.15em] font-medium text-zinc-400 mb-6">{section.label}</h3>
+                  <div className={`grid gap-4 ${section.images.length === 1 ? 'grid-cols-1' : section.images.length === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'}`}>
+                    {section.images.map((img, ii) => (
+                      <div key={ii} className="group">
+                        <div className="rounded-lg overflow-hidden border border-zinc-200 shadow-sm hover:shadow-md transition-shadow">
+                          <img
+                            src={img.src}
+                            alt={img.alt}
+                            className="w-full h-auto object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                        {img.caption && (
+                          <p className="text-xs text-zinc-500 mt-2 leading-relaxed">{img.caption}</p>
+                        )}
                       </div>
-                      {img.caption && <figcaption className="text-[13px] text-zinc-400 mt-2 leading-relaxed">{img.caption}</figcaption>}
-                    </figure>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </section>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
       )}
 
-      {/* Before / After */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
+      {/* Before & After + Learned */}
+      <div className="max-w-3xl mx-auto px-6">
         <ScrollReveal>
-          <Label>Before → After</Label>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-white/[0.06] pt-6">
-            <div>
-              <h4 className="text-label uppercase text-zinc-400 mb-2">Before</h4>
-              <p className="text-zinc-400 leading-relaxed">{p.before}</p>
+          <SectionLabel>Before & After</SectionLabel>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+            <div className="rounded-xl border border-red-500/10 bg-red-500/[0.02] p-5">
+              <span className="text-[10px] uppercase tracking-wider text-red-400 font-medium">Before</span>
+              <p className="text-sm text-zinc-400 leading-relaxed mt-2">{p.before}</p>
             </div>
-            <div>
-              <h4 className="text-label uppercase text-indigo-300 mb-2">After</h4>
-              <p className="text-zinc-200 leading-relaxed">{p.after}</p>
+            <div className="rounded-xl border border-emerald-500/10 bg-emerald-500/[0.02] p-5">
+              <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-medium">After</span>
+              <p className="text-sm text-zinc-400 leading-relaxed mt-2">{p.after}</p>
             </div>
           </div>
         </ScrollReveal>
-      </section>
 
-      {/* Reflection */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
         <ScrollReveal>
-          <Label>What I'd do differently</Label>
-          <p className="text-quote font-heading text-zinc-100 max-w-[40ch]">{p.learned}</p>
+          <SectionLabel>What I Learned</SectionLabel>
+          <p className="text-base text-zinc-300 leading-relaxed mb-12">{p.learned}</p>
         </ScrollReveal>
-      </section>
 
-      {/* Tools */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 mb-16">
-        <Label>Tools &amp; technologies</Label>
-        <div className="flex flex-wrap gap-2">
-          {p.tools.map((t) => (
-            <span key={t} className="text-[13px] px-3 py-1.5 rounded-full border border-zinc-800 text-zinc-400">
-              {t}
-            </span>
-          ))}
-        </div>
-      </section>
+        <ScrollReveal>
+          <SectionLabel>Tools & Technologies</SectionLabel>
+          <div className="flex flex-wrap gap-2 mb-16">
+            {p.tools.map(t => <span key={t} className="text-xs px-3 py-1.5 rounded-full border border-zinc-800 text-zinc-500">{t}</span>)}
+          </div>
+        </ScrollReveal>
 
-      {/* Next project */}
-      {next && (
-        <section className="border-t border-white/[0.06]">
-          <Link
-            to={`/work/${next.id}`}
-            className="group mx-auto max-w-6xl px-6 lg:px-10 py-14 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-400"
-          >
-            <span className="text-label uppercase text-zinc-400">Next project</span>
-            <span className="text-h2 font-heading text-zinc-100 group-hover:text-white transition-colors inline-flex items-center gap-3">
-              {next.title}
-              <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden>
-                →
-              </span>
-            </span>
-          </Link>
-        </section>
-      )}
+        <ScrollReveal>
+          <SectionLabel>More Work</SectionLabel>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-16">
+            {other.map(o => (
+              <Link key={o.id} to={`/work/${o.id}`}
+                className="rounded-xl border border-zinc-800/80 bg-zinc-950/50 p-5 hover:border-zinc-700 transition-all group">
+                <h3 className="text-sm font-semibold group-hover:text-indigo-400 transition-colors">{o.title}</h3>
+                <p className="text-xs text-zinc-500 mt-1">{o.company} · {o.year}</p>
+              </Link>
+            ))}
+          </div>
+        </ScrollReveal>
+      </div>
     </PageWrap>
   )
 }
