@@ -1,19 +1,29 @@
-import { motion, type Variants } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { type ReactNode } from 'react'
 
-const variants: Variants = {
-  hidden: { opacity: 0, y: 24, filter: 'blur(4px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
-}
+/**
+ * Reveal-on-scroll. No blur (it's the template signature and costly to render),
+ * and a plain div when the user asks for reduced motion.
+ */
+export default function ScrollReveal({
+  children,
+  delay = 0,
+  className = '',
+}: {
+  children: ReactNode
+  delay?: number
+  className?: string
+}) {
+  const reduce = useReducedMotion()
 
-export default function ScrollReveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
+  if (reduce) return <div className={className}>{children}</div>
+
   return (
     <motion.div
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ delay }}
+      transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1], delay }}
       className={className}
     >
       {children}

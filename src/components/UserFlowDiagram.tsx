@@ -96,9 +96,9 @@ export default function UserFlowDiagram({ flows }: UserFlowDiagramProps) {
   return (
     <div>
       {/* Header */}
-      <div className="text-center mb-10">
-        <h3 className="text-2xl sm:text-3xl font-bold text-zinc-100 mb-2 font-heading">User Flows</h3>
-        <p className="text-sm text-zinc-500">Key journeys and decision points</p>
+      <div className="mb-8">
+        <h3 className="text-h3 font-heading text-zinc-100 mb-2">User Flows</h3>
+        <p className="text-zinc-400">Key journeys and decision points</p>
       </div>
 
       <div className="space-y-8">
