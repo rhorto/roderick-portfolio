@@ -64,18 +64,18 @@ export default function Home() {
 
         <div className="relative mx-auto max-w-6xl px-6 lg:px-10 pt-36 sm:pt-44 pb-20">
           <p className="text-label uppercase text-zinc-400 mb-7">
-            Roderick Horton · AI Product Designer &amp; Engineer · Atlanta / Remote
+            Roderick Horton · Atlanta / Remote
           </p>
 
-          <h1 className="text-display font-heading text-zinc-50 max-w-[18ch]">
+          <h1 className="text-display font-heading text-zinc-50">
             <span className="block overflow-hidden">
               <motion.span className="block" custom={0} initial="hidden" animate="visible" variants={lineVariants}>
-                I design AI for the people
+                Senior AI product designer
               </motion.span>
             </span>
             <span className="block overflow-hidden text-zinc-500">
               <motion.span className="block" custom={1} initial="hidden" animate="visible" variants={lineVariants}>
-                on the front line.
+                who ships production code.
               </motion.span>
             </span>
           </h1>
